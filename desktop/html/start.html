@@ -1,0 +1,297 @@
+<link href="css/default.css" style="text/css" rel="stylesheet">
+<link href="css/library-icons.css" style="text/css" rel="stylesheet">
+<link href="css/themes.css" style="text/css" rel="stylesheet">
+
+<!-- 
+    *
+    * Third party javascript libraries:
+    *	JQuery 1.4.4	http://jquery.org
+    *	JIT	2.0 	created by Nicolas Garcia Belmonte of http://jit.org
+    *	adobe air	provided by adobe air (aliasing to actionscript) 
+    *
+-->
+<script src="js/air/air-aliases.js"></script>
+<script src="js/jquery/jquery-1.4.4.js"></script>
+<script src="js/jquery/flip.js"></script>
+
+<script src="js/jquery/roundabout.js"></script>
+
+<!-- 
+  *
+  * jxf framework and utilities
+  *	rpc		performs rpc handling (ajax)
+  *	dom		manipulation of dom objects (common tasks)
+  *	sqlite		adobe air wrapper for handling sqlite dbase
+  *	jxbinder	runtime loading of html documents this is a work around the annoying adobe air sandbox
+  *
+-->
+
+<script src="js/jxf/jxbinder.js"></script>
+<script src="js/jxf/google/jxf-google.js"></script>
+<script src="js/jxf/dom.js"></script>
+<script src="js/jxf/rpc.js"></script>
+<script src="js/jxf/sqlite.js"></script>
+<script src="js/jxf/widgets/jxwidgets.js"></script>
+<!-- 
+	*
+	* This section are the scripts for storage providers
+	* The order of the libraries seem to be important i.e
+	
+	*
+-->
+<script src="js/providers/google/gdocs-handler.js"></script>
+
+<script src="js/providers/playlist/playlist.js"></script>
+<script src="js/library.js"></script>
+<script src="js/providers/local/lstore.js"></script>
+<!-- 
+  *
+  * system utilities and misceallaneous files that are specific to either 3-launchpad on air or to 3-launchpad processing
+  * 
+  *
+-->
+<script src="js/utils.js"></script>
+<script src="js/player.js"></script>
+
+<script src="/html/sys/setup/js/elp-system.js"></script>
+<script src="/html/sys/setup/js/elp-media-player.js"></script>
+<script src="/html/sys/setup/js/elp-plhandler.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/updater.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#mediaplayer').roundabout();
+  });
+
+    //-- 
+  function Initialize(){
+      theme.init() ;
+      //library.init() ;   
+      updater.init() ;
+      utils.modules.setup() ;
+      theme.set();
+      lstore.load();
+      
+      jx.dom.show('player') ;
+       menulib.open('all')
+      
+
+  }  
+      utils.modules.init('menu','menu.html','mui') 
+      utils.modules.init('google','providers/google/index.html','config') ;
+      utils.modules.init('dropbox','providers/dropbox/index.html','config') ;
+      utils.modules.init('local','providers/local/index.html','config') ;
+      utils.modules.init('theme','theme.html','config') ;  
+      utils.modules.init('help','help.html','stdout')     
+  
+      lstore.init.lookup() ;
+     
+      
+//
+// The code below needs to run before the pages are loaded. 
+// This allows the various dependencies to be ready for use and to circumvent the adobe air security restrictions
+// 
+//    Providers.init() ;
+   
+   var file = air.File.applicationStorageDirectory.resolvePath("3launchpad.db3") ;
+
+    if(file.exists == false){
+      air.trace(file.exists) 
+      sqlite.run.create("3launchpad.db3") ;
+      var create = "create table params(agn integer not null primary key, alias varchar not null unique, value varchar not null)" ;
+      var insert = "insert into params (alias,value) values('theme','clone')" ;
+      sqlite.run.cmd(file.nativePath,create) ;
+      sqlite.run.cmd(file.nativePath,insert) ;
+      sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('local.library','{}')") ;
+    }
+
+//
+// The code below is invoked by the library tabs and handles various interactions where the library
+// i.e the list of songs will appear.
+// TODO: The section below needs to be put into the appropriate file 
+//
+var menulib={
+  open:function(id){
+    var tabs =['all','google','local','dropbox'] ;
+    for(var i=0; i < tabs.length; i++){
+      jx.dom.set.css(tabs[i]+'-tab','inactive-tab') ;
+    }
+    jx.dom.set.css(id+'-tab','active-tab') ;
+    library.render('mainlib',id)
+  }//-- menulib.open(id)
+}
+</script>
+<style>
+   .roundabout-holder { padding: 1px;width:80%; height: 90%; }
+   
+   .roundabout-moveable-item { 
+      height: 80%; 
+      width: 72%; 
+      cursor: pointer;
+      
+      -webkit-border-radius:10px;
+      padding:10px;
+      border: 1px solid #999;
+      background:#f3f3f3;
+      opacity:0.5;
+      
+   }
+   
+   .roundabout-in-focus { cursor: auto; }
+   .inactive-tab{
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-top-left-radius:5px;
+    width:55px;
+    border:1px solid gray;
+    border-bottom:0px ;
+    background-color:#f3f3f3;
+   }
+   .active-tab{
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-top-left-radius:5px;
+    width:55px;
+    border:1px solid gray;
+    border-bottom:0px ;
+    background-color:#d3d3d3;
+    font-weight:bold;
+   }
+</style>
+
+<body id="body" class="default" onload="Initialize()" style="">
+<div  style="width:95%; border:5px double gray; padding:2px; margin-top:5px">
+  <div style="background-color:#d3d3d3;border-bottom:1px solid gray; cursor:move;" onmousedown="nativeWindow.startMove()">
+    <span onclick="window.location.reload()" style="cursor:pointer">
+    <b>3-Launchpad</b></span><span> - Desktop Edition </span>
+   
+  </div>
+  <span id="version" class="small" style="position:absolute; margin-top:3px"></span>
+  <span></span>
+<div id="app" style="height:90%; padding:3px">
+<div >
+  <img src="img/default/close.png" style="margin-left:88%;margin-top:-1%; position:absolute; z-index:2" class="action" onclick="jx.dom.show('default'); jx.dom.hide('stdout'); jx.dom.hide('mui');"/>
+  <div id="stdout" style="display:none; opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp()"></div>
+  <div id="mui" style="display:none; opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp()"></div>
+  
+  <div id="default" style="opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp(); $('#controls').fadeIn()">
+    <ul id="mediaplayer" style=" list-style:none; margin-left:8.5%; margin-top:-2%">
+    <li>
+    
+      <div class="medium shaded" style="font-weight:bold; font-size:14px;">
+	<span id="artist" style="margin-left:5px">Unknown<span>
+	</div>
+      <div class="medium shaded-dark" style="">
+	<span id="song" style="margin-left:5px">Uknown<span>
+      </div>
+      <div class="medium" style="">
+	<span id="progress" style="margin-left:5px">0.00 %</span>
+	
+	</div>
+    
+      <div style="border:2px double #d3d3d3; overflow:auto; height:65%"> 
+      <span style="margin-left:90%" class="medium action" onclick="player.clear()">[ x ]</span>
+	<div id="now.playing" style="overflow:auto"></div>
+	
+
+      </div>
+    </li>
+    
+    <li>
+      <div>
+      <b>Rock'on Center</b>
+	  
+
+      </div>
+    </li>
+
+    <li>
+      <div style="height:100%; overflow:auto">
+	<b>Media Library</b>
+	<table width="100%">
+	  <tr class="medium">
+
+	    <td>
+	      <input type="text" id="library.search" style="width:100%; border-color:#d3d3d3"/>
+	    </td>
+    	    <td width="34px">
+	      <input type="image" src="img/default/search.png"/>
+	    </td>
+	  </tr>
+	  </table>
+	 <div>
+	  <table cellspacing="1px" width="100%" style="margin-top:-5px">
+	    <tr class="medium action">
+	    <td style="; width:5px"> &nbsp;</td>
+	    <td id="all-tab" class="active-tab" align="middle" onclick="menulib.open('all')">
+	      all
+	    </td>
+    	    <td id="local-tab" class="inactive-tab" align="middle" onclick="menulib.open('local')">
+		local
+	    </td>
+   	    <td id="google-tab" class="inactive-tab" align="middle" onclick="menulib.open('google')">
+	      google
+	    </td>
+   	    <td id="dropbox-tab" class="inactive-tab" align="middle">
+	      dropbox
+  
+	    </td>
+	    <td style=""> &nbsp;</td>
+	    </tr>
+	    </table>
+	    <table style="border-top:1px solid gray" width="34px">
+	      <tr class="medium">
+	      <td valign="top">
+		
+		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('mainlib')"/>
+		
+	      </td></tr></table>
+	      <div id="mainlib" style="border:1px solid gray; margin-left:37px; height:65%; margin-top:-12.1%; overflow:auto;">
+		  Oops
+	      </div>
+      </div>
+    </li>
+  </ul>
+    	  <div id="controls" class="" style="margin-left:25%; position:absolute; bottom:70px; display:none">
+	    <input type="image" src="img/rwd_1.png" onclick="player.controls.back()"/>
+	    <input type="image" src="img/stop_1.png" onclick="player.controls.stop()"/>
+	    <input type="image" id="pause.button" src="img/pause_1.png" style="display:none" onclick="player.controls.pause()"/>
+	    <input type="image" id="play.button" src="img/play_1.png" onclick="player.controls.play()"/>
+	    <input type="image" src="img/fwd_1.png" onclick="player.controls.next()"/>
+	  </div>
+
+  </div>
+</div>
+
+<div id="mainmenu" class="shaded rounded-corners" style="margin-left:31%; position:absolute;z-index:2; bottom:32; border:1px solid gray; " >
+
+<table  align="center">
+  <tr class="medium" >
+  <td align="center" class="action" width="48px" onclick="jx.dom.show('default'); jx.dom.hide('stdout'); jx.dom.hide('mui');">
+    <img src="img/gnomefoot.png">
+    
+  </td>
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');">
+    <img src="img/setup.png">
+    
+  </td>
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('stdout','help');">
+    <img src="img/default/info.png">
+    
+  </td>
+  <td class="action" align="center" width="48px" style="border-left:1px solid gray" onclick="window.close()">
+    <img src="img/logoff.png">
+    
+  </td>  
+
+</tr>
+
+</table>
+</div>
+<div style="border:0px solid black; position:absolute; height:40px;width:94%" onmouseover="$('#mainmenu').slideDown(); $('#controls').fadeOut()">
+  <!--
+    * 
+    * This area enables the menu showing and hiding upon mouse position
+    *
+  -->
+</div>
+
+</body>

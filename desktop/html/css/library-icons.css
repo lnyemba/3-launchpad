@@ -1,0 +1,87 @@
+.action{
+	cursor:pointer ;
+}
+.playlist-icon{
+ height:32px; 
+ width:32px;
+ background:url('../img/default/playlist.png') 0 0 ;
+}
+
+.reload-icon{
+	height:32px;
+	width:32px;
+	background:url('../img/default/reload.png') 0 0 ;
+}
+.search-icon{
+	height:28px;
+	width:28px;
+	background:url('../img/default/search.png') 0 0 ;
+}
+.search-bar{
+	border:1px solid #d3d3d3 ;
+}
+
+.inspired-by-icon{
+	height:28px;
+	width:28px;
+	background:url('../img/default/question.png') ;
+}
+.repeat-all-icon{
+	width:28px;
+	height:28px;
+	position:absolute;
+	margin-left:9.5%;
+	margin-top:-8px;	
+	background:url('../img/default/repeatall.png') ;
+}
+
+.repeat-single-icon{
+	width:28px;
+	height:28px;
+	position:absolute;
+	margin-left:9.5%;
+	margin-top:-8px;	
+	background:url('../img/default/repeat-single.png') ;
+}
+
+.no-repeat-icon{
+	width:28px;
+	height:28px;
+	position:absolute;
+	margin-left:9.5%;
+	margin-top:-8px;
+	background:url('../img/default/no-repeat.png') ;
+}
+
+.volume-up-icon{
+	width:28px;
+	height:28px;
+	position:absolute;
+	margin-top:-8px;
+	margin-left:2.5%;
+	background:url('../img/default/volume-up.png') ;
+}
+.volume-down-icon{
+	width:28px;
+	height:28px;
+	position:absolute;
+	margin-left:2.5%;
+	margin-top:10px;
+	background:url('../img/default/volume-down.png') ;
+}
+
+.welcome-icon{
+	position:absolute;
+	z-index:1;
+	width:125px;
+	height:125;
+	display:table-cell;
+	margin-left:61%;
+	margin-top:1%;
+	background:url('../img/default/welcome.png') no-repeat;
+}
+
+.shade-controls{
+	background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.15, #C1C1C1),color-stop(0.71, #848484),color-stop(0.97, #d3d3d3));
+	color:white;
+}

@@ -1,0 +1,77 @@
+<!--
+  * This file will contain the main site menu allowing navigation and access to the various storage providers
+  * and maybe some minor documentation (I'll see about that)
+  * 
+-->
+<div>
+  <img src="img/default/setup.png"> 
+  <div class="caption" style="margin-top:-5.5%; margin-left:36px">3-Launchpad Configuration</div>
+    <div class="small" style="font-weight:normal; margin-left:36px">Index songs for easy and fast access</div>
+  </div>
+</div>
+
+<br>
+<div  style="width:48%;border:1px solid gray; margin-left:1%" class="rounded-corners">
+    <b>Storage Providers</b>
+    <table width="100%">
+    <tr class="medium shaded-dark action" onclick="utils.menu.show('local')">
+      <td width="36px">
+	<img src="img/drive.png"/>
+      </td>
+      <td>
+	<b>Hard drive </b>
+	<div class="small">songs: <span id="menu.lstore.size">00</span></div>
+      </td>
+    </tr>
+
+    <tr class="medium shaded-dark action" onclick="utils.menu.show('google')">
+      <td>
+	<img src="img/google-logo.png"/>
+      </td>
+      <td class="shaded-dark">
+	<b>Google docs </b>
+	<div class="small">songs: <span id="menu.gstore.size">00</span></div>
+      </td>
+    </tr>
+    <tr class="medium shaded-dark action" onclick="utils.menu.show('dropbox')">
+      <td>
+	<img src="img/dropbox.png"/>
+      </td>
+      <td class="shaded-dark">
+	<b>Dropbox</b>
+	<div class="small">songs: <span id="gdocs.summary">00</span></div>
+      </td>
+    </tr>
+    </table>	
+  <div>
+    <b>Change 3-launchpad theme</b>
+    <table width="100%">
+      <tr class="medium shaded-dark action" onclick="utils.menu.show('theme')">
+	<td width="36px">
+	  <img src="img/default/theme.png"/>
+	</td>
+	<td>
+	  Theme engine version 0.1
+	  <div>current theme: "<span id="current.theme" class="small"></span>"</div>
+	</td>
+      </tr>
+    </table>
+
+  </div>
+  <div>
+    <b>Manage music Library</b>
+    <table width="100%">
+      <tr class="medium shaded-dark">
+	<td width="36px">
+	  <img src="img/default/mysongs.png"/>
+	</td>
+	<td>
+	  Create playlists; save and/or share them.
+	  
+	</td>
+      </tr>
+    </table>
+
+  </div>
+</div>
+<div id="config" class="rounded-corners" style="margin-left:50%; margin-top:-42.5%; width:48%; height:71.5%; border:1px solid gray;"></div>

@@ -1,0 +1,36 @@
+
+<div style="margin-top:5px"><img src="img/dropbox.png"/></div>
+<div style="margin-top:-25px; margin-left:35px; font-size:16px; font-weight:bold">Dropbox Music Library</div>
+<div style="margin-top:5%">
+  Index music for quick access
+  <div class="medium">Make sure the dropbox space is mounted</div>
+</div>
+
+  <table width="100%" style="margin-top:3%; border-top:1px solid gray" cellspacing="0px">
+  <tr style="; font-weight:bold" class="small shaded-dark action">
+  <td valign="top"  onclick="lstore.init.browse()" style="width:15%">
+      <img src="img/default/search.png"/>
+  </td>
+  <td onclick="dstore.init.browse()" valign="middle">
+      Scan/Rescan
+  </td>
+  
+  <td style="width:15%;border-left:1px solid gray" onclick = "lstore.reset();">
+      <img src="img/default/clear.png"/>
+  </td>
+  <td valign="middle"  onclick = "lstore.reset();" style="width:35%">
+      Clear/Reset
+  </td>
+  </tr></table>
+<div id="dstore.status" class="medium" style="color:#436EEE"></div>
+<div style="margin-top:3%"><b>Music Folder</b></div>
+<div id="dfolder" class="small" style="border:1px solid #d3d3d3;">[unknown]</div>
+<div id="dstore.report" style="display:none; margin-top:3%; border-top:1px solid gray">
+<b>Summary Report</b>
+<div>
+  mp3 files found : <span id="dstore.size"></span>
+</div>
+<div>
+  mp3 folder count: <span id="dstore.owners"></span>
+</div>
+</div>

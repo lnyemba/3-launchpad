@@ -1,0 +1,71 @@
+
+<div style="margin-top:5px"><img src="img/drive.png"/></div>
+<div style="margin-top:-11%; margin-left:35px; font-size:16px; font-weight:bold">Local Music</div>
+<div style="margin-top:-1.5%; margin-left:35px">
+  Index music for quick access
+</div>
+
+  <table width="100%" style="margin-top:3%; border-top:1px solid gray" cellspacing="0px">
+  <tr style="; font-weight:bold" class="small shaded-dark action">
+  <td valign="top"  onclick="lstore.init.browse()" style="width:15%">
+      <img src="img/default/search.png"/>
+  </td>
+  <td onclick="lstore.init.browse()" valign="middle">
+      Scan/Rescan
+  </td>
+  
+  <td style="width:15%;border-left:1px solid gray" onclick = "lstore.reset();">
+      <img src="img/default/clear.png"/>
+  </td>
+  <td valign="middle"  onclick = "lstore.reset();" style="width:35%">
+      Clear/Reset
+  </td>
+  </tr></table>
+<div id="lstore.status" class="medium" style="color:#436EEE"></div>
+<div style="margin-top:3%"><b>Music Folder</b></div>
+<div id="folder" class="small" style="border:1px solid #d3d3d3;">[unknown]</div>
+<div id="lstore.report" style="display:none; margin-top:3%; border-top:1px solid gray">
+<b>Summary Report</b>
+<div>
+  mp3 files found : <span id="lstore.size"></span>
+</div>
+<div>
+  mp3 folder count: <span id="lstore.owners"></span>
+</div>
+</div>
+
+	<!--
+	<span style="position:absolute; margin-top:-5%;margin-left:87%; cursor:pointer">&lsaquo;&lsaquo;</span>
+	<div id="lstore.status" class="medium" style="color:#436EEE"></div>
+	  <table width="100%" cellspacing="0px" style="border-top:1px solid gray">
+	    <tr class="medium shaded-dark action" onclick="lstore.reset(); lstore.init.browse()">
+	      <td width="34px">
+		<img src="img/default/search.png"/>
+	      </td>
+	      <td valign="top">
+		<div style="font-weight:bold">Scan/rescan and index a music folder</div>
+		<div>Songs found <span id="lstore.report"></span></div>
+	      </td>
+	    </tr>
+	    <tr class="medium shaded-dark action" onclick="lstore.showSongs()">
+	      <td width="34px">
+		<img src="img/default/mysongs.png"/>
+	      </td>
+	      <td valign="middle">
+		<div style="font-weight:bold">Show songs found on hard drive</div>
+		
+	      </td>
+	    </tr>
+	    <tr class="medium shaded-dark action" onclick="lstore.reset();">
+	      <td width="34px">
+		<img src="img/default/clear.png"/>
+	      </td>
+	      <td valign="middle">
+		<div style="font-weight:bold">Clear cache</div>
+		
+	      </td>
+	    </tr>
+	  </table>
+
+
+-->

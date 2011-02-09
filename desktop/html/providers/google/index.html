@@ -1,0 +1,48 @@
+<div style="margin-top:5px"><img src="img/google-logo.png"/></div>
+<div style="margin-top:-11%; margin-left:35px; font-size:16px; font-weight:bold">oogle docs</div>
+<div style="margin-top:-1%; margin-left:35px" class="medium">
+  Index music for quick access.
+</div>
+
+<table width="90%" align="center" cellspacing="0px" style="margin-top:3%">
+  <tr class="medium">
+    <td width="22%">Email</td>
+    <td><input id="email" type="text" class="medium" style="width:100%"/></td>
+  </td>
+  </tr>
+  <tr class="medium">
+    <td>Password</td>
+    <td><input id="password" type="password" class="medium" style="width:100%"/></td>
+  </tr>
+  <tr class="medium">
+    <td colspan="2" style="">
+      &nbsp;<span id="gstore.status" style="color:#436EEE"></span>
+    </td>
+  </tr>
+  
+  </table>
+  <table width="90%" align="center" style="border-top:1px solid gray" cellspacing="0px">
+  <tr style="; font-weight:bold" class="small shaded-dark action">
+  <td valign="top"  onclick="gstore.login.init()" style="width:15%">
+      <img src="providers/google/img/gdocs.png"/>
+  </td>
+  <td onclick="gstore.login.init()" valign="middle">
+      Login
+  </td>
+  
+  <td style="width:15%;border-left:1px solid gray" onclick = "gstore.login.cancel()">
+      <img src="img/default/clear.png"/>
+  </td>
+  <td valign="middle"  onclick = "gstore.login.cancel()" style="width:35%">
+      Clear/Reset
+  </td>
+  </tr></table>
+<div id="gstore.report" class="medium" style="margin-left:5%; width:90%; margin-top:3%; display:none; border-top:1px solid gray">
+  <b>Summary Report</b><br>
+  <div>
+    mp3 files found : <span id="gstore.size"></span>
+  </div>
+  <div>
+    mp3 file sources: <span id="gstore.owners"></span>
+  </div>
+</div>
