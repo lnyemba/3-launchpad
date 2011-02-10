@@ -61,6 +61,7 @@ var utils={
   menu:{
     show:function(id){
       jx.dom.hide('default');
+      jx.dom.show('menu.panel') ;
       var pages = utils.modules.cache.pages['config'] ;
       for(var i=0; i < pages.length; i++){
 	jx.dom.hide(pages[i].id) ;

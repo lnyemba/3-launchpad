@@ -30,17 +30,7 @@ var playlist={
       tr.onmouseout		= function(){
 	this.style['color']	= null;
       }
-      tr.onclick 		= function(){
-	
-	if(pointer == null){
-	  player.add(this.info) ;
-	}else{
-	  //
-	  // call immediately the player
-	  //
-	  player.controls.init(this.index) 
-	}
-      }
+
       td 			= document.createElement('TD') ;
       td.style['valign']	= 'middle' ;
 
@@ -61,9 +51,23 @@ var playlist={
 	span.innerHTML  = '&rsaquo;&rsaquo; '+ rec[i].owner ;
 	td.appendChild(span) ;
       }
-      
-
       tr.appendChild(td) ;
+      
+      tr.onclick 		= function(){
+	
+	if(pointer == null){
+	  player.add(this.info) ;
+	  	  //
+	  
+	}else{
+	  //
+	  // call immediately the player
+	  //
+	  player.controls.init(this.index) ;
+	}
+      }      
+
+      
       table.appendChild(tr) ;
     }//-- end of loop
     return table ;

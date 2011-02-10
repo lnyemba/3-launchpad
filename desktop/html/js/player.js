@@ -5,7 +5,9 @@ position:null,
 index:null,
 now:[],
   add:function(info){
-      player.now.push(info);
+      if(info != null){
+	player.now.push(info);
+      }
       if(player.now.length == 1){
 	//
 	// we should call the play method
@@ -15,12 +17,36 @@ now:[],
       table = playlist.init(player.now,'PLAYER_CALLING') ;
       table.width = '100%' ;
       table.id = 'now.playing.songs' ;
+      table.cellSpacing = '0px'
       for(var i=0; i < table.rows.length; i++){
 	table.rows[i].className = 'medium shaded-dark';
+	
+	input = document.createElement('INPUT') ;
+	input.type = 'checkbox' ;
+	td = document.createElement('TD') ;
+	td.appendChild(input) ;
+	td.valign='middle';
+	td.width = '5%'
+	table.rows[i].appendChild(td) ;
+	
+	td = document.createElement('TD') ;
+	td.valign='middle';
+	td.align='middle';
+	td.width='10%';
+	div = document.createElement('DIV') ;
+	div.innerHTML 	= '[ - ]';
+	div.index	= i;
+	div.onclick=function(){
+	  player.controls.stop() ;
+	  player.now.pop(this.idex) ;
+	  player.add(null) ;
+	}
+	td.appendChild(div);
+	table.rows[i].appendChild(td)
       }
       jx.dom.set.value('now.playing','') ;
       jx.dom.append.child('now.playing',table) ;
-    },
+    },//-- end player.add(info)
   clear:function(){
     player.now = [] ;
     jx.dom.set.value('now.playing','');

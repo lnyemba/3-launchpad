@@ -261,12 +261,28 @@ var menulib={
   </div>
 </div>
 
-<div id="mainmenu" class="shaded rounded-corners" style="margin-left:31%; position:absolute;z-index:2; bottom:32; border:1px solid gray; " >
+<div id="mainmenu" class="shaded rounded-corners" style="margin-left:15%; position:absolute;z-index:2; bottom:32; border:1px solid gray; " >
 
 <table  align="center">
   <tr class="medium" >
   <td align="center" class="action" width="48px" onclick="jx.dom.show('default'); jx.dom.hide('stdout'); jx.dom.hide('mui');">
     <img src="img/gnomefoot.png">
+    
+  </td>
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('theme'); jx.dom.hide('menu.panel')">
+    <img src="img/default/theme.png">
+    
+  </td>
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('local'); jx.dom.hide('menu.panel')">
+    <img src="img/drive.png">
+    
+  </td>
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('google'); jx.dom.hide('menu.panel')">
+    <img src="img/google-logo.png">
+    
+  </td>
+    <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('dropbox')">
+    <img src="img/dropbox.png">
     
   </td>
   <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');">
@@ -286,7 +302,7 @@ var menulib={
 
 </table>
 </div>
-<div style="border:0px solid black; position:absolute; height:40px;width:94%" onmouseover="$('#mainmenu').slideDown(); $('#controls').fadeOut()">
+<div style="border:0px solid black; position:absolute; height:40px;width:94%" onmouseover="$('#mainmenu').slideDown(); $('#controls').fadeOut(); ">
   <!--
     * 
     * This area enables the menu showing and hiding upon mouse position
