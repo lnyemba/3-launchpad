@@ -3,6 +3,7 @@ handler:null,
 channel:null,
 position:null,
 index:null,
+mode:'none',
 now:[],
   add:function(info){
       if(info != null){
@@ -37,8 +38,11 @@ now:[],
 	div.innerHTML 	= '[ - ]';
 	div.index	= i;
 	div.onclick=function(){
-	  player.controls.stop() ;
-	  player.now.pop(this.idex) ;
+	  
+	  if(this.index == player.index){
+	    player.controls.stop() ;
+	  }
+	  player.now.splice(this.index,1) ;
 	  player.add(null) ;
 	}
 	td.appendChild(div);
@@ -120,7 +124,17 @@ now:[],
 	jx.dom.hide('pause.button');
 	jx.dom.show('play.button');    
     },
-    next:function(e){},
+    next:function(e){
+      player.controls.stop() ;
+      if(player.index != player.now.length -1 ){
+	player.index ++ ;
+	
+      }else{
+	player.index = 0;
+      }
+      player.controls.init(player.index) ;
+      player.controls.play()
+    },
     back:function(e){},
     complete:function(e){
 
@@ -144,8 +158,15 @@ now:[],
       // we should inspect the mode = {single; all; none}
       //
       
+      
       player.controls.stop() ;
-      player.controls.play() ;
+      if(player.mode == 'song'){
+	
+	player.controls.play() ;
+      }else if(player.mode == 'all'){
+	player.controls.next() ;
+      }
+      
     },
     progress:function(e){
 	if(player.handler == null){
