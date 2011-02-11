@@ -71,3 +71,27 @@ var utils={
     }//-- end utils.menu.show()
   }//-- end utils.menu
 }
+
+function search(qid,dbase){
+  var keyword 	= jx.dom.get.value(qid);
+  keyword	= keyword.toLowerCase() ;
+  var table 	= document.getElementById(dbase) ;
+  if(table == null){
+    return ;
+  }
+  //var records	= elp.system.remotefiles.data;
+  var name;
+  var info = null;
+  
+  for(var i=0; i < table.rows.length; i++){
+	  //name = table.rows[i].cells[0].innerHTML.toLowerCase() ;
+	  info = table.rows[i].info  ;
+	  name = info.name.toLowerCase() ;	  
+	  owner = info.owner.toLowerCase();
+	  table.rows[i].style['display'] = null;
+	  if(keyword.length > 0 && name.match(keyword)==null){
+		  table.rows[i].style['display'] = 'none' ;
+	  }
+	  
+  }//-- end of loop
+}

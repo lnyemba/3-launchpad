@@ -30,5 +30,35 @@ var theme={
     jx.dom.set.css('app',theme.current) ;
     jx.dom.set.value('current.theme',theme.current) ;
     
-  }//-- end theme.set(id)
+  },//-- end theme.set(id)
+  browse:{
+    max:7,
+    current:0,
+   
+    next:function(){
+      if(theme.browse.current < theme.browse.max-1){
+	++theme.browse.current;
+      }else{
+	theme.browse.current = 0;
+      }
+      theme.browse.show()
+    },
+    prev:function(){
+      if(theme.browse.current > 0){
+	--theme.browse.current;
+      }else{
+	theme.browse.current = theme.browse.max -1;
+      }
+      theme.browse.show()
+    },//-- theme.browse.prev()
+    show:function(){
+      id = 'preview'+theme.browse.current ;
+      for(var i=0; i < theme.browse.max; i++){
+	jx.dom.hide('preview'+i) ;
+      }
+      
+      jx.dom.show(id);
+    }
+  }
+  
 }

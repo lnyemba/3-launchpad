@@ -127,7 +127,7 @@ now:[],
     next:function(e){
       player.controls.stop() ;
       if(player.index != player.now.length -1 ){
-	player.index ++ ;
+	player.index =+1 ;
 	
       }else{
 	player.index = 0;
