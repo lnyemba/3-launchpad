@@ -4,6 +4,8 @@ var library={
   cache:{},
   register:function(key,pointer){
       library.cache[key] = pointer;
+      menulib.open(key) ;
+      menulib.open('all');
     
   },//-- end library.set(key,pointer
   get:function(keys){
@@ -34,6 +36,7 @@ var library={
      if(pointer != null){
 	var table = playlist.init(pointer.playlist) ;
 	 table.width='100%'
+	 table.id = target+'.table' ;
 	jx.dom.append.child(target,table) ;
 	library.current = key ;
      }

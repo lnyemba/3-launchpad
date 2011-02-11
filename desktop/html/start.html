@@ -13,7 +13,7 @@
 <script src="js/air/air-aliases.js"></script>
 <script src="js/jquery/jquery-1.4.4.js"></script>
 <script src="js/jquery/flip.js"></script>
-
+<script src="js/jquery/slides.min.jquery.js"></script>
 <script src="js/jquery/roundabout.js"></script>
 
 <!-- 
@@ -40,10 +40,11 @@
 	*
 -->
 <script src="js/providers/google/gdocs-handler.js"></script>
-
+<script src="js/providers/dropbox/dropbox.js"></script>
 <script src="js/providers/playlist/playlist.js"></script>
 <script src="js/library.js"></script>
 <script src="js/providers/local/lstore.js"></script>
+
 <!-- 
   *
   * system utilities and misceallaneous files that are specific to either 3-launchpad on air or to 3-launchpad processing
@@ -71,28 +72,17 @@
       utils.modules.setup() ;
       theme.set();
       lstore.load();
-      
+      dstore.load();
+     	 
       jx.dom.show('player') ;
-       menulib.open('all')
+      menulib.open('all')
       
 
   }  
-      utils.modules.init('menu','menu.html','mui') 
-      utils.modules.init('google','providers/google/index.html','config') ;
-      utils.modules.init('dropbox','providers/dropbox/index.html','config') ;
-      utils.modules.init('local','providers/local/index.html','config') ;
-      utils.modules.init('theme','theme.html','config') ;  
-      utils.modules.init('help','help.html','stdout')     
-  
-      lstore.init.lookup() ;
+
      
       
-//
-// The code below needs to run before the pages are loaded. 
-// This allows the various dependencies to be ready for use and to circumvent the adobe air security restrictions
-// 
-//    Providers.init() ;
-   
+ 
    var file = air.File.applicationStorageDirectory.resolvePath("3launchpad.db3") ;
 
     if(file.exists == false){
@@ -103,8 +93,25 @@
       sqlite.run.cmd(file.nativePath,create) ;
       sqlite.run.cmd(file.nativePath,insert) ;
       sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('local.library','{}')") ;
+      sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('dropbox.library','{}')");
+	
     }
-
+    //
+// The code below needs to run before the pages are loaded. 
+// This allows the various dependencies to be ready for use and to circumvent the adobe air security restrictions
+// 
+//    Providers.init() ;
+  
+	utils.modules.init('menu','menu.html','mui') 
+	utils.modules.init('google','providers/google/index.html','config') ;
+	utils.modules.init('dropbox','providers/dropbox/index.html','config') ;
+	utils.modules.init('local','providers/local/index.html','config') ;
+	utils.modules.init('theme','theme.html','config') ; 
+	utils.modules.init('mlibrary','library.html','config') ;
+	utils.modules.init('help','help.html','stdout')     
+  
+      lstore.init.lookup() ;
+      dstore.init.lookup();
 //
 // The code below is invoked by the library tabs and handles various interactions where the library
 // i.e the list of songs will appear.
@@ -210,7 +217,7 @@ var menulib={
 	  <tr class="medium">
 
 	    <td>
-	      <input type="text" id="library.search" style="width:100%; border-color:#d3d3d3"/>
+	      <input type="text" id="library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('library.search','mainlib.table')"/><span onclick="jx.dom.set.value('library.search',''); search('library.search','mainlib.table'); jx.dom.set.focus('library.search')" class="action" style=""> &lsaquo;&lsaquo;</span>
 	    </td>
     	    <td width="34px">
 	      <input type="image" src="img/default/search.png"/>
@@ -230,7 +237,7 @@ var menulib={
    	    <td id="google-tab" class="inactive-tab" align="middle" onclick="menulib.open('google')">
 	      google
 	    </td>
-   	    <td id="dropbox-tab" class="inactive-tab" align="middle">
+   	    <td id="dropbox-tab" class="inactive-tab" align="middle" onclick="menulib.open('dropbox')">
 	      dropbox
   
 	    </td>
@@ -281,12 +288,12 @@ var menulib={
     <img src="img/drive.png">
     
   </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('google'); ">
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('google'); jx.dom.set.focus('email')">
     <img src="img/google-logo.png">
     
   </td>
     <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('dropbox')">
-    <img src="img/dropbox.png">
+    <img src="img/dropbox-logo.png">
     
   </td>
   <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');">

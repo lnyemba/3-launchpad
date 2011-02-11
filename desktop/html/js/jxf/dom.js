@@ -81,7 +81,10 @@ jx.dom = {
 			if(_dom != null){
 				_dom.className = className ;
 			}
-		}
+		},
+		focus:function(id){
+		  document.getElementById(id).focus() ;
+		}//-- end jx.dom.set.focus(id)
 	},//-- end jx.dom.set
         /**
          * This namespace appends either text to an existing dom object 

@@ -15,7 +15,19 @@ if(!jx){
   var jx = {}
 }
 jx.ajax = {
+	send:function(url,callback,method){
+	  var xmlhttp =  new XMLHttpRequest()  ;
+	  method = (method==null)?'GET':method ;
+	  xmlhttp.onreadystatechange = function(){
+	    if(xmlhttp.readyState == 4){	
+		  callback(xmlhttp) ;
+		}
+	  }//-- end of Inline function
+	  var key,value ;
+	  xmlhttp.open(method,url,true) ;
+	  xmlhttp.send(null) ;
 	
+	},//-- end jx.ajax.getInstance() ;
 	open:function(id,url){
 		var iframe = document.getElementById(id) ;
 		iframe.src = url ;

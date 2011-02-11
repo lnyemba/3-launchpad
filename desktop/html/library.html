@@ -1,45 +1,41 @@
-<img src="img/default/setup.png">
-<div style="margin-top:-9%; margin-left:36px">
-  Setup your library with local & remote music
-  <div> Music Library Size: <span id="library.size">00.00</span></div>
-</div>
+	<table width="100%">
+	  <tr class="medium">
 
-<div style="margin-top:5%; padding:3px; border-bottom:1px solid gray">
-  <div id="opensetuplib" style="display:none; cursor:pointer" onclick="$('#setuplib').slideDown(); $('#closesetuplib').show(); $('#opensetuplib').hide()">
-      [ + ] Open library
-  </div>
-  <div id="closesetuplib" style=" cursor:pointer" onclick="$('#setuplib').slideUp(); $('#closesetuplib').hide(); $('#opensetuplib').show()">
-    [ _ ] Close library</div>
-</div>
-<div id="setuplib" style="overflow:auto; padding:3px;">
-  <table width="100%" cellspacing="0px">
-    <tr class="medium shaded-dark">
-      <td width="34px">
-	<input type="image" src="img/drive.png" onclick="Providers.load('local');$('#welcome').roundabout_animateToPreviousChild()"/>
-      </td>
-      <td>
-	<div style="font-weight:bold">Hard drive</div>
-	<span>00.00</span>
-      </td>
-      </tr>
-      <tr class="medium shaded-dark">
-      <td>
-	<input type="image" src="img/google-logo.png" onclick="Providers.load('google');$('#welcome').roundabout_animateToPreviousChild()"/>
-      </td>
-      <td>
-	<div style="font-weight:bold">Google docs</div>
-	<div>00.00</div>
-      </td>
-      </tr>
-      <tr class="medium shaded-dark">
-      <td>
-	<input type="image" src="img/dropbox.png" onclick="Providers.load('dropbox');$('#welcome').roundabout_animateToPreviousChild()"/>
-      </td>
-      <td>
-	<div style="font-weight:bold">Dropbox</div>
-	<div>00.00</div>
-      </td>
-      
-    </tr>
-  </table>
-</div>
+	    <td>
+	      <input type="text" id="menu.library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('menu.library.search','menulib.table')"/><span onclick="jx.dom.set.value('library.search',''); search('library.search','mainlib.table'); jx.dom.set.focus('library.search')" class="action" style=""> &lsaquo;&lsaquo;</span>
+	    </td>
+    	    <td width="34px">
+	      <input type="image" src="img/default/search.png"/>
+	    </td>
+	  </tr>
+	  </table>
+	  
+	 <div>
+	  <table cellspacing="1px" width="100%" style="margin-top:-5px">
+	    <tr class="medium action">
+	    <td style="; width:5px"> &nbsp;</td>
+	    <td id="tab.1" class="active-tab" align="middle" onclick="library.render('menulib','all'); jx.dom.set.style('tab.1','background-color','#d3d3d3');jx.dom.set.style('tab.2','background-color','transparent');jx.dom.set.style('tab.3','background-color','transparent');jx.dom.set.style('tab.4','background-color','transparent');">
+	      all
+	    </td>
+    	    <td id="tab.2" class="inactive-tab" align="middle" onclick="library.render('menulib','local'); jx.dom.set.style('tab.2','background-color','#d3d3d3');jx.dom.set.style('tab.1','background-color','transparent');jx.dom.set.style('tab.3','background-color','transparent');jx.dom.set.style('tab.4','background-color','transparent');">
+		local
+	    </td>
+   	    <td id="tab.3" class="inactive-tab" align="middle" onclick="library.render('menulib','google'); jx.dom.set.style('tab.3','background-color','#d3d3d3');jx.dom.set.style('tab.2','background-color','transparent');jx.dom.set.style('tab.4','background-color','transparent');jx.dom.set.style('tab.4','background-color','transparent');">
+	      google
+	    </td>
+   	    <td id="tab.4" class="inactive-tab" align="middle" onclick="library.render('menulib','dropbox');jx.dom.set.style('tab.4','background-color','#d3d3d3');jx.dom.set.style('tab.2','background-color','transparent');jx.dom.set.style('tab.3','background-color','transparent');jx.dom.set.style('tab.1','background-color','transparent');">
+	      dropbox
+  
+	    </td>
+	    <td style=""> &nbsp;</td>
+	    </tr>
+	    </table>
+	    <table style="border-top:1px solid gray" width="34px">
+	      <tr class="medium">
+	      <td valign="top">
+		
+		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('menulib')"/>
+		
+	      </td></tr></table>
+	    <div id="menulib" style="border:1px solid gray; margin-left:37px; height:65%; margin-top:-14.7%; overflow:auto;"></div>
+	</div>

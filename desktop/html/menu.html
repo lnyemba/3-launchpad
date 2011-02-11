@@ -24,7 +24,7 @@
       </td>
     </tr>
 
-    <tr class="medium shaded-dark action" onclick="utils.menu.show('google')">
+    <tr class="medium shaded-dark action" onclick="utils.menu.show('google'); jx.dom.set.focus('email')">
       <td>
 	<img src="img/google-logo.png"/>
       </td>
@@ -34,12 +34,12 @@
       </td>
     </tr>
     <tr class="medium shaded-dark action" onclick="utils.menu.show('dropbox')">
-      <td>
-	<img src="img/dropbox.png"/>
+      <td valign="middle">
+	<img src="img/dropbox-logo.png"/>
       </td>
       <td class="shaded-dark">
 	<b>Dropbox</b>
-	<div class="small">songs: <span id="gdocs.summary">00</span></div>
+	<div class="small">songs: <span id="menu.dstore.size">00</span></div>
       </td>
     </tr>
     </table>	
@@ -61,7 +61,7 @@
   <div>
     <b>Manage music Library</b>
     <table width="100%">
-      <tr class="medium shaded-dark">
+      <tr class="medium shaded-dark action" onclick="utils.menu.show('mlibrary');library.render('menulib','all'); jx.dom.set.style('tab.2','background-color:#f3f3f3');;jx.dom.set.style('tab.3','background-color:transparent');jx.dom.set.style('tab.4','background-color:transparent');">
 	<td width="36px">
 	  <img src="img/default/mysongs.png"/>
 	</td>
