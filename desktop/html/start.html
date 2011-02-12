@@ -127,6 +127,7 @@ var menulib={
     library.render('mainlib',id)
   }//-- menulib.open(id)
 }
+
 </script>
 <style>
    .roundabout-holder { padding: 1px;width:80%; height: 90%; }
@@ -167,7 +168,7 @@ var menulib={
 <body id="body" class="default" onload="Initialize()" style="">
 <div  style="width:95%; border:5px double gray; padding:2px; margin-top:5px">
   <div style="background-color:#d3d3d3;border-bottom:1px solid gray; cursor:move;" onmousedown="nativeWindow.startMove()">
-    <span onclick="window.location.reload()" style="cursor:pointer">
+    <span onclick="player.controls.stop(); window.location.reload()" style="cursor:pointer">
     <b>3-Launchpad</b></span><span> - Desktop Edition </span>
    
   </div>
@@ -204,8 +205,9 @@ var menulib={
     
     <li>
       <div>
-      <b>Rock'on Center</b>
+      <b>Service Center</b>
 	  
+	  <div id="cover"></div>
 
       </div>
     </li>
