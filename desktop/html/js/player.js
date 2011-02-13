@@ -91,17 +91,17 @@ now:[],
     },
     play:function(){
       if(player.handler != null){
-	if(player.position == null){
-	    player.position = 0;
-	}
+	//if(player.position == null){
+	//    player.position = 0;
+	//}
 	if(player.channel == null){
 	  player.channel = player.handler.play(player.position,1,player.controls.volume.transform) ;
 	}
 	player.channel.addEventListener(air.Event.SOUND_COMPLETE,player.controls.soundComplete);
+	
 	jx.dom.set.value('progress','[<span color="#104E8B">Playing</span>]') ;
 	jx.dom.hide('play.button') ;
 	jx.dom.show('pause.button');
-	
       }
     },
     pause:function(e){
@@ -142,14 +142,33 @@ now:[],
     id3handler:function(e){
       artist 	= e.target.id3['artist'] ;
       song 	= e.target.id3['songName'] ;
-      if(artist == ''){
+      if(artist == ''|| artist == null){
 	artist = 'Unknown' ;
       }
-      if(song == ''){
+      if(song == '' ||song == null){
 	song = 'Unknown'
       }
       jx.dom.set.value('artist',artist) ;
       jx.dom.set.value('song',song) ;
+      img = document.getElementById('artist.pic')  ;
+      if(artist == 'Unknown'){
+	img.src = 'img/default/unknown-artist.jpg';
+      }else{
+	  var url  = 'http://ws.audioscrobbler.com/2.0/?method=artist.getimages&autocorrect=1&api_key=876c789306d784c59347e153b83b72c0&artist='+artist
+	  var fn =function(xmlhttp){
+	  r = jx.lastfm.parse(xmlhttp.responseXML)
+	    
+	    
+	    if(r.data.length > 0){
+	      var index=Math.floor(Math.random()*r.data.length)
+	      img.src = r.data[index].square ;
+	    }else{
+	      img.src = 'img/default/unknown-artist.jpg' ;
+	    }	
+	  }
+	  jx.ajax.parser  = jx.lastfm.parser ;
+	  jx.ajax.send(url,fn,'GET') ;
+      }
     },
     error:function(e){},
     soundComplete:function(e){
@@ -184,12 +203,30 @@ now:[],
     },
     reset:function(){},
     volume:{
-      transform:null,
+      transform:new air.SoundTransform(0.1,0),
       level:1,
-      up:function(){
-      
+      set:function(value){
+	player.controls.volume.transform = player.channel.soundTransform;
+	player.controls.volume.transform.volume = value ;
+	player.channel.soundTransform = player.controls.volume.transform ;
       },
-      down:function(){}
+      up:function(){
+	if(player.channel == null) return ;
+	var value = parseFloat(player.controls.volume.transform.volume) ;
+	if(value +0.1 < 1){
+		player.controls.volume.set(value+0.1) ;
+		jx.dom.set.value('volume.level',parseInt((value+0.1)*100)) ;
+	}      
+      },
+      down:function(){
+	if(player.channel == null) return ;
+	var value = parseFloat(player.controls.volume.transform.volume) ;
+	
+	if(value -0.1 > 0.1){
+		player.controls.volume.set(value -0.1) ;
+		jx.dom.set.value('volume.level',parseInt((value-0.1)*100))
+	}      
+      }
     }
   },//-- end player.controls
 }

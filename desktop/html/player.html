@@ -1,46 +1,110 @@
-3-launchpad player control center
-<div style="width:90%; height:90%; margin-left:5%; margin-top:5px; border:1px solid green">
-  <ul id="mediaplayer" style="margin-left:5%; list-style:none; margin:0 auto">
-    <li>
-      <div>
-	<b> Not sure about this one</b>
-      </div>
-    </li>
+ <div id="id3" class="shaded-dark">    
+   <div class="medium" style="font-weight:bold">
+	<span id="artist" style="margin-left:5px; font-size:14px">Unknown<span>
+  </div>
+  <div class="medium" style="">
+	<span id="song" style="margin-left:5px">Uknown<span>
+  </div>
+  <div class="medium" style="">
+	<span id="progress" style="margin-left:5px">0.00 %</span>
+  </div>
+ </div>
+ 
+<table width="100%" style="height:83%; margin-top:-5%" >
+<tr class="medium"  >
+  <td valign="top" width="150px">
     
-    <li>
-      <div>
-      <b>3-Launchpad player</b>
-	  <table id="controls" class="shaded-dark rounded-corners" style="margin-top:40%">
-	      <tr class="small">
-		<td align="center">
-		  <img src="img/rwd_1.png"/>
 
-		</td>
-		<td align="center">
-		  <img src="img/stop_1.png"/>
-		</td>
-		<td align="center" id="pausectrl">
-		  <img src="img/pause_1.png"/>
-		</td>
-		
-		<td align="center">
-		  <img src="img/play_1.png"/>
-		  
-		</td>
-		<td align="center">
-		  <img src="img/fwd_1.png"/>
-		</td>
-		
-	      </tr>
+    <div  align="center" style="height:129px;  margin-top:18%">
+      <img id="artist.pic" src="img/default/unknown-artist.jpg"/>
+    </div>
+    
+    <table id="volume-control" style="width:150px; margin-top:3px">
+	<tr class="medium">
+	  <td  rowspan="2" class="" valign="middle" align="center">
+	    Volume level
+	  
+	  <span id="volume.level">10</span> %
+	  </td>
+	  <td align="right">
+	    <input type="image" src="img/default/volume_up.png" onclick="player.controls.volume.up()"/>
+	    </td>
+	    
+	</tr>
+	<tr class="medium">
+	  
+	  <td align="right">
+	  	    <input type="image" src="img/default/volume_down.png" onclick="player.controls.volume.down()"/>
+	  </td>
+	</tr>
+    </table>
+
+    <div id="controls" class="shaded" style="display:none;width:150px; bottom:20%">
+      <input type="image" src="img/rwd_1.png" onclick="player.controls.back()"/>
+      <input type="image" src="img/stop_1.png" onclick="player.controls.stop()"/>
+      <input type="image" id="pause.button" src="img/pause_1.png" style="display:none" onclick="player.controls.pause()"/>
+      <input type="image" id="play.button" src="img/play_1.png" onclick="player.controls.play()"/>
+      <input type="image" src="img/fwd_1.png" onclick="player.controls.next()"/>
+      
+    </div>  
+  </td>
+
+
+<td valign="top">
+  <div>
+    <input type="button" class="default-button" value="Now Playing"/>
+    <input type="button" class="default-button" value="Library"/>
+    <input type="button" class="default-button" value="More Info"/>
+  </div>
+  <div id="now.playing" style="overflow:auto;display:none">
+    [now playing here]
+  </div>
+  
+  <div id="library.panel" style="display:block">
+  	<table width="100%">
+	  <tr class="medium">
+
+	    <td>
+	      <input type="text" id="library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('library.search','mainlib.table')"/><span onclick="jx.dom.set.value('library.search',''); search('library.search','mainlib.table'); jx.dom.set.focus('library.search')" class="action" style=""> &lsaquo;&lsaquo;</span>
+	    </td>
+    	    <td width="34px">
+	      <input type="image" src="img/default/search.png"/>
+	    </td>
+	  </tr>
+	  </table>
+	  
+	  <table cellspacing="1px" width="100%;" style="margin-top:-5px">
+	    <tr class="medium action">
+	    <td style="; width:5px"> &nbsp;</td>
+	    <td id="all-tab" class="active-tab" align="middle" onclick="menulib.open('all')">
+	      all
+	    </td>
+    	    <td id="local-tab" class="inactive-tab" align="middle" onclick="menulib.open('local')">
+		local
+	    </td>
+   	    <td id="google-tab" class="inactive-tab" align="middle" onclick="menulib.open('google')">
+	      google
+	    </td>
+   	    <td id="dropbox-tab" class="inactive-tab" align="middle" onclick="menulib.open('dropbox')">
+	      dropbox
+  
+	    </td>
+	    <td style=""> &nbsp;</td>
+	    </tr>
 	    </table>
-
+	    <table style="border-top:1px solid gray" width="34px">
+	      <tr class="medium">
+	      <td valign="top">
+		
+		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('mainlib')"/>
+		
+	      </td></tr></table>
+	      <div id="mainlib" style="border:1px solid gray; margin-left:37px; height:65%; margin-top:-9.8%; overflow:auto;">
+		  Oops
+	      </div>
       </div>
-    </li>
+</td>
+</tr>
+</table>
 
-    <li>
-      <div>
-	<b>Media Library</b>
-      </div>
-    </li>
-  </ul>
-</div>
+

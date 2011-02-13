@@ -43,7 +43,7 @@ var utils={
       }
     },//-- end utils.modules.setup()
     show:function(base,id){
-      jx.dom.hide('default');
+      //jx.dom.hide('default');
       var meta = utils.modules.cache.meta ;
       for(var i=0; i < meta.length; i++){
 	jx.dom.hide(meta[i]) ;
@@ -60,7 +60,7 @@ var utils={
   },//-- end utils.modules
   menu:{
     show:function(id){
-      jx.dom.hide('default');
+     // jx.dom.hide('default');
       jx.dom.show('menu.panel') ;
       var pages = utils.modules.cache.pages['config'] ;
       for(var i=0; i < pages.length; i++){

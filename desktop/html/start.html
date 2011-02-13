@@ -12,9 +12,8 @@
 -->
 <script src="js/air/air-aliases.js"></script>
 <script src="js/jquery/jquery-1.4.4.js"></script>
-<script src="js/jquery/flip.js"></script>
-<script src="js/jquery/slides.min.jquery.js"></script>
-<script src="js/jquery/roundabout.js"></script>
+<script src="js/jquery/core-widgets-mouse.js"></script>
+
 
 <!-- 
   *
@@ -32,6 +31,7 @@
 <script src="js/jxf/rpc.js"></script>
 <script src="js/jxf/sqlite.js"></script>
 <script src="js/jxf/widgets/jxwidgets.js"></script>
+<script src="js/jxf/lastfm/parser.js"></script>
 <!-- 
 	*
 	* This section are the scripts for storage providers
@@ -60,9 +60,9 @@
 <script src="js/theme.js"></script>
 <script src="js/updater.js"></script>
 <script>
-  $(document).ready(function() {
-    $('#mediaplayer').roundabout();
-  });
+//   $(document).ready(function() {
+//     $('#mediaplayer').roundabout();
+//   });
 
     //-- 
   function Initialize(){
@@ -73,11 +73,9 @@
       theme.set();
       lstore.load();
       dstore.load();
-     	 
-      jx.dom.show('player') ;
-      menulib.open('all')
-      
-
+      utils.menu.show('player');     	 
+      //jx.dom.show('default') ;
+      menulib.open('all') ;
   }  
 
      
@@ -108,7 +106,8 @@
 	utils.modules.init('local','providers/local/index.html','config') ;
 	utils.modules.init('theme','theme.html','config') ; 
 	utils.modules.init('mlibrary','library.html','config') ;
-	utils.modules.init('help','help.html','stdout')     
+	utils.modules.init('help','help.html','stdout')     ;
+	utils.modules.init('player','player.html','default');
   
       lstore.init.lookup() ;
       dstore.init.lookup();
@@ -128,6 +127,7 @@ var menulib={
   }//-- menulib.open(id)
 }
 
+var key = '876c789306d784c59347e153b83b72c0' ;
 </script>
 <style>
    .roundabout-holder { padding: 1px;width:80%; height: 90%; }
@@ -180,97 +180,7 @@ var menulib={
   <div id="stdout" style="display:none; opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp()"></div>
   <div id="mui" style="display:none; opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp()"></div>
   
-  <div id="default" style="opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp(); $('#controls').fadeIn()">
-    <ul id="mediaplayer" style=" list-style:none; margin-left:8.5%; margin-top:-2%">
-    <li>
-    
-      <div class="medium shaded" style="font-weight:bold; font-size:14px;">
-	<span id="artist" style="margin-left:5px">Unknown<span>
-	</div>
-      <div class="medium shaded-dark" style="">
-	<span id="song" style="margin-left:5px">Uknown<span>
-      </div>
-      <div class="medium" style="">
-	<span id="progress" style="margin-left:5px">0.00 %</span>
-	
-	</div>
-    
-      <div style="border:2px double #d3d3d3; overflow:auto; height:65%; padding:2px"> 
-      <span style="margin-left:90%" class="medium action" onclick="player.clear()">[ x ]</span>
-	<div id="now.playing" style="overflow:auto"></div>
-	
-
-      </div>
-    </li>
-    
-    <li>
-      <div>
-      <b>Service Center</b>
-	  
-	  <div id="cover"></div>
-
-      </div>
-    </li>
-
-    <li>
-      <div style="height:100%; overflow:auto">
-	<b>Media Library</b>
-	<table width="100%">
-	  <tr class="medium">
-
-	    <td>
-	      <input type="text" id="library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('library.search','mainlib.table')"/><span onclick="jx.dom.set.value('library.search',''); search('library.search','mainlib.table'); jx.dom.set.focus('library.search')" class="action" style=""> &lsaquo;&lsaquo;</span>
-	    </td>
-    	    <td width="34px">
-	      <input type="image" src="img/default/search.png"/>
-	    </td>
-	  </tr>
-	  </table>
-	 <div>
-	  <table cellspacing="1px" width="100%" style="margin-top:-5px">
-	    <tr class="medium action">
-	    <td style="; width:5px"> &nbsp;</td>
-	    <td id="all-tab" class="active-tab" align="middle" onclick="menulib.open('all')">
-	      all
-	    </td>
-    	    <td id="local-tab" class="inactive-tab" align="middle" onclick="menulib.open('local')">
-		local
-	    </td>
-   	    <td id="google-tab" class="inactive-tab" align="middle" onclick="menulib.open('google')">
-	      google
-	    </td>
-   	    <td id="dropbox-tab" class="inactive-tab" align="middle" onclick="menulib.open('dropbox')">
-	      dropbox
-  
-	    </td>
-	    <td style=""> &nbsp;</td>
-	    </tr>
-	    </table>
-	    <table style="border-top:1px solid gray" width="34px">
-	      <tr class="medium">
-	      <td valign="top">
-		
-		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('mainlib')"/>
-		
-	      </td></tr></table>
-	      <div id="mainlib" style="border:1px solid gray; margin-left:37px; height:65%; margin-top:-12.1%; overflow:auto;">
-		  Oops
-	      </div>
-      </div>
-    </li>
-  </ul>
-    	  <div id="controls" class="" style="margin-left:25%; position:absolute; bottom:70px; display:none;">
-	    <input type="image" src="img/rwd_1.png" onclick="player.controls.back()"/>
-	    <input type="image" src="img/stop_1.png" onclick="player.controls.stop()"/>
-	    <input type="image" id="pause.button" src="img/pause_1.png" style="display:none" onclick="player.controls.pause()"/>
-	    <input type="image" id="play.button" src="img/play_1.png" onclick="player.controls.play()"/>
-	    <input type="image" src="img/fwd_1.png" onclick="player.controls.next()"/>
-	    <input id="repeat.none" type="image" src="img/repeat_none.png" onclick="jx.dom.show('repeat.song'); jx.dom.hide('repeat.none'); player.mode = 'song'"/>
-	    <input id="repeat.song" type="image" src="img/repeat_song.png" style="display:none" onclick="jx.dom.show('repeat.all'); jx.dom.hide('repeat.song'); player.mode = 'all'"/>
-	    <input id="repeat.all" type="image" src="img/repeat_all.png" style="display:none" onclick="jx.dom.show('repeat.none'); jx.dom.hide('repeat.all'); player.mode = 'none'"/>
-	    
-	  </div>
-
+  <div id="default" style="opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray; padding:5px" class="rounded-corners" onmouseover="$('#mainmenu').slideUp(); $('#controls').fadeIn()">
   </div>
 </div>
 
@@ -278,7 +188,7 @@ var menulib={
 
 <table  align="center">
   <tr class="medium" >
-  <td align="center" class="action" width="48px" onclick="jx.dom.show('default'); jx.dom.hide('stdout'); jx.dom.hide('mui');">
+  <td align="center" class="action" width="48px" onclick="utils.modules.show('default','player');  ">
     <img src="img/gnomefoot.png">
     
   </td>
