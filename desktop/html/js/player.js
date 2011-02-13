@@ -57,6 +57,8 @@ now:[],
     jx.dom.set.value('artist','Unknown') ;
     jx.dom.set.value('song','Uknown') ;
     jx.dom.set.value('progress','0.00 %') ;
+    img = document.getElementById('artist.pic') 
+    img.src = 'img/default/unknown-artist.jpg';
     player.controls.stop();
   },//-- player.clear()
   controls:{
@@ -64,6 +66,11 @@ now:[],
     init:function(index){
       
       info = player.now[index] ;
+      if(info == null){
+	
+	player.clear() ;
+	return ;
+      }
       player.index = index ;
       var req = new air.URLRequest(info.uri) ;
       var headers = jx.ajax.headers;
@@ -91,12 +98,12 @@ now:[],
     },
     play:function(){
       if(player.handler != null){
-	//if(player.position == null){
-	//    player.position = 0;
-	//}
-	if(player.channel == null){
-	  player.channel = player.handler.play(player.position,1,player.controls.volume.transform) ;
+	if(player.position == null){
+	    player.position = 0;
 	}
+//	if(player.channel == null){
+	  player.channel = player.handler.play(player.position,1,player.controls.volume.transform) ;
+	//}
 	player.channel.addEventListener(air.Event.SOUND_COMPLETE,player.controls.soundComplete);
 	
 	jx.dom.set.value('progress','[<span color="#104E8B">Playing</span>]') ;
@@ -135,7 +142,16 @@ now:[],
       player.controls.init(player.index) ;
       player.controls.play()
     },
-    back:function(e){},
+    back:function(e){
+    	var index = player.index
+	if(index > 0){
+		index -=1 ;		
+	}else{
+		index = player.now.length - 1 ;
+	}
+	
+	player.init(index) ;
+    },
     complete:function(e){
 
     },

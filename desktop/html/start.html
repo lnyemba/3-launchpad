@@ -126,17 +126,55 @@ var menulib={
     library.render('mainlib',id)
   },//-- menulib.open(id)
   player:{
-    
+    labels:['Now Playing','Music Library','Artist Buzz'],
+    panels:['player_panel1','player_panel2'],
+    current:1,
+    direction:null,
+    back:function(){
+      move_to = function(){
+	if(menulib.player.current > 0){
+	  menulib.player.current -= 1 ;
+	}else{
+	  menulib.player.current = menulib.player.panels.length-1; 
+	}
+      }
+      menulib.player.direction = null;
+      menulib.player.transition(move_to) ;
+    },
     next:function(){
+      move_to=function(){
+	max = menulib.player.panels.length; 
+	if(menulib.player.current < max -1){
+	  menulib.player.current += 1 ;
+	}else{
+	  menulib.player.current  = 0;
+	}
+      }
+      menulib.player.direction = 'next';
+      menulib.player.transition(move_to) ;
+    },
+    transition:function(move_to){
+      panels = menulib.player.panels ;
+      labels = menulib.player.labels;
+      id = panels[menulib.player.current] ;
+      
       var option = {} ;
       option.width  = '0'
       option.display='none'
-      var pointer=function(){
-	jx.dom.show('menupanel1');
-	jx.dom.hide('menupanel2') ;
-	jx.dom.set.style('menupanel2','width','100%') ;
+      if(menulib.player.direction == 'next'){
+	option['margin-left'] = '100%'
       }
-      $('#menupanel2').animate(option,2000,pointer);
+      var pointer=function(){
+	
+	jx.dom.hide(id) ;
+	jx.dom.set.style(id,'width','100%') ;
+	jx.dom.set.style(id,'margin-left','0') ;
+	move_to() ;
+	id = panels[menulib.player.current] ; 
+	$('#'+id).fadeIn();
+	jx.dom.set.value('player_label',labels[menulib.player.current]);
+      }
+      $('#'+id).animate(option,750,pointer);
     }
   }//-- end menulib.player.next()
 }
@@ -190,7 +228,7 @@ var menulib={
   <span></span>
 <div id="app" style="height:90%; padding:3px">
 <div >
-  <img src="img/default/close.png" style="margin-left:88%;margin-top:-1%; position:absolute; z-index:2" class="action" onclick="jx.dom.show('default'); jx.dom.hide('stdout'); jx.dom.hide('mui');"/>
+  <img src="img/default/close.png" style="margin-left:88%;margin-top:-1%; position:absolute; z-index:2" class="action" onclick="utils.modules.show('default','player');"/>
   <div id="stdout" style="display:none; opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp()"></div>
   <div id="mui" style="display:none; opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp()"></div>
   

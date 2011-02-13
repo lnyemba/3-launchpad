@@ -11,7 +11,7 @@
   </div>
  </div>
  
-<table width="100%" class="rounded-corners" style="height:83%;" >
+<table width="100%" class="rounded-corners" style="height:81%;" >
 
 <tr class="medium"  >
   <td valign="top" width="150px">
@@ -54,17 +54,26 @@
 
 <td valign="top" >
   <div>
-    <input type="button" class="default-button" value="Now Playing" onclick="menulib.player.next()"/>
-    <input type="button" class="default-button" value="Library"/>
-    <input type="button" class="default-button" value="More Info"/>
+    <table width="100%" align="center" cellspacing="0px"><tr class="medium shaded-dark">
+    <td width="18px">
+    <input type="image" src="img/default/arrow-prev.png" onclick="menulib.player.back()"/>
+    </td>
+    <td align="center" style="font-weight:bold" id="player_label">
+      Music Library
+    </td>
+    <td width="18px">
+    <input type="image" src="img/default/arrow-next.png" onclick="menulib.player.next()"/>
+    </td>
+    
+    </tr></table>
   </div>
-  <div id="menupanel1" style="display:none">
-    <div id="now.playing" style="overflow:auto;">
-      [now playing here]
+  <div id="player_panel1" style="display:none;height:210px;overflow:hidden; margin-top:1px">
+    <div id="now.playing" style=" overflow:auto; height:100%">
+     [Nothing is currently playing]
     </div>
   </div>
   
-  <div id="menupanel2" style="display:block">
+  <div id="player_panel2" style="display:block;height:210px; padding:3px; overflow:hidden">
   	<table width="100%">
 	  <tr class="medium">
 
@@ -103,7 +112,7 @@
 		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('mainlib')"/>
 		
 	      </td></tr></table>
-	      <div id="mainlib" style="border:1px solid gray; margin-left:37px; height:65%; margin-top:-10.1%; overflow:auto;">
+	      <div id="mainlib" style="border:1px solid gray; margin-left:37px; height:165px; margin-top:-10.1%; overflow:auto;">
 		  Oops
 	      </div>
       </div>

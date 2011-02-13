@@ -34,7 +34,7 @@ var theme={
   browse:{
     max:8,
     current:0,
-   
+    direction:null,
     next:function(){
       var moveto = function(){
 	if(theme.browse.current < theme.browse.max-1){
@@ -43,29 +43,24 @@ var theme={
 	  theme.browse.current = 0;
 	}
       }//-- end of inline function 
-      theme.browse.transition(moveto,"next")
+      theme.browse.direction = 'next'
+      theme.browse.transition(moveto)
     },
     prev:function(){
      var move_to=function(){
        if(theme.browse.current > 0){
 	--theme.browse.current;
       }else{
-	theme.browse.current = theme.browse.max -1;
+	  theme.browse.current = theme.browse.max -1;
+	}
       }
-    }
-      theme.browse.transition(move_to,"back")
+      theme.browse.direction = 'back' ;
+      theme.browse.transition(move_to)
     },//-- theme.browse.prev()
-    show:function(){
-      id = 'preview'+theme.browse.current ;
-      for(var i=0; i < theme.browse.max; i++){
-	jx.dom.hide('preview'+i) ;
-      }
-      
-      jx.dom.show(id);
-    },
-    transition:function(move_to,flag){
+    transition:function(move_to){
       id = 'preview'+theme.browse.current ;
       var option = {} ;
+      flag =  theme.browse.direction
       if(flag == "next"){
 	option['margin-left']='100%'
 	
@@ -82,7 +77,7 @@ var theme={
 	id = 'preview'+theme.browse.current 
 	jx.dom.show(id) ;
       }
-      $('#'+id).animate(option,350,pointer)
+      $('#'+id).animate(option,1000,pointer)
     }
   }
   
