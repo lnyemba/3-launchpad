@@ -36,20 +36,24 @@ var theme={
     current:0,
    
     next:function(){
-      if(theme.browse.current < theme.browse.max-1){
-	++theme.browse.current;
-      }else{
-	theme.browse.current = 0;
-      }
-      theme.browse.show()
+      var moveto = function(){
+	if(theme.browse.current < theme.browse.max-1){
+	  ++theme.browse.current;
+	}else{
+	  theme.browse.current = 0;
+	}
+      }//-- end of inline function 
+      theme.browse.transition(moveto,"next")
     },
     prev:function(){
-      if(theme.browse.current > 0){
+     var move_to=function(){
+       if(theme.browse.current > 0){
 	--theme.browse.current;
       }else{
 	theme.browse.current = theme.browse.max -1;
       }
-      theme.browse.show()
+    }
+      theme.browse.transition(move_to,"back")
     },//-- theme.browse.prev()
     show:function(){
       id = 'preview'+theme.browse.current ;
@@ -58,6 +62,27 @@ var theme={
       }
       
       jx.dom.show(id);
+    },
+    transition:function(move_to,flag){
+      id = 'preview'+theme.browse.current ;
+      var option = {} ;
+      if(flag == "next"){
+	option['margin-left']='100%'
+	
+      }
+      option.width = '0';
+     
+      
+      
+      pointer = function(){
+	jx.dom.hide(id);
+	jx.dom.set.style(id,'width','100%') ;
+	jx.dom.set.style(id,'margin-left','0')
+	move_to() ;
+	id = 'preview'+theme.browse.current 
+	jx.dom.show(id) ;
+      }
+      $('#'+id).animate(option,350,pointer)
     }
   }
   

@@ -124,10 +124,24 @@ var menulib={
     }
     jx.dom.set.css(id+'-tab','active-tab') ;
     library.render('mainlib',id)
-  }//-- menulib.open(id)
+  },//-- menulib.open(id)
+  player:{
+    
+    next:function(){
+      var option = {} ;
+      option.width  = '0'
+      option.display='none'
+      var pointer=function(){
+	jx.dom.show('menupanel1');
+	jx.dom.hide('menupanel2') ;
+	jx.dom.set.style('menupanel2','width','100%') ;
+      }
+      $('#menupanel2').animate(option,2000,pointer);
+    }
+  }//-- end menulib.player.next()
 }
 
-var key = '876c789306d784c59347e153b83b72c0' ;
+
 </script>
 <style>
    .roundabout-holder { padding: 1px;width:80%; height: 90%; }
@@ -184,7 +198,7 @@ var key = '876c789306d784c59347e153b83b72c0' ;
   </div>
 </div>
 
-<div id="mainmenu" class="shaded" style="margin-left:15%; position:absolute;z-index:2; bottom:42; border:2px solid gray; " >
+<div id="mainmenu" class="shaded" style="margin-left:15%; position:absolute;z-index:3; bottom:42; border:2px solid gray; " >
 
 <table  align="center">
   <tr class="medium" >

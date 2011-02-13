@@ -1,4 +1,5 @@
- <div id="id3" class="shaded-dark">    
+ <div class="shaded-light rounded-corners" style="padding:5px">
+ <div id="id3" >    
    <div class="medium" style="font-weight:bold">
 	<span id="artist" style="margin-left:5px; font-size:14px">Unknown<span>
   </div>
@@ -10,7 +11,8 @@
   </div>
  </div>
  
-<table width="100%" style="height:83%; margin-top:-5%" >
+<table width="100%" class="rounded-corners" style="height:83%;" >
+
 <tr class="medium"  >
   <td valign="top" width="150px">
     
@@ -50,17 +52,19 @@
   </td>
 
 
-<td valign="top">
+<td valign="top" >
   <div>
-    <input type="button" class="default-button" value="Now Playing"/>
+    <input type="button" class="default-button" value="Now Playing" onclick="menulib.player.next()"/>
     <input type="button" class="default-button" value="Library"/>
     <input type="button" class="default-button" value="More Info"/>
   </div>
-  <div id="now.playing" style="overflow:auto;display:none">
-    [now playing here]
+  <div id="menupanel1" style="display:none">
+    <div id="now.playing" style="overflow:auto;">
+      [now playing here]
+    </div>
   </div>
   
-  <div id="library.panel" style="display:block">
+  <div id="menupanel2" style="display:block">
   	<table width="100%">
 	  <tr class="medium">
 
@@ -99,7 +103,7 @@
 		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('mainlib')"/>
 		
 	      </td></tr></table>
-	      <div id="mainlib" style="border:1px solid gray; margin-left:37px; height:65%; margin-top:-9.8%; overflow:auto;">
+	      <div id="mainlib" style="border:1px solid gray; margin-left:37px; height:65%; margin-top:-10.1%; overflow:auto;">
 		  Oops
 	      </div>
       </div>
@@ -108,3 +112,4 @@
 </table>
 
 
+</div>
