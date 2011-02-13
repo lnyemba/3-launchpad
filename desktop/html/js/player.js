@@ -38,18 +38,27 @@ now:[],
 	div.innerHTML 	= '[ - ]';
 	div.index	= i;
 	div.onclick=function(){
-	  
-	  if(this.index == player.index){
-	    player.controls.stop() ;
-	  }
 	  player.now.splice(this.index,1) ;
-	  player.add(null) ;
+	  
+	    //player.index = this.index -1;
+	    player.add(null) ;
+	    //player.init(player.init(this.index-1)) ;
+	    
+	  
+	  
+	 
 	}
 	td.appendChild(div);
 	table.rows[i].appendChild(td)
       }
       jx.dom.set.value('now.playing','') ;
-      jx.dom.append.child('now.playing',table) ;
+      if(player.now.length > 0){
+	jx.dom.append.child('now.playing',table) ;
+      }else{
+	player.controls.reset();
+	player.controls.stop();
+	jx.dom.set.value('now.playing','[Nothing is currently playing]') ;
+      }
     },//-- end player.add(info)
   clear:function(){
     player.now = [] ;
@@ -217,7 +226,19 @@ now:[],
 		}
 	}
     },
-    reset:function(){},
+    reset:function(){
+	var resetEvents=function(){
+		player.handler.removeEventListener("complete",player.controls.play) ;
+		player.handler.removeEventListener("id3",player.controls.id3handler);
+		player.handler.removeEventListener("progress",player.controls.progress);
+		player.handler.removeEventListener("ioError", player.controls.error);
+	}
+
+	//-- end of inline function to reset Events
+	if(player.handler != null){
+		resetEvents() ;
+	}
+    },//-- player.controls.reset
     volume:{
       transform:new air.SoundTransform(0.1,0),
       level:1,
