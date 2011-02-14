@@ -37,6 +37,8 @@ var playlist={
       td.style['height']	= '35px';
       td.uri			= rec[i].uri ;
       td.name			= rec[i].name;
+      td.info			= rec[i];
+      td.index			= i;
       span 			= document.createElement('DIV');
       span.style['margin-left'] = '10px';
       span.className='medium'
@@ -50,24 +52,31 @@ var playlist={
 	span.style['color'] = 'black' ;
 	span.innerHTML  = '&rsaquo;&rsaquo; '+ rec[i].owner ;
 	td.appendChild(span) ;
-      }
-      tr.appendChild(td) ;
-      
-      tr.onclick 		= function(){
-	
-	if(pointer == null){
-	  player.add(this.info) ;
-	  	  //
-	  
-	}else{
-	  //
-	  // call immediately the player
-	  //
-	  player.controls.init(this.index) ;
+	td.onclick=function(){
+	  player.controls.init(this.index);
 	}
-      }      
-
+      }else{
+	td.onclick=function(){
+	  player.add(this.info);
+	}
+      }
       
+      
+//       tr.onclick 		= function(){
+// 	
+// 	if(pointer == null){
+// 	  player.add(this.info) ;
+// 	  	  //
+// 	  
+// 	}else{
+// 	  //
+// 	  // call immediately the player
+// 	  //
+// 	  player.controls.init(this.index) ;
+// 	}
+//       }      
+
+      tr.appendChild(td) ;
       table.appendChild(tr) ;
     }//-- end of loop
     return table ;

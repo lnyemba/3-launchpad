@@ -75,9 +75,12 @@ var theme={
 	jx.dom.set.style(id,'margin-left','0')
 	move_to() ;
 	id = 'preview'+theme.browse.current 
-	jx.dom.show(id) ;
+	$('#'+id).fadeIn()
       }
-      $('#'+id).animate(option,1000,pointer)
+      
+      
+      $('#'+id).animate(option,300,pointer)
+      
     }
   }
   
