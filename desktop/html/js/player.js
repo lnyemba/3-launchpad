@@ -3,7 +3,7 @@ handler:null,
 channel:null,
 position:null,
 index:null,
-mode:'none',
+mode:'none', //{none; song; all}
 now:[],
   add:function(info){
       if(info != null){
@@ -111,7 +111,11 @@ now:[],
       p.addEventListener("soundComplete",player.controls.soundComplete) ;
       p.load(req) ;
       player.handler = p;
-    },
+    },//-- end player.controls.init(index)
+    setmode:function(mode){
+      player.mode = mode ;
+      jx.dom.set.value('mode',mode);
+    },//-- end player.setmode(mode)
     play:function(){
       if(player.handler != null){
 	if(player.position == null){
@@ -148,20 +152,19 @@ now:[],
 	jx.dom.show('play.button');    
     },
     next:function(e){
-      player.controls.stop() ;
-      player.controls.reset();
-      if(player.index != player.now.length -1 ){
-	player.index =+1 ;
-	
-      }else{
-	player.index = 0;
+      //player.controls.stop() ;
+      var index = player.index ;
+      index +=1 ;
+      if(index == player.now.length  ){
+	index = 0;
       }
-      player.controls.init(player.index) ;
+
+      player.controls.init(index) ;
       //player.controls.play()
     },
     back:function(e){
-	player.controls.stop() ;
-	player.controls.reset();
+	//player.controls.stop() ;
+	//player.controls.reset();
     	var index = player.index
 	if(index > 0){
 		index -=1 ;		
@@ -169,7 +172,7 @@ now:[],
 		index = player.now.length - 1 ;
 	}
 	
-	player.init(index) ;
+	player.controls.init(index) ;
     },
     complete:function(e){
 

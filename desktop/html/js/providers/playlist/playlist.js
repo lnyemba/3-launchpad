@@ -60,22 +60,6 @@ var playlist={
 	  player.add(this.info);
 	}
       }
-      
-      
-//       tr.onclick 		= function(){
-// 	
-// 	if(pointer == null){
-// 	  player.add(this.info) ;
-// 	  	  //
-// 	  
-// 	}else{
-// 	  //
-// 	  // call immediately the player
-// 	  //
-// 	  player.controls.init(this.index) ;
-// 	}
-//       }      
-
       tr.appendChild(td) ;
       table.appendChild(tr) ;
     }//-- end of loop

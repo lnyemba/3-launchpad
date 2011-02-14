@@ -35,13 +35,21 @@
 	</tr>
 	<tr class="medium">
 	  
-	  <td align="right">
+	  <td align="right" rowspan="2">
 	  	    <input type="image" src="img/default/volume_down.png" onclick="player.controls.volume.down()"/>
+	  </td>
+	</tr>
+	<tr class="medium">
+	  <td valign="top">
+	  <input type="image" id="mode.none" src="img/repeat_none.png" onclick="player.controls.setmode('song'); jx.dom.hide('mode.none'); jx.dom.show('mode.song')"/>
+	  <input type="image" id="mode.song" src="img/repeat_song.png" onclick="player.controls.setmode('all') ;jx.dom.hide('mode.song'); jx.dom.show('mode.all')" style="display:none"/>
+	    <input type="image" id="mode.all" src="img/repeat_all.png" onclick="player.controls.setmode('none');  jx.dom.hide('mode.all'); jx.dom.show('mode.none')" style="display:none"/>
+	    <div  style="font-weight:bold; margin-top:-14.5%; margin-left:20px">Repeat <span id="mode">none</span></div>
 	  </td>
 	</tr>
     </table>
 
-    <div id="controls" class="shaded" style="display:none;width:150px; bottom:20%">
+    <div id="controls" class="shaded" style="display:none;width:150px; bottom:18.5%">
       <input type="image" src="img/rwd_1.png" onclick="player.controls.back()"/>
       <input type="image" src="img/stop_1.png" onclick="player.controls.stop()"/>
       <input type="image" id="pause.button" src="img/pause_1.png" style="display:none" onclick="player.controls.pause()"/>
