@@ -42,7 +42,7 @@ var utils={
 	}
       }
     },//-- end utils.modules.setup()
-    show:function(base,id){
+    show:function(id){
       //jx.dom.hide('default');
       var meta = utils.modules.cache.meta ;
       for(var i=0; i < meta.length; i++){
@@ -53,8 +53,10 @@ var utils={
 	  jx.dom.hide(pages[j].id) ;
 	}
       }
-      jx.dom.show(base) ;
+      
+      jx.dom.show('stdout') ;
       $('#'+id).slideDown() ;
+      
       
     }//-- end utils.modules.show(base,id) ;
   },//-- end utils.modules

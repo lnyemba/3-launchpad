@@ -70,7 +70,7 @@ var dstore={
 	jx.dom.set.value('dstore.status','<b style="color:black">Yeah!!</b> Dropbox library has been indexed') ;
 	jx.dom.set.value('dstore.size',dstore.library.playlist.length) ;
 	jx.dom.set.value('dstore.owners',dstore.library.owners.meta.length) ;
-	jx.dom.set.value('menu.dstore.size',dstore.library.playlist.length) ;
+	//jx.dom.set.value('menu.dstore.size',dstore.library.playlist.length) ;
 	jx.dom.show('dstore.report') ;
 	library.register('dropbox',dstore.library)  ;
       }else{
@@ -125,7 +125,7 @@ var dstore={
     
     jx.dom.hide('dstore.report') ;
     jx.dom.set.value('dstore.size','00') ;
-    jx.dom.set.value('menu.dstore.size','00') ;
+    //jx.dom.set.value('menu.dstore.size','00') ;
     
     dstore.library = {
       playlist:[],

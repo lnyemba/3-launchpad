@@ -32,7 +32,7 @@ var theme={
     
   },//-- end theme.set(id)
   browse:{
-    max:8,
+    max:11,
     current:0,
     direction:null,
     next:function(){

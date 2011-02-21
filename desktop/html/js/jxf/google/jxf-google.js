@@ -77,6 +77,7 @@ gapi.gdocs={
 	parse:function(xmlhttp,callback){
 		
 		var nodes = xmlhttp.firstChild.getElementsByTagName('entry');
+		
 		var rec ={} ;
 		rec.meta =['uri','name','owner','email'] ;
 		rec.data = [] ;

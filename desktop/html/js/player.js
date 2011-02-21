@@ -46,14 +46,14 @@ now:[],
 	  }
 	  if(this.index < player.now.length){
 	    player.now.splice(parseInt(this.index),1) ;
-	    table.deleteRow(this.index) ;
+	    //table.deleteRow(this.index) ;
 	  }
 	  if(this.index == player.index){
 	    player.controls.stop() ;
 	    player.controls.reset() ;
 	    player.index = 0;
 	  }
-	  
+	  player.add(null);
 	    //player.init(player.init(this.index-1)) ;
 	    
 	  

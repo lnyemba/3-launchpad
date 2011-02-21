@@ -70,7 +70,7 @@ var lstore={
 	jx.dom.set.value('lstore.status','complete, Local library has been indexed') ;
 	jx.dom.set.value('lstore.size',lstore.library.playlist.length) ;
 	jx.dom.set.value('lstore.owners',lstore.library.owners.meta.length) ;
-	jx.dom.set.value('menu.lstore.size',lstore.library.playlist.length) ;
+	//jx.dom.set.value('menu.lstore.size',lstore.library.playlist.length) ;
 	jx.dom.show('lstore.report') ;
 	library.register('local',lstore.library)  ;
       }else{
@@ -125,7 +125,7 @@ var lstore={
     
     jx.dom.hide('lstore.report') ;
     jx.dom.set.value('lstore.size','00') ;
-    jx.dom.set.value('menu.lstore.size','00') ;
+    //jx.dom.set.value('menu.lstore.size','00') ;
     
     lstore.library = {
       playlist:[],

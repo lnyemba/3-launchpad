@@ -1,87 +1,17 @@
- <div class="shaded-light rounded-corners" style="padding:5px">
- <div id="id3" >    
-   <div class="medium" style="font-weight:bold">
-	<span id="artist" style="margin-left:5px; font-size:14px">Unknown<span>
-  </div>
-  <div class="medium" style="">
-	<span id="song" style="margin-left:5px">Uknown<span>
-  </div>
-  <div class="medium" style="">
-	<span id="progress" style="margin-left:5px">0.00 %</span>
-  </div>
- </div>
- 
 <table width="100%" class="rounded-corners" style="height:81%;" >
 
 <tr class="medium"  >
-  <td valign="top" width="150px">
-    
-
-    <div  align="center" style="height:129px;  margin-top:18%">
-      <img id="artist.pic" src="img/default/unknown-artist.jpg"/>
-    </div>
-    
-    <table id="volume-control" style="width:150px; margin-top:3px">
-	<tr class="medium">
-	  <td  rowspan="2" class="" valign="middle" align="center">
-	    Volume level
-	  
-	  <span id="volume.level">10</span> %
-	  </td>
-	  <td align="right">
-	    <input type="image" src="img/default/volume_up.png" onclick="player.controls.volume.up()"/>
-	    </td>
-	    
-	</tr>
-	<tr class="medium">
-	  
-	  <td align="right" rowspan="2">
-	  	    <input type="image" src="img/default/volume_down.png" onclick="player.controls.volume.down()"/>
-	  </td>
-	</tr>
-	<tr class="medium">
-	  <td valign="top">
-	  <input type="image" id="mode.none" src="img/repeat_none.png" onclick="player.controls.setmode('song'); jx.dom.hide('mode.none'); jx.dom.show('mode.song')"/>
-	  <input type="image" id="mode.song" src="img/repeat_song.png" onclick="player.controls.setmode('all') ;jx.dom.hide('mode.song'); jx.dom.show('mode.all')" style="display:none"/>
-	    <input type="image" id="mode.all" src="img/repeat_all.png" onclick="player.controls.setmode('none');  jx.dom.hide('mode.all'); jx.dom.show('mode.none')" style="display:none"/>
-	    <div  style="font-weight:bold; margin-top:-14.5%; margin-left:20px">Repeat <span id="mode">none</span></div>
-	  </td>
-	</tr>
-    </table>
-
-    <div id="controls" class="shaded" style="display:none;width:150px; bottom:18.5%">
-      <input type="image" src="img/rwd_1.png" onclick="player.controls.back()"/>
-      <input type="image" src="img/stop_1.png" onclick="player.controls.stop()"/>
-      <input type="image" id="pause.button" src="img/pause_1.png" style="display:none" onclick="player.controls.pause()"/>
-      <input type="image" id="play.button" src="img/play_1.png" onclick="player.controls.play()"/>
-      <input type="image" src="img/fwd_1.png" onclick="player.controls.next()"/>
-      
-    </div>  
-  </td>
-
-
 <td valign="top" >
-  <div>
-    <table width="100%" align="center" cellspacing="0px"><tr class="medium shaded-dark">
-    <td width="18px">
-    <input type="image" src="img/default/arrow-prev.png" onclick="menulib.player.back()"/>
-    </td>
-    <td align="center" style="font-weight:bold" id="player_label">
-      Music Library
-    </td>
-    <td width="18px">
-    <input type="image" src="img/default/arrow-next.png" onclick="menulib.player.next()"/>
-    </td>
-    
-    </tr></table>
+  <div class="medium shaded-dark" align="center" style="font-weight:bold; font-size:13px">
+    Now Playing
   </div>
-  <div id="player_panel1" style="display:none;overflow:hidden; margin-top:1px">
-    <div id="now.playing" style=" overflow:auto; height:210px">
+  <div id="player_panel1" style="display:block;overflow:hidden; margin-top:5px;-webkit-border-top-right-radius:10px">
+    <div id="now.playing" style=" overflow:auto; height:190px">
      [Nothing is currently playing]
     </div>
   </div>
   
-  <div id="player_panel2" style="display:block;height:210px; padding:3px; overflow:hidden">
+  <div id="player_panel2" style="display:hidden;height:210px; padding:3px; overflow:hidden">
   	<table width="100%">
 	  <tr class="medium">
 

@@ -69,13 +69,15 @@
       theme.init() ;
       //library.init() ;   
       updater.init() ;
-      utils.modules.setup() ;
+       utils.modules.setup() ;
       theme.set();
-      lstore.load();
-      dstore.load();
-      utils.menu.show('player');     	 
-      //jx.dom.show('default') ;
-      menulib.open('all') ;
+       lstore.load();
+       dstore.load();
+//       utils.menu.show('player');     	 
+//       //jx.dom.show('default') ;
+       
+       utils.modules.show('mlibrary');
+       library.render('menulib','all')
   }  
 
      
@@ -100,15 +102,25 @@
 // 
 //    Providers.init() ;
   
-	utils.modules.init('menu','menu.html','mui') 
-	utils.modules.init('google','providers/google/index.html','config') ;
-	utils.modules.init('dropbox','providers/dropbox/index.html','config') ;
-	utils.modules.init('local','providers/local/index.html','config') ;
-	utils.modules.init('theme','theme.html','config') ; 
-	utils.modules.init('mlibrary','library.html','config') ;
-	utils.modules.init('help','help.html','stdout')     ;
-	utils.modules.init('player','player.html','default');
-  
+// 	utils.modules.init('menu','menu.html','mui') 
+// 	utils.modules.init('google','providers/google/index.html','config') ;
+// 	utils.modules.init('dropbox','providers/dropbox/index.html','config') ;
+// 	utils.modules.init('local','providers/local/index.html','config') ;
+// 	utils.modules.init('theme','theme.html','config') ; 
+// 	utils.modules.init('mlibrary','library.html','config') ;
+// 	utils.modules.init('help','help.html','stdout')     ;
+// 	utils.modules.init('player','player.html','default');
+//   
+// 	utils.modules.init('menu','menu.html','mui') 
+ 	utils.modules.init('google','providers/google/index.html','stdout') ;
+ 	utils.modules.init('dropbox','providers/dropbox/index.html','stdout') ;
+ 	utils.modules.init('local','providers/local/index.html','stdout') ;
+ 	utils.modules.init('theme','theme.html','stdout') ; 
+ 	utils.modules.init('mlibrary','library.html','stdout') ;
+ 	utils.modules.init('help','help.html','stdout')     ;
+ 	utils.modules.init('player','player.html','stdout');
+ 	utils.modules.init('config','config.html','stdout') ;
+
       lstore.init.lookup() ;
       dstore.init.lookup();
 //
@@ -124,59 +136,8 @@ var menulib={
     }
     jx.dom.set.css(id+'-tab','active-tab') ;
     library.render('mainlib',id)
-  },//-- menulib.open(id)
-  player:{
-    labels:['Now Playing','Music Library','Artist Buzz'],
-    panels:['player_panel1','player_panel2'],
-    current:1,
-    direction:null,
-    back:function(){
-      move_to = function(){
-	if(menulib.player.current > 0){
-	  menulib.player.current -= 1 ;
-	}else{
-	  menulib.player.current = menulib.player.panels.length-1; 
-	}
-      }
-      menulib.player.direction = null;
-      menulib.player.transition(move_to) ;
-    },
-    next:function(){
-      move_to=function(){
-	max = menulib.player.panels.length; 
-	if(menulib.player.current < max -1){
-	  menulib.player.current += 1 ;
-	}else{
-	  menulib.player.current  = 0;
-	}
-      }
-      menulib.player.direction = 'next';
-      menulib.player.transition(move_to) ;
-    },
-    transition:function(move_to){
-      panels = menulib.player.panels ;
-      labels = menulib.player.labels;
-      id = panels[menulib.player.current] ;
-      
-      var option = {} ;
-      option.width  = '0'
-      option.display='none'
-      if(menulib.player.direction == 'next'){
-	option['margin-left'] = '100%'
-      }
-      var pointer=function(){
-	
-	jx.dom.hide(id) ;
-	jx.dom.set.style(id,'width','100%') ;
-	jx.dom.set.style(id,'margin-left','0') ;
-	move_to() ;
-	id = panels[menulib.player.current] ; 
-	$('#'+id).fadeIn();
-	jx.dom.set.value('player_label',labels[menulib.player.current]);
-      }
-      $('#'+id).animate(option,750,pointer);
-    }
-  }//-- end menulib.player.next()
+  }//-- menulib.open(id)
+
 }
 
 
@@ -215,6 +176,9 @@ var menulib={
     background-color:#d3d3d3;
     font-weight:bold;
    }
+   .view-through{
+    opacity:0.8;
+   }
 </style>
 
 <body id="body" class="default" onload="Initialize()" style="">
@@ -227,44 +191,104 @@ var menulib={
   <span id="version" class="small" style="position:absolute; margin-top:3px"></span>
   <span></span>
 <div id="app" style="height:90%; padding:3px">
-<div >
-  <img src="img/default/close.png" style="margin-left:88%;margin-top:-1%; position:absolute; z-index:2" class="action" onclick="utils.modules.show('default','player');"/>
-  <div id="stdout" style="display:none; opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp()"></div>
-  <div id="mui" style="display:none; opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray" class="rounded-corners" onmouseover="$('#mainmenu').slideUp()"></div>
-  
-  <div id="default" style="opacity:0.9; background-color:#f3f3f3; margin-top:3%; margin-left:4%; width:92%; height:80%; border:2px solid gray; padding:5px" class="rounded-corners" onmouseover="$('#mainmenu').slideUp(); $('#controls').fadeIn()">
-  </div>
+<div onmouseover="$('#mainmenu').slideUp();  ">  
+  <table width="90%" align="center" style="margin-top:5%;">
+  <tr class="medium shaded-light view-through">
+    <td colspan="2" class="rounded-corners">
+	<div id="id3" class="view-through">    
+	  <div class="medium" style="font-weight:bold">
+		<span id="artist" style="margin-left:5px; font-size:14px">Unknown<span>
+	  </div>
+	  <div class="medium" style="">
+		<span id="song" style="margin-left:5px">Uknown<span>
+	  </div>
+	  <div class="medium" style="">
+		<span id="progress" style="margin-left:5px">0.00 %</span>
+	  </div>    
+    </td>
+  </tr>
+    <tr class="medium">
+      <td valign="top" width="150px" style="background-color:#d3d3d3;border:2px solid gray; -webkit-border-top-right-radius:10px;">
+	<div  align="center" class="" style="height:128px; width:128px; margin-left:9.5px;margin-top:5px;">
+	    <img id="artist.pic" src="img/default/unknown-artist.jpg" style="margin-top:2px;"/>
+	</div>
+	<!-- volume controls -->
+    <table id="volume-control" class="" cellspacing="0px" style="width:150px; margin-top:10%; border:0px solid gray">
+	<tr class="medium">
+	  <td  rowspan="2" class="" valign="middle" align="center" >
+	    Volume level
+	  
+	  <span id="volume.level">10</span> %
+	  </td>
+	  <td align="right">
+	    <input type="image" src="img/default/volume_up.png" onclick="player.controls.volume.up()"/>
+	    </td>
+	    
+	</tr>
+	<tr class="medium">
+	  
+	  <td align="right" rowspan="2">
+	  	    <input type="image" src="img/default/volume_down.png" onclick="player.controls.volume.down()"/>
+	  </td>
+	</tr>
+	<tr class="medium">
+	  <td valign="top">
+	  <input type="image" id="mode.none" src="img/repeat_none.png" onclick="player.controls.setmode('song'); jx.dom.hide('mode.none'); jx.dom.show('mode.song')"/>
+	  <input type="image" id="mode.song" src="img/repeat_song.png" onclick="player.controls.setmode('all') ;jx.dom.hide('mode.song'); jx.dom.show('mode.all')" style="display:none"/>
+	    <input type="image" id="mode.all" src="img/repeat_all.png" onclick="player.controls.setmode('none');  jx.dom.hide('mode.all'); jx.dom.show('mode.none')" style="display:none"/>
+	    <div  style="font-weight:bold; margin-top:-14.5%; margin-left:20px">Repeat <span id="mode">none</span></div>
+	  </td>
+	</tr>
+    </table>
+    
+	<div id="controls" align="center" class="shaded-light" style="border:0px solid gray;width:148px;padding:1px; margin-top:5.5%">
+	    <input type="image" src="img/rwd_1.png" onclick="player.controls.back()"/>
+	    <input type="image" src="img/stop_1.png" onclick="player.controls.stop()"/>
+	    <input type="image" id="pause.button" src="img/pause_1.png" style="display:none" onclick="player.controls.pause()"/>
+	    <input type="image" id="play.button" src="img/play_1.png" onclick="player.controls.play()"/>
+	    <input type="image" src="img/fwd_1.png" onclick="player.controls.next()"/>
+	</div> 
+      </td>
+      <td valign="top" class="view-through" style="background-color:#f3f3f3;-webkit-border-top-right-radius:10px;border:2px solid gray">
+	  <div id="stdout" style="padding:2px; margin:2px; overflow:hidden; height:220px; border:1px solid white"></div>
+      </td>
+    </tr>
+  </table>
 </div>
 
-<div id="mainmenu" class="shaded" style="margin-left:15%; position:absolute;z-index:3; bottom:42; border:2px solid gray; " >
+<div id="mainmenu" class="shaded" style="margin-left:10%; position:absolute;z-index:3; bottom:42; border:2px solid gray; " >
 
 <table  align="center">
   <tr class="medium" >
-  <td align="center" class="action" width="48px" onclick="utils.modules.show('default','player');  ">
+  <td align="center" class="action" width="48px" onclick="utils.modules.show('player');  " style="border-right:1px solid gray">
     <img src="img/gnomefoot.png">
     
   </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('theme'); ">
+  <td align="center" class="action" width="48px" onclick="utils.modules.show('mlibrary');  ">
+    <img src="img/default/mysongs.png">
+    
+  </td>
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('theme'); ">
     <img src="img/default/theme.png">
     
   </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('local'); ">
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('local'); ">
     <img src="img/drive.png">
     
   </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('google'); jx.dom.set.focus('email')">
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('google'); jx.dom.set.focus('email')">
     <img src="img/google-logo.png">
     
   </td>
-    <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');utils.menu.show('dropbox')">
+    <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('dropbox')">
     <img src="img/dropbox-logo.png">
     
   </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('mui','menu'); jx.dom.show('config');">
-    <img src="img/setup.png">
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('config');">
+    <img src="img/default/setup.png">
     
   </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('stdout','help');">
+  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('help');">
     <img src="img/default/info.png">
     
   </td>
@@ -277,12 +301,13 @@ var menulib={
 
 </table>
 </div>
-<div style="border:0px solid black; position:absolute; height:40px;width:94%" onmouseover="$('#mainmenu').slideDown(); $('#controls').fadeOut(); ">
+<div style="border:0px solid black; position:absolute; height:45px;width:94%" onmouseover="$('#mainmenu').slideDown();  ">
   <!--
     * 
     * This area enables the menu showing and hiding upon mouse position
     *
   -->
+    <div class="medium" style="color:bebebe; position:absolute; bottom:0px; margin-left:25%">&copy; 2010 - 2011 GPL V3 team.3launchpad@gmail.com</div>
 </div>
 
 </body>

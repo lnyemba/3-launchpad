@@ -18,7 +18,7 @@ var gstore={
 			jx.dom.set.value('gstore.status','') ;
 			
 			
-			jx.dom.set.value('menu.gstore.size','00') ;
+			//jx.dom.set.value('menu.gstore.size','00') ;
 			jx.dom.set.value('gstore.size',0) ;
 			jx.dom.set.value('gstore.owners',0) ;
 			jx.dom.hide('gstore.report') ;
@@ -33,6 +33,7 @@ var gstore={
 	getmusic:function(){
 		var url = 'https://docs.google.com/feeds/default/private/full?q=*.mp3'
 		var callback=function(xmlhttp){
+		  //alert(xmlhttp.responseText) ;
 		  gstore.library = gapi.gdocs.parse(xmlhttp.responseXML) ;
 		  //
 		  // correcting a minor disconnect that came up when working with local files
@@ -42,7 +43,7 @@ var gstore={
 		  jx.dom.set.value('gstore.status','<b style="color:black">Yeah !!</b> Music found and indexed');
 		  //
 		  // TODO: The code below needs to be in it's own section
-		  jx.dom.set.value('menu.gstore.size',gstore.library.playlist.length) ;
+		  //jx.dom.set.value('menu.gstore.size',gstore.library.playlist.length) ;
 		  jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;
 		  jx.dom.set.value('gstore.owners',gstore.library.owners.meta.length) ;
 		  jx.dom.show('gstore.report') ;
