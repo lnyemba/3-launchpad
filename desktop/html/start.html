@@ -135,7 +135,7 @@ var menulib={
       jx.dom.set.css(tabs[i]+'-tab','inactive-tab') ;
     }
     jx.dom.set.css(id+'-tab','active-tab') ;
-    library.render('mainlib',id)
+    library.render('menulib',id)
   }//-- menulib.open(id)
 
 }
@@ -188,13 +188,14 @@ var menulib={
     <b>3-Launchpad</b></span><span> - Desktop Edition </span>
    
   </div>
-  <span id="version" class="small" style="position:absolute; margin-top:3px"></span>
-  <span></span>
 <div id="app" style="height:90%; padding:3px">
+  <div>&rsaquo;&rsaquo; <span id="version" class="small" style="margin-left:5px"></span></div>
+  <div>&rsaquo;&rsaquo; <span id="alert" class="small" style="margin-left:5px; color:maroon"></span></div>
+
 <div onmouseover="$('#mainmenu').slideUp();  ">  
-  <table width="90%" align="center" style="margin-top:5%;">
+  <table width="90%" align="center" style="margin-top:2%; ">
   <tr class="medium shaded-light view-through">
-    <td colspan="2" class="rounded-corners">
+    <td colspan="2" style="-webkit-border-top-right-radius:10px; -webkit-border-top-left-radius:10px; border:2px solid gray">
 	<div id="id3" class="view-through">    
 	  <div class="medium" style="font-weight:bold">
 		<span id="artist" style="margin-left:5px; font-size:14px">Unknown<span>
@@ -209,8 +210,8 @@ var menulib={
   </tr>
     <tr class="medium">
       <td valign="top" width="150px" style="background-color:#d3d3d3;border:2px solid gray; -webkit-border-top-right-radius:10px;">
-	<div  align="center" class="" style="height:128px; width:128px; margin-left:9.5px;margin-top:5px;">
-	    <img id="artist.pic" src="img/default/unknown-artist.jpg" style="margin-top:2px;"/>
+	<div  align="center" class="" style="height:128px; width:128px; margin-left:11.5px;margin-top:5px;">
+	    <img id="artist.pic" src="img/default/unknown-artist.jpg" style="margin-top:2px;-webkit-border-top-right-radius:10px;"/>
 	</div>
 	<!-- volume controls -->
     <table id="volume-control" class="" cellspacing="0px" style="width:150px; margin-top:10%; border:0px solid gray">
@@ -307,7 +308,7 @@ var menulib={
     * This area enables the menu showing and hiding upon mouse position
     *
   -->
-    <div class="medium" style="color:bebebe; position:absolute; bottom:0px; margin-left:25%">&copy; 2010 - 2011 GPL V3 team.3launchpad@gmail.com</div>
+    <div class="medium" style="color:bebebe; position:absolute; bottom:8px; margin-left:25%">&copy; 2010 - 2011 GPL V3 team.3launchpad@gmail.com</div>
 </div>
 
 </body>

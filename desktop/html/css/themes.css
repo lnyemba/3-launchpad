@@ -19,8 +19,8 @@
   background:url('../img/themes/sketch-technology.jpg') no-repeat ;
 }
 
-.thefoot{
-  background:url('../img/themes/thefoot.jpg') no-repeat ;
+.asian{
+  background:url('../img/themes/asian-woman.jpg') no-repeat ;
 
 }
 .tuareg{
@@ -55,7 +55,9 @@
 .sahara{
   background:url('../img/themes/sahara.jpg') no-repeat  ;
 }
-
+.sahara #version{
+  color:bebebe ;
+}
 
 .clone{
   background:url('../img/themes/clone.jpg') no-repeat  ;

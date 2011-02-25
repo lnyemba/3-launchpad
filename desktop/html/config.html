@@ -1,25 +1,42 @@
-<table width="100%"  class="shaded-light" cellspacing="0">
+<table width="100%"  class="" cellspacing="0">
 <tr class="medium">
 <td valign="top" width="34px">
   <img src="img/default/setup.png"/>
   </td><td valign="middle">
     <b style="font-size:14px">System Configuration</b>
+    <div>Report bug/send comments or reset 3-launchpad</div>
   </td></tr></table>
   <table width="100%" border="0" style="" cellspacing="0" class="rounded-corners shaded-light">
   <tr class="medium" style="font-weight:bold">
-  <td valign="top" style="width:34px;">
-    <div>
-      <img src="img/default/clear.png"/> 
-      <div>Reset</div>
-    </div>
-    <div style="margin-top:2px">
-        <img src="img/default/features.png"/> 
-	<div>Report</div>
+  <td valign="top" align="center" style="width:34px;">
+    
+      <div style="margin-top:5px">
+	<input type="image" src="img/default/clear.png" style="border:1px solid gray" onclick="jx.dom.hide('report'); jx.dom.show('system.reset')"/> 
       </div>
+      <div style="margin-top:2px">
+	<input type="image" src="img/default/features.png" style="border:1px solid gray" onclick="jx.dom.show('report'); jx.dom.hide('system.reset')"/> 
+      </div>
+      <div style="margin-top:2px">
+	<input type="image" src="img/gnomefoot.png" style="border:1px solid gray" onclick="utils.modules.show('player');"/> 
+      </div>
+	
+      
 
   </td>
   <td valign="top">
-      <div id ="report" class="rounded-corners" style="width:95%; border:1px solid gray">
+      <div id="system.reset" class="rounded-corners" style="font-weight:normal; border:1px solid gray">
+	<br>&bull; This section will restore <b>3-launchpad</b> to its initial values if for some reason there seems to be misbehavior (theme; indexing; ...). 
+	<div style="margin-top:5%">When ready please click on the button below to initialize the restore process</div>	
+	<div style="margin-top:2%">Should the restore process fail please send us a detailed bug report of the misbehavior</div>
+	
+	<div align="right">
+	  <input type="button" class="default-button" style="background-color:white" value="Restore" onclick="rmdb()"/>
+	  </div>
+	
+	
+      </div>
+      <div id ="report" class="rounded-corners" style="display:none; border:1px solid gray">
+	
 	Email <input type="text" class="medium" id="user.email"/>
       <select id="subject" style="width:185px">
 	  <option class="medium" value="bug">Bug</option>

@@ -6,6 +6,7 @@ var library={
       library.cache[key] = pointer;
       menulib.open(key) ;
       menulib.open('all');
+      //library.render('menulib','all')
     
   },//-- end library.set(key,pointer
   get:function(keys){

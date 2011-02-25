@@ -30,11 +30,22 @@ var gstore={
 		}//-- gstore.login.error()
 		
 	},
-	getmusic:function(){
+	getmusic:function(next){
 		var url = 'https://docs.google.com/feeds/default/private/full?q=*.mp3'
 		var callback=function(xmlhttp){
-		  //alert(xmlhttp.responseText) ;
 		  gstore.library = gapi.gdocs.parse(xmlhttp.responseXML) ;
+		  //
+		  // let's make sure we don't need to page through this
+		  //
+		  link = xmlhttp.responseXML.firstChild.getElementsByTagName('link') ;
+		  next = null;
+		  for(var i=0; i < link.length; i++){
+		      if(link[i].attributes[0].nodeValue == 'next'){
+			next = (link[i].attributes['2'].nodeValue) ;
+			
+			break;
+		      }
+		  }
 		  //
 		  // correcting a minor disconnect that came up when working with local files
 		  // a slight change in the data structure (oops)
@@ -49,11 +60,52 @@ var gstore={
 		  jx.dom.show('gstore.report') ;
 		  
 		  library.register('google',gstore.library)  ;
+		  gstore.getNextPage(next) ;
 		  
-		}
+		}//-- end of inner function call ...
 		jx.dom.set.value('gstore.status','Please wait while retrieving music')
 		jx.ajax.run(url,callback,'GET') ;
 	},
+	/**
+	* Because google does NOT return the entire list of songs through it's api and provides paging
+	* we will fetch the next pages here and append them to the existing library ....
+	*/
+	getNextPage:function(uri){
+	  //
+	  callback=function(xmlhttp){
+	    lib = gapi.gdocs.parse(xmlhttp.responseXML) ;
+	    //gstore.library.playlist.concat(lib.data) ;
+	    for(var i=0; i < lib.data.length; i++){
+	      gstore.library.playlist.push(lib.data[i]) ;
+	      
+	    }
+	    //
+	    // lets patchup the work with owners
+	    //
+	    owner = null
+	    for(var i=0; i < lib.owners.meta.length; i++){
+	      owner = lib.owners.meta[i] ;
+	      if(gstore.library.owners.data[owner] == null){
+		gstore.library.owners.data[owner] = [] ;
+		gstore.library.owners.meta.push(owner) ;
+	      }
+	      for(var j=0;j < lib.data.length ; j++){	
+		owner = lib.data[j].owner ;
+		gstore.library.owners.data[owner].push(lib.data[j]) ;
+		
+	      }
+	    }
+	    
+	    jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;
+	    jx.dom.set.value('gstore.owners',gstore.library.owners.meta.length) ;
+	    jx.dom.show('gstore.report') ;
+		  
+	    library.register('google',gstore.library)  ;
+
+	    library.register('google',gstore.library)  ;
+	  }
+	  jx.ajax.run(uri,callback,'GET') ;
+	},//-- gstore.getNextPage(uri)
 	showSongs:function(){
 
 	  if(gstore.library != null){

@@ -92,8 +92,15 @@ function search(qid,dbase){
 	  owner = info.owner.toLowerCase();
 	  table.rows[i].style['display'] = null;
 	  if(keyword.length > 0 && name.match(keyword)==null){
-		  table.rows[i].style['display'] = 'none' ;
+		  table.rows[i].style['dversionisplay'] = 'none' ;
 	  }
 	  
   }//-- end of loop
+}
+
+function rmdb(){
+  var file = air.File.applicationStorageDirectory.resolvePath("3launchpad.db3") ;
+  file.deleteFile() ;
+  player.controls.stop() ;
+  window.location.reload(true) ;  
 }
