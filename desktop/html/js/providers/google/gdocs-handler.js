@@ -89,11 +89,11 @@ var gstore={
 		gstore.library.owners.data[owner] = [] ;
 		gstore.library.owners.meta.push(owner) ;
 	      }
-	      for(var j=0;j < lib.data.length ; j++){	
-		owner = lib.data[j].owner ;
-		gstore.library.owners.data[owner].push(lib.data[j]) ;
-		
-	      }
+// 	      for(var j=0;j < lib.data.length ; j++){	
+// 		owner = lib.data[j].owner ;
+// 		gstore.library.owners.data[owner].push(lib.data[j]) ;
+// 		
+// 	      }
 	    }
 	    
 	    jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;
@@ -123,7 +123,7 @@ var gstore={
 	  if(library.current != 'google' || gstore.library == null){
 	    return ;
 	  }
-	  jx.dom.set.value(target,' ') ;
+	  jx.dom.set.value(target,'') ;
 	  var owners = gstore.library.owners.meta ;
 	  for(var i=0; i < owners.length; i++){
 	    div 		= document.createElement('DIV') ;

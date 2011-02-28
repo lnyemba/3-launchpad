@@ -1,7 +1,7 @@
 /**
 * (c) 2010 - 2011 3-Launchpad
 * Local music player, Steve L. Nyemba <nyemba@gmail.com>
-*
+
 */
 
 var lstore={
@@ -98,6 +98,10 @@ var lstore={
 	//entry.name = (entry.name.length > 30)?(entry.name.substring(0,30)+'...'):entry.name ;
 	entry.uri = ('file://'+list[i].nativePath)
 	entry.owner = 'Local Music' ;
+	if(library.exists(lstore.library.playlist, entry.uri) == true){
+	  air.trace("ignoring ..." + entry.uri)
+	  continue ;
+	}
 	jx.dom.set.value('lstore.status','&bull; '+entry.name) ;
 	if(lstore.library.owners.data[entry.owner] == null){
 	  lstore.library.owners.data[entry.owner] = [] ;
@@ -156,6 +160,45 @@ var lstore={
     }else{
       jx.dom.set.value('lstore.status','Music is not yet indexed, Please scan folder') ;
     }
+  },
+  //
+  // The section below is intended to address file association i.e if a user clicks on a file and 3-launchpad is opened
+  // we need to have registrable events/function that will be loaded into the adobe air core applicaton
+  // Synposis:
+  //	the argument is sent (the fully qualified path of the mp3 document
+  //	Once received we will search in the library:
+  //		a. If the item is found we add it to the playlist (i.e now playing)
+  //		b. If the item is NOT found we add it to the indexed library and addit to the playlist (i.e now playing)
+  //
+  events:{
+    OpenFile:function(event){
+      var dir = event.currentDirectory;
+      
+      
+      var entry = null;
+      if(event.arguments.length != 1){
+	return ;
+      }
+      var file = dir.resolvePath(event.arguments[0]) ;
+      entry  = library.find(lstore.library.playlist,'uri',('file://'+file.nativePath)) ;
+      //
+      
+      if(entry == null){
+	entry = {} ;
+	entry.uri = 'file://'+file.nativePath ;
+	entry.name =file.name.replace('.mp3','') ;
+	entry.owner = 'Local Music' ;
+	lstore.library.playlist.push(entry) ;
+	lstore.save() ;
+	lstore.load();
+      }
+      
+      player.add(entry) ;
+      //
+      // let's open the window so the user sees what is now playing
+      //
+      utils.modules.show('player');
+    }//-- lstore.events.OpenFile(event)
   }
   
 }

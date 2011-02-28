@@ -77,7 +77,9 @@
 //       //jx.dom.show('default') ;
        
        utils.modules.show('mlibrary');
-       library.render('menulib','all')
+       library.render('menulib','all') ;
+       air.NativeApplication.nativeApplication.addEventListener(air.InvokeEvent.INVOKE, lstore.events.OpenFile)
+       
   }  
 
      
@@ -184,8 +186,8 @@ var menulib={
 <body id="body" class="default" onload="Initialize()" style="">
 <div  style="width:95%; border:5px double gray; padding:2px; margin-top:5px">
   <div style="background-color:#d3d3d3;border-bottom:1px solid gray; cursor:move;" onmousedown="nativeWindow.startMove()">
-    <span onclick="player.controls.stop(); window.location.reload()" style="cursor:pointer">
-    <b>3-Launchpad</b></span><span> - Desktop Edition </span>
+    <span onclick="player.controls.stop(); window.location.reload()" style="cursor:pointer;">&nbsp;
+    <b><i>3-launchpad</i></b></span><span> - Desktop Edition </span>
    
   </div>
 <div id="app" style="height:90%; padding:3px">

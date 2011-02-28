@@ -2,7 +2,7 @@
 	  <tr class="medium">
 
 	    <td>
-	      <input type="text" id="menu.library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('menu.library.search','menulib.table')"/><span onclick="jx.dom.set.value('menu.library.search','');search('menu.library.search','menulib.table'); jx.dom.set.focus('menu.library.search')" class="action" style=""> &lsaquo;&lsaquo;</span>
+	      <input type="text" id="menu.library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('menu.library.search','menulib.table')"/><span onclick="jx.dom.set.value('menu.library.search','');search('menu.library.search','menulib.table');" class="action" style=""> &lsaquo;&lsaquo;</span>
 	    </td>
     	    <td width="34px">
 	      <input type="image" src="img/default/search.png"/>
@@ -30,12 +30,13 @@
 	    <td style=""> &nbsp;</td>
 	    </tr>
 	    </table>
-	    <table style="border-top:1px solid gray" width="34px">
+	    <table style="border-top:1px solid gray" width="37px">
 	      <tr class="medium">
-	      <td valign="top">
+	      <td valign="top" align="left">
 		
-		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('menulib')"/>
-		<input type="image" src="img/gnomefoot.png" onclick="utils.modules.show('player');" style="margin-top:3px; border-top:1px solid gray"/>
+		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('menulib')" style="border:1px solid gray"/>
+		<input type="image" src="img/gnomefoot.png" onclick="utils.modules.show('player');" style="margin-top:3px; border:1px solid gray"/>
 	      </td></tr></table>
-	    <div id="menulib" style="border:1px solid gray; margin-left:37px; height:65%; margin-top:-20.4%; overflow:auto;"></div>
+	    <div id="menulib" style="border:1px solid gray; margin-left:39px; height:150px; margin-top:-21.2%; overflow:auto;">
+	    </div>
 	</div>

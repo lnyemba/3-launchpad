@@ -14,15 +14,22 @@ var updater={
   },
   lookup:function(){
     var fn = function(xmlhttp){
-      var r = eval("("+xmlhttp.responseText+")") ;
-      r.version = parseFloat(r.version) ;
-      if(r.version < updater.version){
-	jx.dom.set.value('alert','') ;
-	
-      }else if(r.version > updater.version){
-	jx.dom.set.value('alert',r.version+' New version available') ;
+      
+      
+      try{
+	var r = eval("("+xmlhttp.responseText+")") ;
+	r.version = parseFloat(r.version) ;
+	if(r.version < updater.version){
+	  jx.dom.set.value('alert','') ;
+	  
+	}else if(r.version > updater.version){
+	  jx.dom.set.value('alert',r.version+' New version available') ;
+	}
+	setTimeout(updater.lookup,600) ;
+      }catch(error){
+	air.trace(error) ;
       }
-      //setTimeout(updater.lookup,600) ;
+      
     }//-- end of inline function
     jx.ajax.send(updater.uri,fn,'GET') ;
     

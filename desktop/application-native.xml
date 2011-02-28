@@ -117,33 +117,33 @@
 	<!-- <allowBrowserInvocation></allowBrowserInvocation> -->
 
 	<!-- Listing of file types for which the application can register. Optional. -->
-	<!-- <fileTypes> -->
+	<fileTypes>
 
 		<!-- Defines one file type. Optional. -->
-		<!-- <fileType> -->
+		 <fileType> 
 
 			<!-- The name that the system displays for the registered file type. Required. -->
-			<!-- <name></name> -->
+			 <name>music</name> 
 
 			<!-- The extension to register. Required. -->
-			<!-- <extension></extension> -->
+			<extension>mp3</extension> 
 			
 			<!-- The description of the file type. Optional. -->
-			<!-- <description></description> -->
+			 <description>mp3 music file</description>
 			
 			<!-- The MIME content type. -->
-			<!-- <contentType></contentType> -->
+			 <contentType>audio/mpeg</contentType> 
 			
 			<!-- The icon to display for the file type. Optional. -->
-			<!-- <icon>
-				<image16x16></image16x16>
-				<image32x32></image32x32>
-				<image48x48></image48x48>
-				<image128x128></image128x128>
-			</icon> -->
+			 <icon>
+				<image16x16>icons/mp3/mp3-16x16.png</image16x16>
+				<image32x32>icons/mp3/mp3-32x32.png</image32x32>
+				<image48x48>icons/mp3/mp3-48x48.png</image48x48>
+				<image128x128>icons/mp3/mp3-128x128.png</image128x128>
+			</icon> 
 			
-		<!-- </fileType> -->
-	<!-- </fileTypes> -->
+		</fileType> 
+	</fileTypes>
 
   <!-- Specify Android specific tags that get passed to AndroidManifest.xml file. -->
   <!--<android> -->

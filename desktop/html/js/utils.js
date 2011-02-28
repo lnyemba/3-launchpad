@@ -72,12 +72,14 @@ var utils={
       $('#'+id).slideDown() ;
     }//-- end utils.menu.show()
   }//-- end utils.menu
+
 }
 
 function search(qid,dbase){
   var keyword 	= jx.dom.get.value(qid);
   keyword	= keyword.toLowerCase() ;
   var table 	= document.getElementById(dbase) ;
+  
   if(table == null){
     return ;
   }
@@ -92,7 +94,9 @@ function search(qid,dbase){
 	  owner = info.owner.toLowerCase();
 	  table.rows[i].style['display'] = null;
 	  if(keyword.length > 0 && name.match(keyword)==null){
-		  table.rows[i].style['dversionisplay'] = 'none' ;
+		  table.rows[i].style['display'] = 'none' ;
+	  }else{
+	    table.rows[i].style['display'] = 'block'
 	  }
 	  
   }//-- end of loop
@@ -104,3 +108,5 @@ function rmdb(){
   player.controls.stop() ;
   window.location.reload(true) ;  
 }
+
+
