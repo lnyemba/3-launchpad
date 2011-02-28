@@ -95,8 +95,6 @@ function search(qid,dbase){
 	  table.rows[i].style['display'] = null;
 	  if(keyword.length > 0 && name.match(keyword)==null){
 		  table.rows[i].style['display'] = 'none' ;
-	  }else{
-	    table.rows[i].style['display'] = 'block'
 	  }
 	  
   }//-- end of loop

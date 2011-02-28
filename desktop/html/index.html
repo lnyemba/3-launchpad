@@ -1,181 +1,25 @@
-<link href="css/default.css" style="text/css" rel="stylesheet">
-<link href="css/library-icons.css" style="text/css" rel="stylesheet">
+<b>Thank you for using <i>3-launchpad</i></b>
 
-<script src="js/air/air-aliases.js"></script>
-<script src="js/jquery/jquery-min.1.4.3.js"></script>
+<div style="margin-left:7px">
+  <div><b>What is 3-launchpad</b></div>
+  One of the first cloud based music player:
+  <li>It will play mp3 files</li>
+  <li>It will stream your music from the cloud (google docs; dropbox)</li>
 
-<script src="js/jxf/rpc.js"></script>
-<script src="js/jxf/jxbinder.js"></script>
-<script src="js/jxf/google/jxf-google.js"></script>
-<script src="js/jxf/dom.js"></script>
-<script src="js/jxf/rpc.js"></script>
-<script src="js/jxf/widgets/jxwidgets.js"></script>
-
-<script src="/html/sys/setup/js/elp-system.js"></script>
-<script src="/html/sys/setup/js/elp-media-player.js"></script>
-<script src="/html/sys/setup/js/elp-plhandler.js"></script>
-<style>
-	.activeTab{
-		-webkit-border-top-left-radius:5px;
-		-webkit-border-top-right-radius:5px;
-		background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.15, #f3f3f3),color-stop(0.71, #f3f3f3),color-stop(0.97, #c1c1c1));
-		border:1px solid gray ;
-		border-bottom:1px solid #f3f3f3;
-		width:95px;
-		background-color:#f3f3f3;
-		cursor:pointer ;
-		
-	}
-	.inactiveTab{
-		-webkit-border-top-left-radius:5px;
-		-webkit-border-top-right-radius:5px;
-		
-		border:1px solid #d3d3d3 ;
-		border-bottom:1px solid gray;
-		
-		width:95px ;
-		background-color:white;
-		cursor:pointer;
-
-	}
-</style>
-<script>
-	
-	var OpenTabs ={
-		system:function(){
-			
-			elp.system.html.open('go.system.tab',elp.system.get.music) ;
-			document.getElementById('go.system.tab').onclick = function(){elp.system.html.open('go.system.tab',null) };
-			 
-			//elp.system.html.open('go.system.tab',null) ;
-		},
-		help:function(){
-			elp.system.html.open('go.help.tab',elp.system.get.help) ;
-		},
-		logout:function(){}
-		
-
-	}
-
-	var LoginHandler={
-		set:function(){
-					//
-			jx.dom.set.style('email','background-color','yellow') ;
-			jx.dom.set.style('password','background-color','yellow');
-		},
-		reset:function(){
-			jx.dom.set.value('email','');
-			jx.dom.set.value('password','');
-			jx.dom.set.style('email','background-color','white');
-			jx.dom.set.style('password','background-color','white');
-		},
-		keypress:function(event){
-			if(event.keyCode == 13){
-				gapi.login.init('email','password',OpenTabs.system,LoginHandler.set);
-			}
-		}
-
-	}
-	
-	function Init(){
-		jxbinder.load('sys/setup/index.html','module') ;
-		document.getElementById('email').focus() ;
-		//
-		// Loading the version of the document
-		//
-		var initVersion=function(jstr){
-		    version = eval("("+jstr.responseText+")") ;
-		    value = ['version',version.version,'-',version.release,version.date] ;
-		    jx.dom.set.value('version',value.join(' ')) ;
-		}
-		jx.ajax.run('version.json',initVersion,'GET') ;
-		}
-	
-	var inspired ={
-		islogin:true,
-		init:function(){
-			var panel = null;
-			var _idhide,_idshow
-			if(inspired.islogin == true){
-				inspired.islogin = false;
-				_idhide = 'module'
-				_idshow = 'inspired'
-			}else{
-				inspired.islogin = true;
-				_idhide 	= 'inspired'
-				_idshow 	= 'module'
-			}
-			jx.dom.hide(_idhide);
-			jx.dom.show(_idshow);
-			
-		}
-
-	}
-	function mouseoverbutton(obj){
-		obj.className = 'overbutton'
-	}
-	function mouseoutbutton(obj){
-		obj.className = 'outbutton';
-	}
-	
-	var UpdateListenerHandler
-	var updates = {
-	  check:function(){
-	    var uri = 'https://sites.google.com/site/3launchpad/version.json?attredirects=0';
-	    
-	    var fn = function(jstr){
-		  clearTimeout(UpdateListenerHandler);
-		  if(jstr.responseText == ""){
-		    return ;
-		  }
-		  rversion=eval("("+jstr.responseText+")") ;
-		  current = [version.version,version.release,version.date] ;
-		  latest = [rversion.version,rversion.release,rversion.date] ;
-		  current = current.join(' ') ;
-		  latest  = latest.join(' ') ;
-		  
-		  if(current != latest){
-		    jx.dom.set.value('version.value',rversion.version+'-'+rversion.release) ;
-		    jx.dom.show('version.info');
-		  }
-		  UpdateListenerHandler = setTimeout(updates.check,500000) ;
-	    }
-	    jx.ajax.run(uri,fn,'POST') ;
-	  }
-	}
-	UpdateListenerHandler = setTimeout(updates.check,2000) ;
-</script>
-<body class="default" onload="Init();">
-
-		<div align = "center" class="shaded-light rounded-frame" style="border-bottom:1px solid black; margin-top:3px">
-		
-			<img src="img/logo.png" >
-		<div align="center" style="color:#708090; font-size:10px; margin-top:-17px">
-			Desktop Edition
-			<div style="font-size:9px; color:#bebebe">&copy; 2010 GPL v3 license by Steve L. Nyemba</div>
-		</div>
-		</div>
-
-<div id="main.panel" class="rounded-frame" style="border-color:white; height:67%; margin-top:1px">
-	<div id="module" ></div>
-	<div id="inspired" style=" display:none">
-	
-	<div align="center">
-
-		<img src="/html/img/main-banner.jpg">
-		</div>
-
-	</div>
+  When adding the power of cloud computing and 3-launchpad users will be able to:
+  <li>Share their music through the cloud</li>
+  <li>Freely stream music without hassle</li>
+  <li>Stay connected to their music</li>
+  
+  
 </div>
-<img src="img/launch.png" style="position:absolute; z-index:2; margin-top:-20%; margin-left:2%">
-<span style="position:absolute; z-index:2; margin-top:-5%; margin-left:10%; font-size:11px">Inspired by Hamuda-ti <span id="version" style="font-size:10px; color:#bebebe;margin-left:250px"></span> </span>
 
-<div id="version.info" align="right" style="color:maroon; width:95%; display:none; position:absolute;
-font-size:10px;
-z-index:3;margin-top:-2.1%">
-  version <span id="version.value"></span> is available &nbsp;&nbsp;
+<div  style="margin-left:7px">
+  <div><b>License and Pricing</b></div>
+  3-launchpad is licensed under GPL v3. In short it is absolutely free as well as the source code.   
+  There is no business initiative inherently designed with the application our sole intent is to build technology "for the people".
+  
+  <div><b>Why is it free</b></div>
+  If fire were to be patented and sold then food would be merely unaffordable. The first vitruvian principle is utility so we make technology for it to be useful.
+  
 </div>
-<div class="medium" align="right" style="width:91%; margin-left:5%; color:#bebebe;font-size:10px">
-	
-</div>
-</body>

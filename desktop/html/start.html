@@ -65,6 +65,7 @@
 //   });
 
     //-- 
+  
   function Initialize(){
       theme.init() ;
       //library.init() ;   
@@ -79,7 +80,12 @@
        utils.modules.show('mlibrary');
        library.render('menulib','all') ;
        air.NativeApplication.nativeApplication.addEventListener(air.InvokeEvent.INVOKE, lstore.events.OpenFile)
-       
+       var callback=function(handler){
+	player.associate.isdefault = handler.data[0].value ;
+	air.trace(player.associate.isdefault);
+	player.associate.set(null);
+       }
+       sqlite.run.query("3launchpad.db3","select * from params where alias='open.mp3'",callback) ;
   }  
 
      
@@ -96,6 +102,7 @@
       sqlite.run.cmd(file.nativePath,insert) ;
       sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('local.library','{}')") ;
       sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('dropbox.library','{}')");
+      sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('open.mp3','true')");
 	
     }
     //

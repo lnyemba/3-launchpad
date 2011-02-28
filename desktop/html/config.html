@@ -11,10 +11,13 @@
   <td valign="top" align="center" style="width:34px;">
     
       <div style="margin-top:5px">
-	<input type="image" src="img/default/clear.png" style="border:1px solid gray" onclick="jx.dom.hide('report'); jx.dom.show('system.reset')"/> 
+	<input type="image" src="img/default/clear.png" style="border:1px solid gray" onclick="jx.dom.hide('report'); jx.dom.show('system.reset'); jx.dom.hide('associate')"/> 
       </div>
       <div style="margin-top:2px">
-	<input type="image" src="img/default/features.png" style="border:1px solid gray" onclick="jx.dom.show('report'); jx.dom.hide('system.reset')"/> 
+	<input type="image" src="img/default/mp3-32x32.png" style="border:1px solid gray" onclick="jx.dom.hide('report'); jx.dom.hide('system.reset'); jx.dom.show('associate')"/> 
+      </div>
+      <div style="margin-top:2px">
+	<input type="image" src="img/default/features.png" style="border:1px solid gray" onclick="jx.dom.show('report'); jx.dom.hide('system.reset'); jx.dom.hide('associate')"/> 
       </div>
       <div style="margin-top:2px">
 	<input type="image" src="img/gnomefoot.png" style="border:1px solid gray" onclick="utils.modules.show('player');"/> 
@@ -46,6 +49,21 @@
 	<textarea class="medium" style="width:100%; height:95px; border:0px"></textarea>
 	<div align="center">
 	  <input type="button" value="send" class="default-button"/>
+	</div>
+      </div>
+      <div id="associate" class="rounded-corners" style="display:none; border:1px solid gray; font-weight:normal; height:159px">
+	<div style="margin-left:5px; margin-top:5%">
+	  Associate <b><i>3-launchpad</i></b> to be the default application to Open your mp3 files. By default mp3 files will be opened by <b><i>3-launchpad</i></b>
+	  <div style="margin-top:7px;"> When you choose to open a file with <b><i>3-launchpad</i></b> the file will be part of the indexed.</div>
+	    <table style="margin-top:11%; margin-left:54%; border:1px solid gray; background-color:#f3f3f3" cellspacing="0">
+	      <tr class="medium" style="font-weight:bold">
+	      <td>
+		<input type="checkbox" id="isassociated" onclick="player.associate.set(this.checked)"/>
+		</td>
+		<td valign="middle">
+		  Associate with <i>mp3</i>
+		</td>
+	      </tr></table>
 	</div>
       </div>
   </td>

@@ -68,7 +68,9 @@
 }
 .linux {
 	
-	background:url('../img/themes/linux.jpg') no-repeat;
-	
+	background:url('../img/themes/linux.jpg') no-repeat;	
+}
+.linux #version{
+  color:#d3d3d3;
 }
 

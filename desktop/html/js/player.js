@@ -277,6 +277,29 @@ now:[],
 		jx.dom.set.value('volume.level',parseInt((value-0.1)*100))
 	}      
       }
-    }
+    }//-- end player.controls.volume
   },//-- end player.controls
+  associate:{
+    isdefault:'true',
+    set:function(value){
+      //
+      // if the value is null then we extract the value from the database
+      //
+      if(value != null){
+	player.associate.isdefault = value.toString() ;
+      }else{
+	value = player.associate.isdefault ;
+      }
+      if(value == 'true'){
+	air.NativeApplication.nativeApplication.setAsDefaultApplication("mp3")  ;
+	document.getElementById('isassociated').checked = true ;
+      }else{
+	air.NativeApplication.nativeApplication.removeAsDefaultApplication("mp3") ;
+	document.getElementById('isassociated').checked = false ;
+      }
+      var sql = "update params set value=':isdefault' where alias = 'open.mp3'" ;
+      sql = sql.replace(":isdefault",value) ;
+      sqlite.run.cmd("3launchpad.db3",sql);
+    }
+  }
 }
