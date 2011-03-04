@@ -52,8 +52,9 @@
 	font-family:verdana;
 	font-size:11px;
 	width:85px;	
-	border:1px solid #d3d3d3;
-	background-color:transparent;
+	border:1px solid gray;
+	background-color:white;
+	font-weight:normal;
 	cursor:pointer;
 }
 .rounded-corners{

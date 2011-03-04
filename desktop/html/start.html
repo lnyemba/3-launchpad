@@ -32,6 +32,8 @@
 <script src="js/jxf/sqlite.js"></script>
 <script src="js/jxf/widgets/jxwidgets.js"></script>
 <script src="js/jxf/lastfm/parser.js"></script>
+<script src="js/jxf/facebook/jxf-facebook.js"></script>
+
 <!-- 
 	*
 	* This section are the scripts for storage providers
@@ -59,13 +61,17 @@
 <script src="/html/sys/setup/js/elp-plhandler.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/updater.js"></script>
-<script>
-//   $(document).ready(function() {
-//     $('#mediaplayer').roundabout();
-//   });
 
-    //-- 
+<script>
+//-- pointer that will initialize the program 
+var initpage = 'welcome' ;
+//-- facebook initialization
+  fb.app.id = '204560106224091' ;
+  fb.app.url = 'http://apps.facebook.com/e-launchpad' ;
+  fb.app.secret = '6cc5d3cde5f5ce806a697b6d1cb45581'
+  fb.app.iframe = 'fb.panel';
   
+  //fb.app.init() ;
   function Initialize(){
       theme.init() ;
       //library.init() ;   
@@ -73,11 +79,9 @@
        utils.modules.setup() ;
       theme.set();
        lstore.load();
-       dstore.load();
-//       utils.menu.show('player');     	 
-//       //jx.dom.show('default') ;
+       dstore.load();       
+       utils.modules.show(initpage);
        
-       utils.modules.show('mlibrary');
        library.render('menulib','all') ;
        air.NativeApplication.nativeApplication.addEventListener(air.InvokeEvent.INVOKE, lstore.events.OpenFile)
        var callback=function(handler){
@@ -94,7 +98,7 @@
    var file = air.File.applicationStorageDirectory.resolvePath("3launchpad.db3") ;
 
     if(file.exists == false){
-      air.trace(file.exists) 
+      
       sqlite.run.create("3launchpad.db3") ;
       var create = "create table params(agn integer not null primary key, alias varchar not null unique, value varchar not null)" ;
       var insert = "insert into params (alias,value) values('theme','clone')" ;
@@ -103,7 +107,10 @@
       sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('local.library','{}')") ;
       sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('dropbox.library','{}')");
       sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('open.mp3','true')");
+      //sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('isallowed.faceboo.mp3','true')");
 	
+    }else{
+      initpage = 'player'
     }
     //
 // The code below needs to run before the pages are loaded. 
@@ -121,6 +128,7 @@
 // 	utils.modules.init('player','player.html','default');
 //   
 // 	utils.modules.init('menu','menu.html','mui') 
+	utils.modules.init('welcome','index.html','stdout') ;
  	utils.modules.init('google','providers/google/index.html','stdout') ;
  	utils.modules.init('dropbox','providers/dropbox/index.html','stdout') ;
  	utils.modules.init('local','providers/local/index.html','stdout') ;
@@ -219,16 +227,24 @@ var menulib={
   </tr>
     <tr class="medium">
       <td valign="top" width="150px" style="background-color:#d3d3d3;border:2px solid gray; -webkit-border-top-right-radius:10px;">
-	<div  align="center" class="" style="height:128px; width:128px; margin-left:11.5px;margin-top:5px;">
+	<div  align="center" class="" style="height:128px; width:128px; margin-left:11.5px;margin-top:12px;">
 	    <img id="artist.pic" src="img/default/unknown-artist.jpg" style="margin-top:2px;-webkit-border-top-right-radius:10px;"/>
 	</div>
 	<!-- volume controls -->
-    <table id="volume-control" class="" cellspacing="0px" style="width:150px; margin-top:10%; border:0px solid gray">
+    <table id="volume-control" class="shaded-light" width="100%" cellspacing="0px" style="width:150px; margin-top:15%; border:0px solid gray">
 	<tr class="medium">
-	  <td  rowspan="2" class="" valign="middle" align="center" >
-	    Volume level
-	  
-	  <span id="volume.level">10</span> %
+	  <td  rowspan="2" class="" valign="bottom" >
+	  <div>
+	    Volume level  <span id="volume.level">10</span> %
+	  </div>
+	  <div style="font-weight:bold;">
+	    
+	    <span class="action" type="image" id="mode.none" src="img/repeat_none.png" onclick="player.controls.setmode('song'); jx.dom.hide('mode.none'); jx.dom.show('mode.song')"> &rsaquo;&rsaquo; Repeat </span>
+	    <span class="action" id="mode.song" src="img/repeat_song.png" onclick="player.controls.setmode('all') ;jx.dom.hide('mode.song'); jx.dom.show('mode.all')" style="display:none"> &rsaquo;&rsaquo; Repeat </span>
+	    <span class="action" id="mode.all" src="img/repeat_all.png" onclick="player.controls.setmode('none');  jx.dom.hide('mode.all'); jx.dom.show('mode.none')" style="display:none"> &rsaquo;&rsaquo; Repeat </span>
+	    <span id="mode">none</span>
+
+	  </div>
 	  </td>
 	  <td align="right">
 	    <input type="image" src="img/default/volume_up.png" onclick="player.controls.volume.up()"/>
@@ -241,17 +257,10 @@ var menulib={
 	  	    <input type="image" src="img/default/volume_down.png" onclick="player.controls.volume.down()"/>
 	  </td>
 	</tr>
-	<tr class="medium">
-	  <td valign="top">
-	  <input type="image" id="mode.none" src="img/repeat_none.png" onclick="player.controls.setmode('song'); jx.dom.hide('mode.none'); jx.dom.show('mode.song')"/>
-	  <input type="image" id="mode.song" src="img/repeat_song.png" onclick="player.controls.setmode('all') ;jx.dom.hide('mode.song'); jx.dom.show('mode.all')" style="display:none"/>
-	    <input type="image" id="mode.all" src="img/repeat_all.png" onclick="player.controls.setmode('none');  jx.dom.hide('mode.all'); jx.dom.show('mode.none')" style="display:none"/>
-	    <div  style="font-weight:bold; margin-top:-14.5%; margin-left:20px">Repeat <span id="mode">none</span></div>
-	  </td>
-	</tr>
+
     </table>
     
-	<div id="controls" align="center" class="shaded-light" style="border:0px solid gray;width:148px;padding:1px; margin-top:5.5%">
+	<div id="controls" align="center" class="shaded-light" style="border:0px solid gray;width:148px;padding:1px; margin-top:1%">
 	    <input type="image" src="img/rwd_1.png" onclick="player.controls.back()"/>
 	    <input type="image" src="img/stop_1.png" onclick="player.controls.stop()"/>
 	    <input type="image" id="pause.button" src="img/pause_1.png" style="display:none" onclick="player.controls.pause()"/>

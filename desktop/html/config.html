@@ -17,7 +17,7 @@
 	<input type="image" src="img/default/mp3-32x32.png" style="border:1px solid gray" onclick="jx.dom.hide('report'); jx.dom.hide('system.reset'); jx.dom.show('associate')"/> 
       </div>
       <div style="margin-top:2px">
-	<input type="image" src="img/default/features.png" style="border:1px solid gray" onclick="jx.dom.show('report'); jx.dom.hide('system.reset'); jx.dom.hide('associate')"/> 
+	<input type="image" src="img/default/features.png" style="border:1px solid gray" onclick="jx.dom.show('report'); jx.dom.hide('system.reset'); jx.dom.hide('associate');"/> 
       </div>
       <div style="margin-top:2px">
 	<input type="image" src="img/gnomefoot.png" style="border:1px solid gray" onclick="utils.modules.show('player');"/> 
@@ -28,7 +28,7 @@
   </td>
   <td valign="top">
       <div id="system.reset" class="rounded-corners" style="font-weight:normal; border:1px solid gray">
-	<br>&bull; This section will restore <b>3-launchpad</b> to its initial values if for some reason there seems to be misbehavior (theme; indexing; ...). 
+	<br> This section will restore 3-launchpad to its initial values if for some reason there seems to be misbehavior (theme; indexing; ...). 
 	<div style="margin-top:5%">When ready please click on the button below to initialize the restore process</div>	
 	<div style="margin-top:2%">Should the restore process fail please send us a detailed bug report of the misbehavior</div>
 	
@@ -38,23 +38,20 @@
 	
 	
       </div>
-      <div id ="report" class="rounded-corners" style="display:none; border:1px solid gray">
-	
-	Email <input type="text" class="medium" id="user.email"/>
-      <select id="subject" style="width:185px">
-	  <option class="medium" value="bug">Bug</option>
-	  <option class="medium" value="comment">Comment</option>
-	</subject>
-	
-	<textarea class="medium" style="width:100%; height:95px; border:0px"></textarea>
-	<div align="center">
-	  <input type="button" value="send" class="default-button"/>
-	</div>
+      <div id ="report" class="rounded-corners" style="height:159px; display:none; border:1px solid gray">
+	<b>Email </b> <input type="text" id="email.back" class="medium" style="margin-left:12px"/> <input type="button" value="Send" class="default-button medium" style="margin-left:16%; width:65px"/>
+	<div>
+	  <b>Subject </b> <select id="topic" style="width:145px">
+	    <option>bug</b>
+	    <option>comment</b>
+	  </select>
+	  </div>
+	  <textarea id="message" class="message" style="width:98%; margin-left:1%; margin-top:2%; height:60%; border:0px; background-color:white"></textarea>
       </div>
       <div id="associate" class="rounded-corners" style="display:none; border:1px solid gray; font-weight:normal; height:159px">
 	<div style="margin-left:5px; margin-top:5%">
-	  Associate <b><i>3-launchpad</i></b> to be the default application to Open your mp3 files. By default mp3 files will be opened by <b><i>3-launchpad</i></b>
-	  <div style="margin-top:7px;"> When you choose to open a file with <b><i>3-launchpad</i></b> the file will be part of the indexed.</div>
+	  Associate 3-launchpad to be the default application to Open your mp3 files. By default mp3 files will be opened by 3-launchpad
+	  <div style="margin-top:7px;"> When you choose to open a file with 3-launchpad the file will be part of the indexed.</div>
 	    <table style="margin-top:11%; margin-left:54%; border:1px solid gray; background-color:#f3f3f3" cellspacing="0">
 	      <tr class="medium" style="font-weight:bold">
 	      <td>
