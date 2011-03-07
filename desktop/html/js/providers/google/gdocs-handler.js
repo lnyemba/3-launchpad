@@ -74,26 +74,14 @@ var gstore={
 	  //
 	  callback=function(xmlhttp){
 	    lib = gapi.gdocs.parse(xmlhttp.responseXML) ;
+	    air.trace(lib.data.length);
 	    //gstore.library.playlist.concat(lib.data) ;
 	    for(var i=0; i < lib.data.length; i++){
 	      gstore.library.playlist.push(lib.data[i]) ;
+	      owner 	= lib.data[i].owner ;
+	      info	= lib.data[i] ;
+	      gstore.library.owners.data[owner].push(info) ;
 	      
-	    }
-	    //
-	    // lets patchup the work with owners
-	    //
-	    owner = null
-	    for(var i=0; i < lib.owners.meta.length; i++){
-	      owner = lib.owners.meta[i] ;
-	      if(gstore.library.owners.data[owner] == null){
-		gstore.library.owners.data[owner] = [] ;
-		gstore.library.owners.meta.push(owner) ;
-	      }
-// 	      for(var j=0;j < lib.data.length ; j++){	
-// 		owner = lib.data[j].owner ;
-// 		gstore.library.owners.data[owner].push(lib.data[j]) ;
-// 		
-// 	      }
 	    }
 	    
 	    jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;

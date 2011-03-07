@@ -180,10 +180,10 @@ now:[],
     id3handler:function(e){
       artist 	= e.target.id3['artist'] ;
       song 	= e.target.id3['songName'] ;
-      if(artist == ''|| artist == null){
+      if(artist == ''|| artist == null||artist == undefined){
 	artist = 'Unknown' ;
       }
-      if(song == '' ||song == null){
+      if(song == '' ||song == null||song==undefined){
 	song = 'Unknown'
       }
       jx.dom.set.value('artist',artist) ;

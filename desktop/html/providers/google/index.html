@@ -3,41 +3,51 @@
 <div style="margin-top:-1%; margin-left:34px" class="medium">
   Index music for quick access.
 </div>
+<table width="100%" style="margin-top:2%">
+<tr class="medium">
+<td width="34px" class="shaded-dark rounded-corners" valign="top">
+	<input type="image" src="img/default/mysongs.png" style="border:1px solid gray" onclick="utils.modules.show('mlibrary');" />
+	<input type="image" src="img/gnomefoot.png" style="border:1px solid gray; margin-top:5%" onclick="utils.modules.show('player');"/>
+	
+</td>
+<td valign="top">
+<div class="rounded-corners" style="border:1px solid gray">
+	<table width="100%" cellspacing="1px">
+	  <tr class="medium">
+	    <td width="22%">Email</td>
+	    <td><input id="email" type="text" class="medium" style="width:80%"/></td>
+	  </td>
+	  </tr>
+	  <tr class="medium">
+	    <td>Password</td>
+	    <td><input id="password" type="password" class="medium" style="width:80%"/></td>
+	  </tr>
+	  <tr class="medium">
+	    <td colspan="2" valign="middle" align="left">
+	      &nbsp;<span id="gstore.status" style="color:#436EEE;"></span>
+	    </td>
+	  </tr>
+	  </table>
+	  <table width="98%" align="center" style="border-top:1px solid gray; margin-top:3%" cellspacing="0px">
+	  <tr style="; font-weight:bold" class="small shaded-dark action">
+	  <td valign="top"  onclick="gstore.login.init()" style="width:15%">
+	      <img src="providers/google/img/gdocs.png"/>
+	  </td>
+	  <td onclick="gstore.login.init()" valign="middle">
+	      Login
+	  </td>
+	  <td style="width:15%;border-left:1px solid gray" onclick = "gstore.login.cancel()">
+	      <img src="img/default/clear.png"/>
+	  </td>
+	  <td valign="middle"  onclick = "gstore.login.cancel()" style="width:35%">
+	      Clear/Reset
+	  </td>
+	  </tr></table>
+  </div>
+ </td>
+ </tr></table>
 
-<table width="70%" cellspacing="0px" style="margin-top:3%">
-  <tr class="medium">
-    <td width="22%">Email</td>
-    <td><input id="email" type="text" class="medium" style="width:100%"/></td>
-  </td>
-  </tr>
-  <tr class="medium">
-    <td>Password</td>
-    <td><input id="password" type="password" class="medium" style="width:100%"/></td>
-  </tr>
-  <tr class="medium">
-    <td colspan="2" style="">
-      &nbsp;<span id="gstore.status" style="color:#436EEE"></span>
-    </td>
-  </tr>
-  
-  </table>
-  <table width="70%" style="border-top:1px solid gray" cellspacing="0px">
-  <tr style="; font-weight:bold" class="small shaded-dark action">
-  <td valign="top"  onclick="gstore.login.init()" style="width:15%">
-      <img src="providers/google/img/gdocs.png"/>
-  </td>
-  <td onclick="gstore.login.init()" valign="middle">
-      Login
-  </td>
-  
-  <td style="width:15%;border-left:1px solid gray" onclick = "gstore.login.cancel()">
-      <img src="img/default/clear.png"/>
-  </td>
-  <td valign="middle"  onclick = "gstore.login.cancel()" style="width:35%">
-      Clear/Reset
-  </td>
-  </tr></table>
-<div id="gstore.report" class="medium" style="margin-left:1%; width:70%; margin-top:3%; display:none; border-top:1px solid gray">
+<div id="gstore.report" class="medium" style="margin-left:40px; width:70%; margin-top:3%; display:none; border-top:1px solid gray">
   <b>Summary Report</b><br>
   <div>
     mp3 files found : <span id="gstore.size"></span>
