@@ -45,7 +45,6 @@
 .preview-window{
 	position:absolute;
 	width:322px;
-	margin-top:5px;
 	float:left;
 	border:1px solid #d3d3d3;
 	-webkit-border-radius:5px;
