@@ -1,136 +1,120 @@
-<table align="center" cellspacing="0px" style="font-family:verdana">
-
-<tr>
+<link href="css/default.css" type="text/css" rel="stylesheet">
+<script src="js/jxf/rpc.js"></script>
+<script src="js/jxf/dom.js"></script>
+<script src="js/jquery/jquery-1.4.4.js"></script>
+<script>
+	function init(){
+		var fn=function(xmlhttp){
+			jx.dom.set.value('preview',xmlhttp.responseText) ;
+		}
+		jx.ajax.run('preview.html',fn) ;
+		nav.auto() ;
+	}
+	var nav={
+		auto:function(){
+			nav.timer1 = setTimeout(nav.next,1500) ;
+			nav.timer2 = setTimeout(nav.auto,5000);
+		},
+		timer1:null,
+		timer2:null,
+		current:0,
+		max:3,
+		dir:null,
+		next:function(){
+			var move_to=function(){
+				if(nav.current +1 != nav.max){
+					nav.current += 1 ;
+				}else{
+					nav.current = 0;
+				}	
+			}
+			nav.direction = 'next' ;
+			nav.slide(move_to) ;
+		},
+		back:function(){
+			var move_to=function(){
+				if(nav.current -1 != 0 ){
+					nav.current -= 1;
+				}else{
+					nav.current = nav.max-1 ;
+				}
 	
-<td style="border-bottom:0px solid gray" valign="top">
-		<img src="main-banner.jpg" >
-		<div style=" margin-left:10px; margin-top:-10%; font-size:11px">
-			<font color="maroon">Version 0.7.1.3 released</font>
-			<li style="margin-left:10px">Code optimization</li>
-			<li style="margin-left:10px">Smoother look & feel</li>
-		</div>
-</td>
-	
-<td  valign="top" >
-		
-	
-<div style="height:54px">
-		<b style="font-size:20px">Stay Connected to your music library and connect your friends to it</b>
-		<div align="center" >Music Access &amp; Sharing Solution</div>
-			<table width="100%">
-				<tr >
-				<td valign="top">
-					<b>3-Launchpad Features</b>
-					<li style="margin-left:10px">Seamless access to your music library
-					
-					</li>
-					<li style="margin-left:10px">Works on Linux; Mac and Windows</li>
-					<li style="margin-left:10px">Mobile Edition is available for android</li>
-					<li style="margin-left:10px">No device synchronization is required</li>
-					<li style="margin-left:10px">Create Playlists from your friends' music libraries</li>
-				</td>
-				<td valign="top">
-					<b>Quick Start</b>
-					<li style="margin-left:10px">Download and Install 3-launchpad</li>
-					<li style="margin-left:10px">Create a google account (if you don't have one)</li>
-					<li style="margin-left:10px">Upload your music to google docs</li>
-					<br>
-					You are done!! Enjoy 3-launchpad !!
-				</td>
-				</tr>
-				<tr>
-				<td colspan="2" style="border-bottom:1px solid gray">&nbsp;</td>
-				</tr>
-				<tr>
-					<td valign="top" style="border-right:1px solid gray">
-						<div style="background-color:#f3f3f3"> Ubuntu/Debain and Windows</div>
-						<div style="margin-left:10px">
-							<a href="http://e-launchpad.googlecode.com/files/3-launchpad.deb">
-							<img src="https://sites.google.com/site/3launchpad/ubuntu-32.png" style="height:22px"/> Ubuntu & debian
-							</a>
-						</div>
-						<div style="margin-left:10px">
-							<a href="http://e-launchpad.googlecode.com/files/3-launchpad.exe">
-							<img src="https://sites.google.com/site/3launchpad/windows-32.png" style="height:22px"> Windows XP/Vista/7
-							</a>
+			}
+			nav.direction = 'back' ;
+			nav.slide(move_to) ;
+		},
+		slide:function(move_to){
+			cid = 'p'+nav.current ;
+			move_to() ;
+      			nid = 'p'+nav.current ;
+			margin = parseInt($('#'+cid).outerWidth()/2) ;
+			jx.dom.set.style(nid,'margin-left',margin) ;
+			jx.dom.show(nid);
+			$('#'+cid).animate({marginLeft:-margin}); 
+			//jx.dom.set.style(nid,'margin-left',0) ;
+		       	$('#'+nid).animate({marginLeft:0});
+			jx.dom.hide(cid);
+		}
+	}
+</script>
+<body class="default" onload="init()">
 
-						</div>
-					</td>
-					<td valign="top">
-						<div style="background-color:#f3f3f3">Mac and Other systems</div>
-						<div style="margin-left:10px">
-							<a href="http://get.adobe.com/air">
-							<img src="https://sites.google.com/site/3launchpad/adobe-air-32.png" style="height:22px"/> Adobe air (required)
-							</a>
-						</div>
-						<div style="margin-left:10px">
-							<a href="http://e-launchpad.googlecode.com/files/3-launchpad.air">
-							<img src="https://sites.google.com/site/3launchpad/logo.png" style="height:22px"> 3-launchpad
-							</a>
-
-						</div>
-						<div style="background-color:#f3f3f3">
-							Mobile Edition (Android)
-						</div>
-						<div style="margin-left:10px">
-							<a href="http://e-launchpad.googlecode.com/files/3-launchpad.apk">
-								<img src="https://sites.google.com/site/3launchpad/android-32.png" style="height:22px"> Android, developer build
-							</a>
-							<div>Search for 3-launchpad in the android market</div>
-						</div>
-
-					
-					</td>
-				</tr>
-				<tr>
-					<td valign="top">
-						<b>Learn More about 3-launchpad</b>
-						<li style="margin-left:10px"><a href="https://sites.google.com/site/3launchpad/learn-more">3-launchpad documentation</a></li>
-						<li style="margin-left:10px"><a href="https://sites.google.com/site/3launchpad/faq">Frequently asked Questions</a></li>
-					</td>
-					<td>
-						<b>About the project</b>
-						<li style="margin-left:10px"><a href="http://code.google.com/p/e-launchpad/">Join the team </a></li>
-						<li style="margin-left:10px"><a href="http://code.google.com/p/e-launchpad/source/browse">Project site & source code</a></li>
-						<li style="margin-left:10px">License</li>
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" style="background-color:#f3f3f3;border-top:1px solid gray">
-					Credits
-					</td>
-				</tr>
-				<tr>
-					<td width="50%" valign="top">
-						<div style="margin-left:10px">
-							A thank you to everyone that helped directly or indirectly in developing 3-launchpad.
-							Especially
-							<div style="font-size:11px; margin-top:10px">7h@n|{ u2 @11 (thank you to all)</div>
-						</div>
-					</td>
-					<td valign="top">
-						
-						
-						
-					
-					</td>
-				</tr>
-			</table>
-			<!-- 
-				*
-				* download section and links to critical parts of the site
-			-->
-			<div style="border-top:1px solid gray; background-color:#f3f3f3">
-				Contact
-			</div>
-			<div>
-				Please direct concerns; suggestions;encouragements or wedding invitations:
-				<li style="margin-left:10px;">team.3launchpad@gmail.com</li>
-				<li style="margin-left:10px;">visit us on <a href="http://www.facebook.com/pages/3-launchpad/160976400604414">facebook</a></li>
-			</div>
-	
+<table width="600px" class="rounded-corners" align="center" style="margin-top:5%; height:350px; border:1px solid #d3d3d3">
+	<tr>
+		<td colspan="2">
+			<div class="caption" align="center">
+				3-launchpad Music Player
+			<div align="center" class="small" style="font-weight:normal">
+				The first cloud enabled music player
+			</div>	
 		</td>
 	</tr>
-			
+	<tr class="medium">
+        <td valign="bottom">
+		<div id="preview" class="rounded-corners" style="border:0px solid #d3d3d3; height:58%;" onmouseover="clearTimeout(nav.timer1); clearTimeout(nav.timer2)" onmouseout="nav.auto()">
+		</div>
+		<div class="rounded-corners" style="border:1px solid #d3d3d3">
+			<b style="font-size:14px">3-launchpad delivers</b>
+			<div class="default" style="margin-left:7px">
+				<li type="square">Supported on Linux; Mac and Windows</li>
+				<li type="square">Mobile device enabled: Android & soon iPhone</li>
+				<li type="square">Share music and stream it via the cloud</li>
+				<li type="square">Continuous access to your music library</li>
+			</div>
+		</div>
+	</td>
+        <td valign="bottom" width="250px">
+		<div class="rounded-corners" style="border:1px solid #d3d3d3; padding:2px">
+	            <div class="menu-item">
+		    	<div style="margin-left:3px">Installer</div>
+			<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; For first time users</div>
+		    </div>
+        	    <div class="menu-item">
+		    	<div style="margin-left:3px">Upgrade</div>
+			<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; For existing users</div>
+		    </div>
+        	    <div class="menu-item">
+		    	<div style="margin-left:3px">Learn more</div>
+			<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; How to share music and more</div>
+		    </div>
+        	    <div class="menu-item">
+		    	<div style="margin-left:3px">Mobile Editions</div>
+			<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; Android; Iphone</div>
+		    </div>			    
+		</div>
+		<div class="rounded-corners" style="border:1px solid #d3d3d3;margin-top:3px;">
+			<div class="menu-item">
+				<div>Contact us</div>
+				<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; Encouragements; bug or wedding invites</div>
+			</div>
+		</div>
+        </td>
+    </tr>
+    <tr class="small">
+    	<td colspan="2" align="center" style="color:gray">
+		&copy; 2010 - 2011 3-launchpad GPL v3
+	</td>
+    </tr>
 </table>
 
+</body>
