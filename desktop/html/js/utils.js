@@ -53,7 +53,8 @@ var utils={
 	  jx.dom.hide(pages[j].id) ;
 	}
       }
-      
+      jx.dom.show('controls'); 
+      jx.dom.show('mainmenu') ;
       jx.dom.show('stdout') ;
       $('#'+id).slideDown() ;
       

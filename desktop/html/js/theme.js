@@ -32,7 +32,7 @@ var theme={
     
   },//-- end theme.set(id)
   browse:{
-    max:11,
+    max:12,	//-- total number of theme preview windows
     current:0,
     direction:null,
     next:function(){
@@ -58,30 +58,23 @@ var theme={
       theme.browse.transition(move_to)
     },//-- theme.browse.prev()
     transition:function(move_to){
-      id = 'preview'+theme.browse.current ;
-      var option = {} ;
-      flag =  theme.browse.direction
-      if(flag == "next"){
-	option['margin-left']='100%'
+      cid = 'preview'+theme.browse.current ;
+      move_to() ;
+      nid = 'preview'+theme.browse.current ;
+
+       margin = $('#'+cid).outerWidth();
+      if(theme.browse.direction != 'next'){
+      	margin = -margin;
 	
       }
-      option.width = '0';
-     
+      jx.dom.set.style(nid,'left',-margin)  ;
+      jx.dom.show(nid) ;
+       $('#'+cid).animate({left:margin}) ;
+       $('#'+nid).animate({left:0}) ;
+       $('#'+cid).fadeOut("fast") ;
       
-      
-      pointer = function(){
-	jx.dom.hide(id);
-	jx.dom.set.style(id,'width','100%') ;
-	jx.dom.set.style(id,'margin-left','0')
-	move_to() ;
-	id = 'preview'+theme.browse.current 
-	$('#'+id).fadeIn()
-      }
-      
-      
-      $('#'+id).animate(option,300,pointer)
-      
-    }
+
+    }//-- end theme.browse.transition(move) ;
   }
   
 }

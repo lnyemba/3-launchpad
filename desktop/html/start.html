@@ -16,13 +16,13 @@
 
 
 <!-- 
-  *
-  * jxf framework and utilities
-  *	rpc		performs rpc handling (ajax)
-  *	dom		manipulation of dom objects (common tasks)
-  *	sqlite		adobe air wrapper for handling sqlite dbase
-  *	jxbinder	runtime loading of html documents this is a work around the annoying adobe air sandbox
-  *
+	*
+	* jxf framework and utilities
+	*	rpc		performs rpc handling (ajax)
+	*	dom		manipulation of dom objects (common tasks)
+	*	sqlite		adobe air wrapper for handling sqlite dbase
+	*	jxbinder	runtime loading of html documents this is a work around the annoying adobe air sandbox
+	*
 -->
 
 <script src="js/jxf/jxbinder.js"></script>
@@ -38,7 +38,6 @@
 	*
 	* This section are the scripts for storage providers
 	* The order of the libraries seem to be important i.e
-	
 	*
 -->
 <script src="js/providers/google/gdocs-handler.js"></script>
@@ -48,10 +47,9 @@
 <script src="js/providers/local/lstore.js"></script>
 
 <!-- 
-  *
-  * system utilities and misceallaneous files that are specific to either 3-launchpad on air or to 3-launchpad processing
-  * 
-  *
+	*
+	* system utilities and misceallaneous files that are specific to either 3-launchpad on air or to 3-launchpad processing
+	*
 -->
 <script src="js/utils.js"></script>
 <script src="js/player.js"></script>
@@ -73,21 +71,27 @@ var initpage = 'welcome' ;
   
   //fb.app.init() ;
   function Initialize(){
-      theme.init() ;
-      //library.init() ;   
-      updater.init() ;
-       utils.modules.setup() ;
-      theme.set();
-       lstore.load();
-       dstore.load();       
-       utils.modules.show(initpage);
+	updater.init() ;
+	utils.modules.setup() ;
+	jx.dom.show('mainmenu') ;
+	theme.init() ;
+	theme.set();
+	lstore.load();
+	dstore.load();       
+	utils.modules.show(initpage);
        
        library.render('menulib','all') ;
+
+       //
+       // This section will handle any potential arguments passed to 3-launchpad
+       // Arguments are passed to 3-launchpad when a click/double click to open a file is triggered
+       //
+  	     
        air.NativeApplication.nativeApplication.addEventListener(air.InvokeEvent.INVOKE, lstore.events.OpenFile)
        var callback=function(handler){
-	player.associate.isdefault = handler.data[0].value ;
-	air.trace(player.associate.isdefault);
-	player.associate.set(null);
+		player.associate.isdefault = handler.data[0].value ;
+		air.trace(player.associate.isdefault);
+		player.associate.set(null);
        }
        sqlite.run.query("3launchpad.db3","select * from params where alias='open.mp3'",callback) ;
   }  
@@ -96,7 +100,6 @@ var initpage = 'welcome' ;
       
  
    var file = air.File.applicationStorageDirectory.resolvePath("3launchpad.db3") ;
-
     if(file.exists == false){
       
       sqlite.run.create("3launchpad.db3") ;
@@ -116,18 +119,7 @@ var initpage = 'welcome' ;
 // The code below needs to run before the pages are loaded. 
 // This allows the various dependencies to be ready for use and to circumvent the adobe air security restrictions
 // 
-//    Providers.init() ;
   
-// 	utils.modules.init('menu','menu.html','mui') 
-// 	utils.modules.init('google','providers/google/index.html','config') ;
-// 	utils.modules.init('dropbox','providers/dropbox/index.html','config') ;
-// 	utils.modules.init('local','providers/local/index.html','config') ;
-// 	utils.modules.init('theme','theme.html','config') ; 
-// 	utils.modules.init('mlibrary','library.html','config') ;
-// 	utils.modules.init('help','help.html','stdout')     ;
-// 	utils.modules.init('player','player.html','default');
-//   
-// 	utils.modules.init('menu','menu.html','mui') 
 	utils.modules.init('welcome','index.html','stdout') ;
  	utils.modules.init('google','providers/google/index.html','stdout') ;
  	utils.modules.init('dropbox','providers/dropbox/index.html','stdout') ;
@@ -137,6 +129,7 @@ var initpage = 'welcome' ;
  	utils.modules.init('help','help.html','stdout')     ;
  	utils.modules.init('player','player.html','stdout');
  	utils.modules.init('config','config.html','stdout') ;
+	utils.modules.init('mainmenu','controls.html','controls') ;
 
       lstore.init.lookup() ;
       dstore.init.lookup();
@@ -209,8 +202,8 @@ var menulib={
   <div>&rsaquo;&rsaquo; <span id="version" class="small" style="margin-left:5px"></span></div>
   <div>&rsaquo;&rsaquo; <span id="alert" class="small" style="margin-left:5px; color:maroon"></span></div>
 
-<div onmouseover="$('#mainmenu').slideUp();  ">  
-  <table width="90%" align="center" style="margin-top:2%; ">
+<div>  
+  <table width="90%" align="center" style="margin-top:2px; ">
   <tr class="medium shaded-light view-through">
     <td colspan="2" style="-webkit-border-top-right-radius:10px; -webkit-border-top-left-radius:10px; border:2px solid gray">
 	<div id="id3" class="view-through">    
@@ -226,41 +219,36 @@ var menulib={
     </td>
   </tr>
     <tr class="medium">
-      <td valign="top" width="150px" style="background-color:#d3d3d3;border:2px solid gray; -webkit-border-top-right-radius:10px;">
+      <td valign="top" width="150px" style="background-color:#d3d3d3;border:2px solid gray;">
 	<div  align="center" class="" style="height:128px; width:128px; margin-left:11.5px;margin-top:12px;">
-	    <img id="artist.pic" src="img/default/unknown-artist.jpg" style="margin-top:2px;-webkit-border-top-right-radius:10px;"/>
+	    <img id="artist.pic" src="img/default/unknown-artist.jpg" style="margin-top:2px;"/>
 	</div>
 	<!-- volume controls -->
-    <table id="volume-control" class="shaded-light" width="100%" cellspacing="0px" style="width:150px; margin-top:15%; border:0px solid gray">
-	<tr class="medium">
-	  <td  rowspan="2" class="" valign="bottom" >
-	  <div>
-	    Volume level  <span id="volume.level">10</span> %
-	  </div>
-	  <div style="font-weight:bold;">
-	    
-	    <span class="action" type="image" id="mode.none" src="img/repeat_none.png" onclick="player.controls.setmode('song'); jx.dom.hide('mode.none'); jx.dom.show('mode.song')"> &rsaquo;&rsaquo; Repeat </span>
-	    <span class="action" id="mode.song" src="img/repeat_song.png" onclick="player.controls.setmode('all') ;jx.dom.hide('mode.song'); jx.dom.show('mode.all')" style="display:none"> &rsaquo;&rsaquo; Repeat </span>
-	    <span class="action" id="mode.all" src="img/repeat_all.png" onclick="player.controls.setmode('none');  jx.dom.hide('mode.all'); jx.dom.show('mode.none')" style="display:none"> &rsaquo;&rsaquo; Repeat </span>
-	    <span id="mode">none</span>
-
-	  </div>
-	  </td>
-	  <td align="right">
-	    <input type="image" src="img/default/volume_up.png" onclick="player.controls.volume.up()"/>
-	    </td>
-	    
-	</tr>
-	<tr class="medium">
-	  
-	  <td align="right" rowspan="2">
+	<table id="volume-control" class="shaded-light" width="100%" cellspacing="0px" style="width:150px; margin-top:15%; border:0px solid gray">
+		<tr class="medium">
+			<td  rowspan="2" class="" valign="bottom" >
+			<div>
+			    Volume level  <span id="volume.level">10</span> %
+			</div>
+			<div style="font-weight:bold;">
+			    <span class="action" type="image" id="mode.none" src="img/repeat_none.png" onclick="player.controls.setmode('song'); jx.dom.hide('mode.none'); jx.dom.show('mode.song')"> &rsaquo;&rsaquo; Repeat </span>
+			    <span class="action" id="mode.song" src="img/repeat_song.png" onclick="player.controls.setmode('all') ;jx.dom.hide('mode.song'); jx.dom.show('mode.all')" style="display:none"> &rsaquo;&rsaquo; Repeat </span>
+			    <span class="action" id="mode.all" src="img/repeat_all.png" onclick="player.controls.setmode('none');  jx.dom.hide('mode.all'); jx.dom.show('mode.none')" style="display:none"> &rsaquo;&rsaquo; Repeat </span>
+			    <span id="mode">none</span>
+			</div>
+			</td>
+		<td align="right">
+		    <input type="image" src="img/default/volume_up.png" onclick="player.controls.volume.up()"/>
+		</td>
+		</tr>
+		<tr class="medium">
+		  <td align="right" rowspan="2">
 	  	    <input type="image" src="img/default/volume_down.png" onclick="player.controls.volume.down()"/>
-	  </td>
-	</tr>
-
-    </table>
+		  </td>
+		</tr>
+	    </table>
     
-	<div id="controls" align="center" class="shaded-light" style="border:0px solid gray;width:148px;padding:1px; margin-top:1%">
+	<div id="" align="center" class="shaded-light" style="border-top:0px solid gray;width:148px;padding:2.7px; margin-top:1%">
 	    <input type="image" src="img/rwd_1.png" onclick="player.controls.back()"/>
 	    <input type="image" src="img/stop_1.png" onclick="player.controls.stop()"/>
 	    <input type="image" id="pause.button" src="img/pause_1.png" style="display:none" onclick="player.controls.pause()"/>
@@ -268,65 +256,22 @@ var menulib={
 	    <input type="image" src="img/fwd_1.png" onclick="player.controls.next()"/>
 	</div> 
       </td>
-      <td valign="top" class="view-through" style="background-color:#f3f3f3;-webkit-border-top-right-radius:10px;border:2px solid gray">
+      <td valign="top" class="view-through" style="background-color:#f3f3f3;border:2px solid gray">
 	  <div id="stdout" style="padding:2px; margin:2px; overflow:hidden; height:220px; border:1px solid white"></div>
+
       </td>
+    </tr>
+    <tr class="medium">
+    	<td valign="middle" style="border:2px solid gray; -webkit-border-bottom-left-radius:10px;" class="shaded-light">
+		<div style="font-size:12px; font-weight:bold; margin-left:3px">3-launchpad</div>
+		<div style="margin-left:3px">http://3-launchpad.org</div>
+	</td>
+	<td valign="top" class="shaded-light" style="border:2px solid gray; -webkit-border-bottom-right-radius:10px;" >
+		<div id="controls"></div>
+	</td>
     </tr>
   </table>
 </div>
-
-<div id="mainmenu" class="shaded" style="margin-left:10%; position:absolute;z-index:3; bottom:42; border:2px solid gray; " >
-
-<table  align="center">
-  <tr class="medium" >
-  <td align="center" class="action" width="48px" onclick="utils.modules.show('player');  " style="border-right:1px solid gray">
-    <img src="img/gnomefoot.png">
-    
-  </td>
-  <td align="center" class="action" width="48px" onclick="utils.modules.show('mlibrary');  ">
-    <img src="img/default/mysongs.png">
-    
-  </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('theme'); ">
-    <img src="img/default/theme.png">
-    
-  </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('local'); ">
-    <img src="img/drive.png">
-    
-  </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('google'); jx.dom.set.focus('email')">
-    <img src="img/google-logo.png">
-    
-  </td>
-    <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('dropbox')">
-    <img src="img/dropbox-logo.png">
-    
-  </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('config');">
-    <img src="img/default/setup.png">
-    
-  </td>
-  <td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('help');">
-    <img src="img/default/info.png">
-    
-  </td>
-  <td class="action" align="center" width="48px" style="border-left:1px solid gray" onclick="window.close()">
-    <img src="img/logoff.png">
-    
-  </td>  
-
-</tr>
-
-</table>
-</div>
-<div style="border:0px solid black; position:absolute; height:45px;width:94%" onmouseover="$('#mainmenu').slideDown();  ">
-  <!--
-    * 
-    * This area enables the menu showing and hiding upon mouse position
-    *
-  -->
-    <div class="medium" style="color:bebebe; position:absolute; bottom:8px; margin-left:25%">&copy; 2010 - 2011 GPL V3 team.3launchpad@gmail.com</div>
-</div>
+    <div class="medium" style="color:bebebe; bottom:8px;" align="center">&copy; 2010 - 2011 GPL V3 team.3launchpad@gmail.com</div>
 
 </body>

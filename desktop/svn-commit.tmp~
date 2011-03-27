@@ -1,0 +1,11 @@
+
+--This line, and those below, will be ignored--
+
+M    html/player.html
+M    html/config.html
+M    html/index.html
+M    html/js/player.js
+M    html/js/providers/google/gdocs-handler.js
+M    html/providers/local/index.html
+M    html/providers/google/index.html
+M    html/providers/dropbox/index.html
