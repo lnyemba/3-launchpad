@@ -35,14 +35,6 @@
 	border: 1px solid #d3d3d3;
 }
 
-.rounded-frame {
-	width:90%;
-	margin-left:3.5%;
-    -webkit-border-radius: 10px;
-    border: 1px solid #D3D3D3;
-    padding: 10px;
-
-}
 .action-span{
 	cursor:pointer;
 	font-family:verdana;
@@ -66,18 +58,10 @@
     
 }
 
-.overbutton{
-	border:1px solid #d3d3d3;
-}
-
-.outbutton{
-	border:1px solid transparent;
-}
-
 .icon-button{
 	cursor:pointer;
 	margin-top:3px;
 }
 .shaded{
-background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.15, #C1C1C1),color-stop(0.71, #848484),color-stop(0.97, #d3d3d3));
+	background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.15, #C1C1C1),color-stop(0.71, #848484),color-stop(0.97, #d3d3d3));
 }

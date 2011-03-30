@@ -117,15 +117,17 @@ now:[],
       jx.dom.set.value('mode',mode);
     },//-- end player.setmode(mode)
     play:function(){
+      
       if(player.handler != null){
 	if(player.position == null){
 	    player.position = 0;
-	}
+	}	
 //	if(player.channel == null){
 	  player.channel = player.handler.play(player.position,1,player.controls.volume.transform) ;
 	//}
 	player.channel.addEventListener(air.Event.SOUND_COMPLETE,player.controls.soundComplete);
-	
+	//jx.dom.set.value('artist','Unknown') ;
+	//jx.dom.set.value('song','Unknown') ;
 	jx.dom.set.value('progress','[<span color="#104E8B">Playing</span>]') ;
 	jx.dom.hide('play.button') ;
 	jx.dom.show('pause.button');
@@ -178,6 +180,8 @@ now:[],
 
     },
     id3handler:function(e){
+      jx.dom.set.value('artist','Unknown') ;
+      jx.dom.set.value('song','Unknown') ;
       artist 	= e.target.id3['artist'] ;
       song 	= e.target.id3['songName'] ;
       if(artist == ''|| artist == null||artist == undefined){

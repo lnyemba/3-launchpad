@@ -2,9 +2,48 @@
 <div ><img src="img/dropbox-logo.png"/></div>
 <div style="margin-top:-9%; margin-left:35px; font-size:14px; font-weight:bold">Dropbox Music Library</div>
 <div style="margin-top:-1%; margin-left:36px" class="medium">
-    Please mount your dropbox folder before it can be indexed for quick access
+    Indexed for quick access
 </div>
-<table width="100%">
+<table width="85%" style="margin-top:2%" align="center">
+<tr class="medium">
+<td valign="top">
+<div class="rounded-corners" style="border:1px solid gray">
+	<table width="100%" cellspacing="1px">
+	  <tr class="default">
+	    <td width="22%">Email</td>
+	    <td><input id="dropbox.email" type="text" class="default" style="width:80%" value="nyemba@gmail.com"/></td>
+	  </td>
+	  </tr>
+	  <tr class="default">
+	    <td>Password</td>
+	    <td><input id="dropbox.password" type="password" class="default" style="width:80%" value="Innovat10n"/></td>
+	  </tr>
+	  <tr class="default">
+	    <td colspan="2" valign="middle" align="left">
+	      &nbsp;<span id="dstore.status" style="color:#436EEE;"></span>
+	    </td>
+	  </tr>
+	  </table>
+	  <table width="98%" align="center" style="border-top:1px solid gray; margin-top:3%" cellspacing="0px">
+	  <tr style="; font-weight:bold" class="small shaded-dark action">
+	  <td valign="top"  onclick="gstore.login.init()" style="width:15%">
+	      <img src="img/dropbox-logo.png"/>
+	  </td>
+	  <td onclick="dstore.init.login()" valign="middle">
+	      Login
+	  </td>
+	  <td style="width:15%;border-left:1px solid gray" onclick = "dstore.cancel()">
+	      <img src="img/default/clear.png"/>
+	  </td>
+	  <td valign="middle"  onclick = "gstore.login.cancel()" style="width:35%">
+	      Clear/Reset
+	  </td>
+	  </tr></table>
+  </div>
+ </td>
+ </tr></table>
+
+<table width="100%" style="display:none">
 <tr class="medium">
 	<td class="shaded-dark rounded-corners" valign="top" width="34px">
 		<input type="image" src="img/default/mysongs.png" style="border:1px solid gray" onclick="utils.modules.show('mlibrary');" />

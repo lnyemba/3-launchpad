@@ -142,5 +142,5 @@ var gstore={
 	    }
 	    jx.dom.append.child(target,div) 
 	  }
-	}
-}
+	}//-- end gstore.showUsers()
+}//-- end gstore

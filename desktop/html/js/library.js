@@ -6,7 +6,7 @@ var library={
       library.cache[key] = pointer;
       menulib.open(key) ;
       menulib.open('all');
-      //library.render('menulib','all')
+      library.render('menulib','all')
     
   },//-- end library.set(key,pointer
   get:function(keys){
@@ -33,12 +33,17 @@ var library={
     }else{
       pointer = library.cache[key] ;
     }
-     jx.dom.set.value(target,'') ;
+      jx.dom.set.value(target,'') ;
      if(pointer != null){
 	var table = playlist.init(pointer.playlist) ;
-	 table.width='100%'
-	 table.id = (target+'.table') ;
+	table.className = 'rounded-corners'
+	table.width = '100%'
+	table.id = (target+'.table') ;
 	jx.dom.append.child(target,table) ;
+	$('#libr').roundabout({
+	 	minOpacity:0.0,
+		minScale:0.1
+	 }) ;
 	library.current = key ;
      }
      
@@ -74,3 +79,42 @@ var library={
     return entry ;
   }//-- end library.find(list,field,value) ;
 }
+
+
+library.showUsers=function(target){
+	  jx.dom.set.value(target,'') ;
+		for(var j=0; j < library.keys.length; j++){
+		  key = library.keys[j] ;
+		  lib 	= library.cache[key] ;
+		  if(lib == null) continue ;
+		  owners = library.cache[key].owners.meta ;
+		  for(var i=0; i < owners.length; i++){
+		    div 		= document.createElement('DIV') ;
+		    span		= document.createElement('DIV');
+		    songs		= document.createElement('DIV');
+		    songs.innerHTML	= ('&rsaquo;&rsaquo; songs '+lib.owners.data[owners[i]].length)
+		    songs.style['margin-left'] = '10px'
+		    songs.className = 'medium';
+		    span.innerHTML 	= owners[i] ;
+		    span.style['font-weight'] = 'bold'
+		    div.className 	= 'shaded action default'
+		    div.style['height']		= '35px'
+		    div.style['border']		= '1px solid white';
+		    if(owners.length == 1){
+			div.style['width']		= '100%'
+		    }
+		    span.style['margin-left'] = '10px'
+		    div.appendChild(span)
+		    div.appendChild(songs);
+		    div.data = lib.owners.data[owners[i]] ;
+		    div.onclick=function(){
+		      jx.dom.set.value(target,' ') ;
+		      var table = playlist.init(this.data) ;
+		      table.width = '100%'
+		      jx.dom.append.child(target,table) ;
+		    }
+		    jx.dom.append.child(target,div) 
+		  }
+	  }
+}//-- end library.showUsers()
+

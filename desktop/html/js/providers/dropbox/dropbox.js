@@ -14,7 +14,17 @@ var dstore={
     }
   },
   init:{
-    
+    login:function(){
+    	user = jx.dom.get.value('dropbox.email') ;
+	pass = jx.dom.get.value('dropbox.password');
+    	key = 'iqzdgr0ej8yc2l0' ;
+	secret = '8466vnv6b09hfvb'
+	url = 'http://api.dropbox.com/0/oauth/request_token';
+	var fn = function(xmlhttp){
+		air.trace(xmlhttp.responseText) ;
+	}
+	handler = jx.ajax.send(url,fn) ;
+    },//-- end dstore.init.login() 
     browse:function(){
       jx.dom.set.value('dstore.status','Please wait ...');
       var fbrowser = air.File.documentsDirectory ;

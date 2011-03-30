@@ -2,7 +2,7 @@
 	  <tr class="medium">
 
 	    <td>
-	      <input type="text" id="menu.library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('menu.library.search','menulib.table')"/><span onclick="jx.dom.set.value('menu.library.search','');search('menu.library.search','menulib.table');" class="action" style=""> &lsaquo;&lsaquo;</span>
+	      <input type="text" id="menu.library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('menu.library.search','menulib.table'); "/><span onclick="jx.dom.set.value('menu.library.search','');search('menu.library.search','menulib.table'); jx.dom.set.focus('menu.library.search')" class="action" style=""> &lsaquo;&lsaquo;</span>
 	    </td>
     	    <td width="34px">
 	      <input type="image" src="img/default/search.png"/>
@@ -11,7 +11,7 @@
 	  </table>
 	  
 	 <div>
-	  <table cellspacing="1px" width="100%" style="margin-top:-5px">
+	  <table cellspacing="1px" width="100%" style="margin-top:-5px;display:none">
 	    <tr class="medium action">
 	    <td style="; width:5px"> &nbsp;</td>
 	    <td id="tab.1" class="active-tab" align="middle" onclick="library.render('menulib','all'); jx.dom.set.style('tab.1','background-color','#d3d3d3');jx.dom.set.style('tab.2','background-color','transparent');jx.dom.set.style('tab.3','background-color','transparent');jx.dom.set.style('tab.4','background-color','transparent');">
@@ -30,13 +30,18 @@
 	    <td style=""> &nbsp;</td>
 	    </tr>
 	    </table>
-	    <table style="border-top:1px solid gray" width="37px">
+	    <table style="border-top:1px solid gray;display:none" width="37px">
 	      <tr class="medium">
 	      <td valign="top" align="left">
 		
 		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('menulib')" style="border:1px solid gray"/>
 		<input type="image" src="img/gnomefoot.png" onclick="utils.modules.show('player');" style="margin-top:3px; border:1px solid gray"/>
 	      </td></tr></table>
-	    <div id="menulib" style="border:1px solid gray; margin-left:39px; height:150px; margin-top:-21.2%; overflow:auto;">
+	    <span class="medium">[Musi Library]</span>
+	    <div class="rounded-corners" align="center" style="border:1px solid gray; margin-left:3px;padding:3px">
+	    	<div id="menulib" style="overflow:auto; height:160px"></div>
+	    </div>
+	    <div style="position:absolute; margin-top:-6.5%; border:2px solid gray" class="shaded">
+	    	<input type="image" src="img/default/people.png" onclick="library.showUsers('menulib.table')"/>
 	    </div>
 	</div>
