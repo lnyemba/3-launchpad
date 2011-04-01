@@ -2,6 +2,7 @@
 <script src="js/jxf/rpc.js"></script>
 <script src="js/jxf/dom.js"></script>
 <script src="js/jquery/jquery-1.4.4.js"></script>
+<script src="js/jquery/jquery.marquee.js"></script>
 <title>&copy; 2010 - 2011 3-launchpad</title>
 <script type="text/javascript">
 	var _gaq = _gaq || [];
@@ -23,6 +24,7 @@
 		}
 		jx.ajax.run(url,fn) ;
 	}
+	$('#gallery').marquee() ;
 </script>
 
 <body class="default" onload="show('installer.html')">
@@ -43,7 +45,7 @@
 						<img src="img/screenshots/collection.png" style="width:227;margin-left:0;"/>
 					</div>
 					<div style="float:left">
-						<marquee style="width:107px; height:150px;" scrollamount="4" direction="up" behavior="alternate">				
+						<marquee id="gallery" style="width:107px; height:150px;" scrollamount="4" direction="up" behavior="alternate">				
 							<img src="img/themes/asian-woman.jpg" style="width:105px; height:auto; border:1px solid gray"/>
 							<img src="img/themes/clone.jpg" style="width:105px; height:auto; border:1px solid gray"/>		
 							<img src="img/themes/hong-kong.jpg" style="width:105px; height:auto; border:1px solid gray"/>		
