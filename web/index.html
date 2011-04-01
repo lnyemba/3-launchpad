@@ -4,11 +4,6 @@
 <script src="js/jquery/jquery-1.4.4.js"></script>
 <title>&copy; 2010 - 2011 3-launchpad</title>
 <script type="text/javascript">
-	<!--
-		*
-		* Google analytics code linked to http://3-launchpad.org
-		*
-	-->
 	var _gaq = _gaq || [];
 	_gaq.push(['_setAccount', 'UA-19605003-3']);
 	_gaq.push(['_trackPageview']);
@@ -22,66 +17,19 @@
 <script>
 
 	<!--	End of google analytics code	-->
-	function init(){
+	function show(url){
 		var fn=function(xmlhttp){
 			jx.dom.set.value('preview',xmlhttp.responseText) ;
 		}
-		jx.ajax.run('preview.html',fn) ;
-		nav.auto() ;
-	}
-	var nav={
-		auto:function(){
-			nav.timer1 = setTimeout(nav.next,1500) ;
-			nav.timer2 = setTimeout(nav.auto,7000);
-		},
-		timer1:null,
-		timer2:null,
-		current:0,
-		max:3,
-		dir:null,
-		next:function(){
-			var move_to=function(){
-				if(nav.current +1 != nav.max){
-					nav.current += 1 ;
-				}else{
-					nav.current = 0;
-				}	
-			}
-			nav.direction = 'next' ;
-			nav.slide(move_to) ;
-		},
-		back:function(){
-			var move_to=function(){
-				if(nav.current -1 != 0 ){
-					nav.current -= 1;
-				}else{
-					nav.current = nav.max-1 ;
-				}
-	
-			}
-			nav.direction = 'back' ;
-			nav.slide(move_to) ;
-		},
-		slide:function(move_to){
-			cid = 'p'+nav.current ;
-			move_to() ;
-      			nid = 'p'+nav.current ;
-			margin = parseInt($('#'+cid).outerWidth()/2) ;
-			jx.dom.set.style(nid,'margin-left',margin) ;
-			jx.dom.show(nid);
-			$('#'+cid).animate({marginLeft:-margin}); 
-			//jx.dom.set.style(nid,'margin-left',0) ;
-		       	$('#'+nid).animate({marginLeft:0});
-			jx.dom.hide(cid);
-		}
+		jx.ajax.run(url,fn) ;
 	}
 </script>
 
-<body class="default" onload="init()">
+<body class="default" onload="show('installer.html')">
 
-<table width="600px" class="rounded-corners" align="center" style="margin-top:5%; height:350px; border:1px solid #d3d3d3">
+<table width="600px" class="rounded-corners" align="center" style="margin-top:5%; height:350px; border:0px solid #d3d3d3">
 	<tr>
-		<td colspan="2">
+		<td colspan="2"> 
 			<div class="caption" align="center">
 				3-launchpad Music Player
 			<div align="center" class="small" style="font-weight:normal">
@@ -90,39 +38,69 @@
 		</td>
 	</tr>
 	<tr class="medium">
+		<td valign="top" style="border:1px solid #d3d3d3">
+					<div style="float:left; width:227px;">
+						<img src="img/screenshots/collection.png" style="width:227;margin-left:0;"/>
+					</div>
+					<div style="float:left">
+						<marquee style="width:107px; height:150px;" scrollamount="4" direction="up" behavior="alternate">				
+							<img src="img/themes/asian-woman.jpg" style="width:105px; height:auto; border:1px solid gray"/>
+							<img src="img/themes/clone.jpg" style="width:105px; height:auto; border:1px solid gray"/>		
+							<img src="img/themes/hong-kong.jpg" style="width:105px; height:auto; border:1px solid gray"/>		
+							<img src="img/themes/music.jpg" style="width:105px; height:auto; border:1px solid gray"/>	
+							<img src="img/themes/tuareg.jpg" style="width:105px; height:auto; border:1px solid gray"/>
+							<img src="img/themes/zen.jpg" style="width:105px; height:auto; border:1px solid gray"/>
+							<img src="img/themes/caffeine.jpg" style="width:105px; height:auto; border:1px solid gray"/>
+							<img src="img/themes/sahara.jpg" style="width:105px; height:auto; border:1px solid gray"/>
+	
+						</marquee>
+						</div>
+
+			</td>
+			<td valign="top">
+						<b>Cloud computing is</b>
+							<li type="square" style="margin-left:7px">An online file storage space</li>
+							<li type="square" style="margin-left:7px">Allows file sharing between users</li>
+						<div style="margin-top:5px; font-weight:bold">Features</div>
+							<li type="square" style="margin-left:7px">Theme engine (and library)</li>
+							<li type="square" style="margin-left:7px">Linux/Mac/Windows/Android</li>
+							<li type="square" style="margin-left:7px">Cloud access: dropbox; google docs</li>
+						<b>Supported Technologies</b>
+						<div style="margin-left:7px">
+							<img src="img/adobe-air.png" style="border:1px solid #d3d3d3"/>
+							<img src="img/linux.png" style="border:1px solid #d3d3d3"/>
+							<img src="img/mac.png" style="border:1px solid #d3d3d3"/>
+							<img src="img/windows.png" style="border:1px solid #d3d3d3"/>
+							<img src="img/android.png" style="border:1px solid #d3d3d3"/>
+						</div>
+
+		</td>
+	</tr>
+	<tr class="medium">
         <td valign="bottom">
-		<div id="preview" class="rounded-corners" style="border:0px solid #d3d3d3; height:58%;" onmouseover="clearTimeout(nav.timer1); clearTimeout(nav.timer2)" onmouseout="nav.auto()">
-		</div>
-		<div class="rounded-corners" style="border:1px solid #d3d3d3">
-			<b style="font-size:14px">3-launchpad delivers</b>
-			<div class="default" style="margin-left:7px">
-				<li type="square">Supported on Linux; Mac and Windows</li>
-				<li type="square">Mobile device enabled: Android & soon iPhone</li>
-				<li type="square">Share music and stream it via the cloud</li>
-				<li type="square">Continuous access to your music library</li>
-			</div>
+		<div id="preview" class="" style="border:1px solid #d3d3d3; height:100%;">
 		</div>
 	</td>
-        <td valign="bottom" width="250px">
-		<div class="rounded-corners" style="border:1px solid #d3d3d3; padding:2px">
-	            <div class="menu-item">
+        <td valign="bottom" width="250px" style="padding:1px">
+		<div class="" style="border:1px solid #d3d3d3;">
+	            <div class="menu-item action" onclick="show('installer.html')" style="cursor:pointer">
 		    	<div style="margin-left:3px">Installer</div>
 			<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; For first time users</div>
 		    </div>
-        	    <div class="menu-item">
+        	    <div class="menu-item" onclick="show('upgrade.html')" style="cursor:pointer">
 		    	<div style="margin-left:3px">Upgrade</div>
 			<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; For existing users</div>
 		    </div>
-        	    <div class="menu-item">
+        	    <div class="menu-item" style="cursor:pointer" onclick="show('learn-more.html')">
 		    	<div style="margin-left:3px">Learn more</div>
 			<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; How to share music and more</div>
 		    </div>
-        	    <div class="menu-item">
+        	    <div class="menu-item" style="cursor:pointer" onclick="show('mobile.html')">
 		    	<div style="margin-left:3px">Mobile Editions</div>
 			<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; Android; Iphone</div>
 		    </div>			    
 		</div>
-		<div class="rounded-corners" style="border:1px solid #d3d3d3;margin-top:3px;">
+		<div class="" style="border:1px solid #d3d3d3;margin-top:1px;cursor:pointer" onclick="show('contact.html')">
 			<div class="menu-item">
 				<div>Contact us</div>
 				<div class="small" style="font-weight:normal">&rsaquo;&rsaquo; Encouragements; bug or wedding invites</div>
