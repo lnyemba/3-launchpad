@@ -22,7 +22,9 @@
 		}
 		jx.ajax.run(url,fn) ;
 	}
-	$('#gallery').marquee() ;
+	if(navigator.appVersion.match('Chrome') == null){
+		$('#gallery').marquee() ;
+	}
 </script>
 
 <body class="default" onload="show('installer.html')">
