@@ -25,11 +25,15 @@
 	if(navigator.appVersion.match('Chrome') == null){
 		$('#gallery').marquee() ;
 	}
+	var version=function(xmlhttp){
+		c = eval("("+xmlhttp.responseText+")") ;
+		jx.dom.set.value('version',c.version) ;
+	}
 </script>
 
-<body class="default" onload="show('installer.html')">
+<body class="default" onload="show('installer.html'); jx.ajax.run('version.json',version)">
 
-<table width="600px" class="rounded-corners" align="center" style="margin-top:5%; height:350px; border:0px solid #d3d3d3">
+<table width="600px" class="rounded-corners" align="center" style="margin-top:5%; height:370px; border:0px solid #d3d3d3">
 	<tr>
 		<td colspan="2"> 
 			<div class="caption" align="center">
@@ -43,6 +47,9 @@
 		<td valign="top" style="border:1px solid #d3d3d3">
 					<div style="float:left; width:227px;">
 						<img src="img/screenshots/collection.png" style="width:227;margin-left:0;"/>
+						<div style="margin-top:-15px;border-top:1px solid gray; background-color:#f3f3f3; color:maroon">
+							&nbsp;&rsaquo;&rsaquo; current version: <span id="version" style="color:maroon"></span>
+						</div>
 					</div>
 					<div style="float:left">
 						<marquee id="gallery" style="width:107px; height:150px;" scrollamount="4" direction="up" behavior="alternate">				
@@ -60,17 +67,18 @@
 
 			</td>
 			<td valign="top">
-						<b>Cloud computing is:</b>
-							<li type="square" style="margin-left:7px">An online file storage space</li>
-							<li type="square" style="margin-left:7px">Access to files from any device</li>
-							<li type="square" style="margin-left:7px">Allows file sharing between users</li>
+						<b>The "Cloud" :</b>
+							<li type="square" style="margin-left:7px">Provides online storage</li>
+							<li type="square" style="margin-left:7px">Allows access to files from any device</li>
+							<li type="square" style="margin-left:7px">Allows secure file sharing</li>
 						<div style="margin-top:5px; font-weight:bold">Features</div>
 							<li type="square" style="margin-left:7px">Theme engine (and library)</li>
 							<li type="square" style="margin-left:7px">Linux/Mac/Windows/Android</li>
 							<li type="square" style="margin-left:7px">Cloud access: dropbox; google docs</li>
-						<b style="margin-top:3px">Supported Technologies</b>
+						<div style="font-weight:bold; margin-top:7px">Supported Technologies</div>
 						<div style="margin-left:7px">
 							<img src="img/adobe-air.png" style="border:1px solid #d3d3d3"/>
+							<img src="img/google.png" style="border:1px solid #d3d3d3"/>
 							<img src="img/linux.png" style="border:1px solid #d3d3d3"/>
 							<img src="img/mac.png" style="border:1px solid #d3d3d3"/>
 							<img src="img/windows.png" style="border:1px solid #d3d3d3"/>
@@ -80,8 +88,13 @@
 		</td>
 	</tr>
 	<tr class="medium">
+		<td colspan="2" style="height:20px">
+			
+		</td>
+	</tr>
+	<tr class="medium">
         <td valign="bottom">
-		<div id="preview" class="" style="border:1px solid #d3d3d3; height:100%;">
+		<div id="preview" class="medium" style="border:1px solid #d3d3d3; height:100%;">
 		</div>
 	</td>
         <td valign="bottom" width="250px" style="padding:1px">
