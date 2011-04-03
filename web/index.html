@@ -22,9 +22,6 @@
 		}
 		jx.ajax.run(url,fn) ;
 	}
-	if(navigator.appVersion.match('Chrome') == null){
-		$('#gallery').marquee() ;
-	}
 	var version=function(xmlhttp){
 		c = eval("("+xmlhttp.responseText+")") ;
 		jx.dom.set.value('version',c.version) ;
@@ -52,7 +49,7 @@
 						</div>
 					</div>
 					<div style="float:left">
-						<marquee id="gallery" style="width:107px; height:150px;" scrollamount="4" direction="up" behavior="alternate">				
+						<marquee id="gallery" style="width:107px; height:150px;" scrollamount="4" direction="up">				
 							<img src="img/themes/asian-woman.jpg" style="width:105px; height:auto; border:1px solid gray"/>
 							<img src="img/themes/clone.jpg" style="width:105px; height:auto; border:1px solid gray"/>		
 							<img src="img/themes/hong-kong.jpg" style="width:105px; height:auto; border:1px solid gray"/>		
