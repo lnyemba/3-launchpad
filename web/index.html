@@ -26,9 +26,12 @@
 		c = eval("("+xmlhttp.responseText+")") ;
 		jx.dom.set.value('version',c.version) ;
 	}
+
+
+
 </script>
 
-<body class="default" onload="show('installer.html'); jx.ajax.run('version.json',version)">
+<body class="default" onload="show('installer.html'); jx.ajax.run('version.json',version); ">
 
 <table width="600px" class="rounded-corners" align="center" style="margin-top:5%; height:370px; border:0px solid #d3d3d3">
 	<tr>
@@ -44,27 +47,27 @@
 		<td valign="top" style="border:1px solid #d3d3d3">
 					<div style="float:left; width:227px;">
 						<img src="img/screenshots/collection.png" style="width:227;margin-left:0;"/>
-						<div style="margin-top:-15px;border-top:1px solid gray; background-color:#f3f3f3; color:maroon">
+						<div style="margin-top:-6px;border-top:1px solid gray; background-color:#f3f3f3; color:maroon;">
 							&nbsp;&rsaquo;&rsaquo; current version: <span id="version" style="color:maroon"></span>
 						</div>
 					</div>
-					<div style="float:left">
-						<marquee id="gallery" style="width:107px; height:150px;" scrollamount="4" direction="up">				
-							<img src="img/themes/asian-woman.jpg" style="width:105px; height:auto; border:1px solid gray"/>
-							<img src="img/themes/clone.jpg" style="width:105px; height:auto; border:1px solid gray"/>		
-							<img src="img/themes/hong-kong.jpg" style="width:105px; height:auto; border:1px solid gray"/>		
-							<img src="img/themes/broken-chain.jpg" style="width:105px; height:auto; border:1px solid gray"/>	
-							<img src="img/themes/music.jpg" style="width:105px; height:auto; border:1px solid gray"/>	
-							<img src="img/themes/tuareg.jpg" style="width:105px; height:auto; border:1px solid gray"/>
-							<img src="img/themes/zen.jpg" style="width:105px; height:auto; border:1px solid gray"/>
-							<img src="img/themes/caffeine.jpg" style="width:105px; height:auto; border:1px solid gray"/>
-							<img src="img/themes/sahara.jpg" style="width:105px; height:auto; border:1px solid gray"/>
+					<div style="margi-top:1px; float:left; height:163px; overflow:hidden">
+							<marquee id="gallery" style="width:107px;height:100%" behavior="alternate" direction="up">
+							<img id="0" src="img/themes/asian-woman.jpg" style="width:105px; height:auto; border:1px solid gray"/>
+							<img id="1" src="img/themes/clone.jpg" 		style="width:105px; height:auto; border:1px solid gray"/>		
+							<img id="2" src="img/themes/hong-kong.jpg" 	style="width:105px; height:auto; border:1px solid gray"/>		
+							<img id="3" src="img/themes/broken-chain.jpg" 	style="width:105px; height:auto; border:1px solid gray"/>	
+							<img id="4" src="img/themes/music.jpg" 		style="width:105px; height:auto; border:1px solid gray"/>	
+							<img id="5" src="img/themes/tuareg.jpg"		style="width:105px; height:auto; border:1px solid gray"/>
+							<img id="6" src="img/themes/zen.jpg" 		style="width:105px; height:auto; border:1px solid gray"/>
+							<img id="7" src="img/themes/caffeine.jpg"	style="width:105px; height:auto; border:1px solid gray"/>
+							<img id="8" src="img/themes/sahara.jpg"		style="width:105px; height:auto; border:1px solid gray"/>
+							</marquee>
 	
-						</marquee>
 						</div>
 
 			</td>
-			<td valign="top">
+			<td valign="top" style="border:1px solid #d3d3d3">
 						<b>The "Cloud" :</b>
 							<li type="square" style="margin-left:7px">Provides online storage</li>
 							<li type="square" style="margin-left:7px">Allows access to files from any device</li>
