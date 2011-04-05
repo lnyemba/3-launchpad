@@ -1,22 +1,23 @@
 .default{
 	font-family:verdana;
-	font-size:11px;
+	font-size:12px;
 }
 
 .menu-item{
 	font-weight:bold;
 	font-size:14px;
 	height:35px;
-	border:1px solid white;
-	padding:1px;
+	border:1px solid #d3d3d3;
+	margin:1px;
 	background-color:#f3f3f3;
+	cursor:pointer
 }
 .medium{
 	font-family:verdana;
 	font-size:11px;
 }
 .caption{
-	font-size:17px;
+	font-size:22px;
 	font-family:verdana;
 	font-weight:bold
 }
