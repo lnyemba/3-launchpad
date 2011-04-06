@@ -138,6 +138,7 @@ var gstore={
 	      jx.dom.set.value(target,' ') ;
 	      var table = playlist.init(this.data) ;
 	      table.width = '100%'
+	      table.id = target+'.table' ;
 	      jx.dom.append.child(target,table) ;
 	    }
 	    jx.dom.append.child(target,div) 

@@ -51,9 +51,6 @@
 -->
 <script src="js/air/air-aliases.js"></script>
 <script src="js/jquery/jquery-1.4.4.js"></script>
-<script src="js/jquery/roundabout.js"></script>
-
-
 <!-- 
 	*
 	* jxf framework and utilities
@@ -73,6 +70,8 @@
 <script src="js/jxf/lastfm/parser.js"></script>
 <script src="js/jxf/facebook/jxf-facebook.js"></script>
 
+<script src="js/jxf/crypt/sha1.js"></script>
+<script src="js/jxf/crypt/oauth.js"></script>
 <!-- 
 	*
 	* This section are the scripts for storage providers
@@ -103,11 +102,11 @@
 //-- pointer that will initialize the program 
 var initpage = 'welcome' ;
 //-- facebook initialization
-  fb.app.id = '204560106224091' ;
+  /*fb.app.id = '204560106224091' ;
   fb.app.url = 'http://apps.facebook.com/e-launchpad' ;
   fb.app.secret = '6cc5d3cde5f5ce806a697b6d1cb45581'
   fb.app.iframe = 'fb.panel';
-  
+  */
   //fb.app.init() ;
   function Initialize(){
 	updater.init() ;
@@ -117,9 +116,8 @@ var initpage = 'welcome' ;
 	theme.set();
 	lstore.load();
 	dstore.load();       
-	//utils.modules.show(initpage);
-       utils.modules.show('mlibrary')
-       library.render('menulib','all') ;
+	utils.modules.show(initpage);
+        library.render('menulib','all') ;
 
        //
        // This section will handle any potential arguments passed to 3-launchpad
@@ -150,7 +148,7 @@ var initpage = 'welcome' ;
       //sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('isallowed.faceboo.mp3','true')");
 	
     }else{
-      initpage = 'player'
+      initpage = 'mlibrary'
     }
     //
 // The code below needs to run before the pages are loaded. 
@@ -159,7 +157,6 @@ var initpage = 'welcome' ;
   
 	utils.modules.init('welcome','index.html','stdout') ;
  	utils.modules.init('google','providers/google/index.html','stdout') ;
- 	utils.modules.init('dropbox','providers/dropbox/index.html','stdout') ;
  	utils.modules.init('local','providers/local/index.html','stdout') ;
  	utils.modules.init('theme','theme.html','stdout') ; 
  	utils.modules.init('mlibrary','library.html','stdout') ;
@@ -266,11 +263,10 @@ var menulib={
 		<div align="center">&copy; 2010 - 2011 3-launchpad</div>
 	</td>
 	<td valign="top" class="shaded" style="border:2px solid gray; -webkit-border-bottom-right-radius:10px;" >
-		<div id="controls" style="-webkit-border-bottom-right-radius:10px;""></div>
+		<div id="controls" style="-webkit-border-bottom-right-radius:10px;"></div>
 	</td>
     </tr>
   </table>
 </div>
-    <div class="medium" style="color:bebebe; bottom:8px;" align="center">&copy; 2010 - 2011 3-launchpad GPL V3</div>
 
 </body>

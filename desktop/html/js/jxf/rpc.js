@@ -59,5 +59,28 @@ jx.ajax = {
     	},//-- end jx.ajax.run
     parser:null
   }//--end jx.ajax
- 
+
+ /**
+ * These are a few parsers that can come in handy:
+ * urlparser:	This parser is intended to break down a url parameter string in key,value pairs
+ */
+
+function urlparser(url){
+	var p = url.split('&') ;
+	var r = {} ;
+	r.meta = [] ;
+	r.data = {} ;
+	var entry;
+	for(var i=0; i < p.length; i++){
+		entry = p[i] ;
+		key 	= (entry.match('(.*)=')  !=null)? entry.match('(.*)=')[1]:null ;
+		value 	= (entry.match('=(.*)$') != null)? entry.match('=(.*)$')[1]:null
+		if(key != null){
+			r.meta.push(key) ;
+			r.data[key] = value  ;
+		}
+	}
+
+	return r;
+}
 

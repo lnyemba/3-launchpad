@@ -22,13 +22,13 @@ now:[],
       for(var i=0; i < table.rows.length; i++){
 	table.rows[i].className = 'medium shaded-dark';
 	
-	input = document.createElement('INPUT') ;
-	input.type = 'checkbox' ;
-	td = document.createElement('TD') ;
-	td.appendChild(input) ;
-	td.valign='middle';
-	td.width = '5%'
-	table.rows[i].appendChild(td) ;
+	//input = document.createElement('INPUT') ;
+	//input.type = 'checkbox' ;
+	//td = document.createElement('TD') ;
+	//td.appendChild(input) ;
+	//td.valign='middle';
+	//td.width = '5%'
+	//table.rows[i].appendChild(td) ;
 	
 	td = document.createElement('TD') ;
 	td.valign='middle';
@@ -154,7 +154,12 @@ now:[],
 	jx.dom.show('play.button');    
     },
     next:function(e){
-      //player.controls.stop() ;
+     //
+     // This is to address a bug in the display of name/singers:
+     // for some reason when the id3 tags have problems the artist/song are not reset
+     //
+     jx.dom.set.value('artist','Unknown') ;
+     jx.dom.set.value('song','Unknown') ;
       var index = player.index ;
       index +=1 ;
       if(index == player.now.length  ){
@@ -165,8 +170,13 @@ now:[],
       //player.controls.play()
     },
     back:function(e){
-	//player.controls.stop() ;
-	//player.controls.reset();
+	//
+	// This is to address a bug in the display of name/singers:
+	// for some reason when the id3 tags have problems the artist/song are not reset
+	//
+	jx.dom.set.value('artist','Unknown') ;
+	jx.dom.set.value('song','Unknown') ;
+
     	var index = player.index
 	if(index > 0){
 		index -=1 ;		

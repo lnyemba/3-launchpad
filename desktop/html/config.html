@@ -4,23 +4,17 @@
   <img src="img/default/setup.png"/>
   </td><td valign="middle">
     <b style="font-size:14px">System Configuration</b>
-    <div>Report bug/send comments or reset 3-launchpad</div>
+    <div>Restore/Associate to mp3</div>
   </td></tr></table>
   <table width="100%" border="0" style="" cellspacing="0" class="rounded-corners shaded-light">
   <tr class="medium" style="font-weight:bold">
   <td valign="top" align="center" style="width:34px;">
     
       <div style="margin-top:5px">
-	<input type="image" src="img/default/clear.png" style="border:1px solid gray" onclick="jx.dom.hide('report'); jx.dom.show('system.reset'); jx.dom.hide('associate')"/> 
+	<input type="image" src="img/default/clear.png" style="border:1px solid gray" onclick="jx.dom.show('system.reset'); jx.dom.hide('associate')"/> 
       </div>
       <div style="margin-top:2px">
-	<input type="image" src="img/default/mp3-32x32.png" style="border:1px solid gray" onclick="jx.dom.hide('report'); jx.dom.hide('system.reset'); jx.dom.show('associate')"/> 
-      </div>
-      <div style="margin-top:2px">
-	<input type="image" src="img/default/features.png" style="border:1px solid gray" onclick="jx.dom.show('report'); jx.dom.hide('system.reset'); jx.dom.hide('associate');"/> 
-      </div>
-      <div style="margin-top:2px">
-	<input type="image" src="img/gnomefoot.png" style="border:1px solid gray" onclick="utils.modules.show('player');"/> 
+	<input type="image" src="img/default/mp3-32x32.png" style="border:1px solid gray" onclick="jx.dom.hide('system.reset'); jx.dom.show('associate')"/> 
       </div>
 	
       
@@ -37,16 +31,6 @@
 	  </div>
 	
 	
-      </div>
-      <div id ="report" class="rounded-corners" style="height:159px; display:none; border:1px solid gray">
-	<b>Email </b> <input type="text" id="email.back" class="medium" style="margin-left:12px"/> <input type="button" value="Send" class="default-button medium" style="margin-left:16%; width:65px"/>
-	<div>
-	  <b>Subject </b> <select id="topic" style="width:145px">
-	    <option>bug</b>
-	    <option>comment</b>
-	  </select>
-	  </div>
-	  <textarea id="message" class="message" style="width:98%; margin-left:1%; margin-top:2%; height:60%; border:0px; background-color:white"></textarea>
       </div>
       <div id="associate" class="rounded-corners" style="display:none; border:1px solid gray; font-weight:normal; height:159px">
 	<div style="margin-left:5px; margin-top:5%">

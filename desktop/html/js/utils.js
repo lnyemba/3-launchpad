@@ -91,8 +91,12 @@ function search(qid,dbase){
   for(var i=0; i < table.rows.length; i++){
 	  //name = table.rows[i].cells[0].innerHTML.toLowerCase() ;
 	  info = table.rows[i].info  ;
-	  name = info.name.toLowerCase() ;	  
-	  owner = info.owner.toLowerCase();
+	  if(info != null){
+	  	name = info.name.toLowerCase() ;	  
+	  	owner = info.owner.toLowerCase();
+	  }else{
+	  	name = table.rows[i].cells[0].innerHTML ;
+	  }
 	  table.rows[i].style['display'] = null;
 	  if(keyword.length > 0 && name.match(keyword)==null){
 		  table.rows[i].style['display'] = 'none' ;

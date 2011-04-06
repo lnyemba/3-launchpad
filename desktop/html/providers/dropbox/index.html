@@ -3,14 +3,14 @@
 <div style="margin-top:-1%; margin-left:36px" class="medium">
     Indexed for quick access
 </div>
-<table width="85%" style="margin-top:2%" align="center">
+<table id="dropbox.login" width="85%" style="margin-top:2%" align="center">
 <tr class="medium">
 <td valign="top">
 <div class="rounded-corners" style="border:1px solid gray">
 	<table width="100%" cellspacing="1px">
 	  <tr class="default">
 	    <td width="22%">Email</td>
-	    <td><input id="dropbox.email" type="text" class="default" style="width:80%" value="nyemba@gmail.com"/></td>
+	    <td><input id="dropbox.email" type="text" class="default" style="width:80%" value="team.3launchpad@gmail.com"/></td>
 	  </td>
 	  </tr>
 	  <tr class="default">
@@ -41,46 +41,29 @@
   </div>
  </td>
  </tr></table>
+<div id="dropbox.allow" style="display:none; margin-top:2%">
+	<iframe id="dropbox.allow.window" style="border:0px; width:100%; height:90%;" class="medium">	
+	</iframe>
+	<table width="100%">
+		<tr class="medium">
+		<td valign="top" width="16px">
+			<input type="image" src="img/default/arrow-prev.png" onclick="jx.dom.hide('dropbox.allow'); jx.dom.show('dropbox.login')"/>
+		</td>
+		<td style="font-size:14px">&bull;&bull;</td>
+		<td align="right" style="font-size:14px">&bull;&bull;</td>
+		<td align="right" valign="top" width="16px">
+			<input type="image" src="img/default/arrow-next.png"/>
+		</td>
+		</tr>
+	</table>
 
-<table width="100%" style="display:none">
-<tr class="medium">
-	<td class="shaded-dark rounded-corners" valign="top" width="34px">
-		<input type="image" src="img/default/mysongs.png" style="border:1px solid gray" onclick="utils.modules.show('mlibrary');" />
-		<input type="image" src="img/gnomefoot.png" style="border:1px solid gray; margin-top:5%" onclick="utils.modules.show('player');"/>
-	
-	</td>
-	<td valign="top">
-		<div class="rounded-corners" style="border:1px solid gray">
-			<div style="margin-top:0px"><b>Music Folder</b></div>
-			<div id="dfolder" class="medium" style="border:1px solid #d3d3d3;">[unknown]</div>
-			<div id="dstore.status" class="medium" style="color:#436EEE"></div>
-			
-			<table align="center" width="98%" style="margin-top:3%; border-top:1px solid gray" cellspacing="0px">
-  				<tr style="; font-weight:bold" class="small shaded-dark action">
-  					<td valign="top"  onclick="dstore.init.browse()" style="width:15%">
-      						<img src="img/default/search.png"/>
-  					</td>
-  					<td onclick="dstore.init.browse()" valign="middle">
-     						Scan/Rescan
-  					</td>
-  					<td style="width:15%;border-left:1px solid gray" onclick = "dstore.reset();">
-					      <img src="img/default/clear.png"/>
-					</td>
-					<td valign="middle"  onclick = "dstore.reset();" style="width:35%">
-      						Clear/Reset
-  					</td>
-  				</tr>
-			</table>
-		</div>
-	</td>
-</tr>
-</table>
+</div>
 <div id="dstore.report" style="display:none; margin-top:3%; border-top:1px solid gray">
-<b>Summary Report</b>
-<div>
-  mp3 files found : <span id="dstore.size"></span>
-</div>
-<div>
-  mp3 folder count: <span id="dstore.owners"></span>
-</div>
+	<b>Summary Report</b>
+	<div>
+		  mp3 files found : <span id="dstore.size"></span>
+	</div>
+	<div>
+	  mp3 folder count: <span id="dstore.owners"></span>
+	</div>
 </div>

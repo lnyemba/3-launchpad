@@ -1,1 +1,1 @@
-~/air/2.5/bin/adt -package -storetype pkcs12 -keystore e-launchpad.pfx -target air 3-launchpad.air application-crossplatform.xml html icons
+$ADOBE_AIR_SDK/adt -package -storetype pkcs12 -keystore e-launchpad.pfx -target air 3-launchpad.air application-crossplatform.xml html icons

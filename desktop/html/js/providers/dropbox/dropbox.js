@@ -20,10 +20,8 @@ var dstore={
     	key = 'iqzdgr0ej8yc2l0' ;
 	secret = '8466vnv6b09hfvb'
 	url = 'http://api.dropbox.com/0/oauth/request_token';
-	var fn = function(xmlhttp){
-		air.trace(xmlhttp.responseText) ;
-	}
-	handler = jx.ajax.send(url,fn) ;
+	dropbox.auth.init(key,secret) ;
+	dropbox.auth.login(user,pass) ;
     },//-- end dstore.init.login() 
     browse:function(){
       jx.dom.set.value('dstore.status','Please wait ...');
@@ -167,4 +165,72 @@ var dstore={
     }
   }
   
+}
+
+
+/**
+* In this section we handle dropbox authentication specifics
+*/
+var dropbox={}
+dropbox.auth 		= {} ;
+dropbox.key 		= null;
+dropbox.secret  	= null;
+dropbox.token		= null;
+dropbox.user		= null;
+
+dropbox.auth.init	= 
+	function(key,secret){
+		dropbox.secret = secret ;
+		dropbox.key = key ;
+	}
+
+dropbox.auth.login	=
+	function (user,pass){
+		dropbox.user = user ;
+		dropbox.auth.getToken(pass) ;
+	}
+dropbox.auth.getToken	=
+	function(pass){
+		var url = 'https://api.dropbox.com/0/oauth/request_token?oauth_consumer_key='+dropbox.key
+		var p = function(xmlhttp){
+			dropbox.token = xmlhttp.responseText
+			dropbox.auth.getAuthorization(pass) ;
+
+		}
+		jx.ajax.send(url,p,'POST') ;
+	}
+dropbox.auth.getAuthorization=
+	function(pass){
+		var url = 'https://www.dropbox.com/0/oauth/authorize?oauth_token='+dropbox.token+'&email='+dropbox.user+'&login_password='+pass ;
+		var iframe = document.getElementById('dropbox.allow.window') ;
+		iframe.src = url ;
+		jx.dom.hide('dropbox.login') ;
+		jx.dom.show('dropbox.allow') ;
+		air.trace(dropbox.token);
+		/*var p = urlparser(dropbox.token) ;
+		var ahandler = {} ;
+		ahandler.tokenSecret 	= p['oauth_token_secret'] ;
+		ahandler.consumerSecret = dropbox.secret ;
+
+		var message = {} ;
+		message.method = 'GET' ;
+		message.action = url ;
+		message.parameters = OAuth.decodeForm('email'+dropbox.user+'&login_password='+pass)
+
+		message.parameters.push(['oauth_signature_method','HMAC-SHA1']) ;
+		message.parameters.push(['oauth_version','1.0']) ;
+		message.parameters.push(['oauth_consumer_key',dropbox.key]) ;
+		message.parameters.push(['consumerSecret',dropbox.secret]) ;
+		message.parameters.push(['oauth_token',p['oauth_token']]) ;
+		message.parameters.push(['tokenSecret',p['oauth_token_secret']]) ;
+		message.parameters.push(['oauth_timestamp',OAuth.timestamp()]);
+		message.parameters.push(['oauth_nonce',OAuth.nonce(11)]) ;
+
+		OAuth.SignatureMethod.sign(message, accessor);
+		*/
+
+
+
+		
+
 }

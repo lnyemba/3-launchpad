@@ -40,10 +40,6 @@ var library={
 	table.width = '100%'
 	table.id = (target+'.table') ;
 	jx.dom.append.child(target,table) ;
-	$('#libr').roundabout({
-	 	minOpacity:0.0,
-		minScale:0.1
-	 }) ;
 	library.current = key ;
      }
      
@@ -111,7 +107,11 @@ library.showUsers=function(target){
 		      jx.dom.set.value(target,' ') ;
 		      var table = playlist.init(this.data) ;
 		      table.width = '100%'
-		      jx.dom.append.child(target,table) ;
+		      table.id = 'menulib.table' ;
+		      jx.dom.set.value('menulib','');
+		      jx.dom.append.child('menulib',table) ;
+		      jx.dom.set.value('menu.library.search','') ;
+		      jx.dom.set.focus('menu.library.search') ;
 		    }
 		    jx.dom.append.child(target,div) 
 		  }
