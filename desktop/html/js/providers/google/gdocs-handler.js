@@ -80,6 +80,12 @@ var gstore={
 	      gstore.library.playlist.push(lib.data[i]) ;
 	      owner 	= lib.data[i].owner ;
 	      info	= lib.data[i] ;
+         //
+         // There are no guarantees that the first 100 records will have all the owners
+         //
+         if(gstore.library.owners.data[owner] == null){
+           gstore.library.owners.data[owner]  = [] ;
+         }
 	      gstore.library.owners.data[owner].push(info) ;
 	      
 	    }
