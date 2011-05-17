@@ -1,9 +1,70 @@
-<img src="img/default/theme.png">
-<div style="font-size:14px; margin-top:-10%; margin-left:36px">
-  <b>Change System Themes</b>
-  <div class="small">Theme Engine version 0.1 "<span id="current.theme"></span>"</div>
-</div>
-    	<div id="previewframe" style="position:relative;width:278px;margin-left:35px; height:165px; margin-top:1px">
+<table class="" width="99%" cellspacing="0" style="margin:2px;border:1px solid #d3d3d3">
+	<tr class="default">
+		<td width="34px"><img src="img/default/theme.png"/></td>
+		<td>
+			<b class="caption">Theme Configuration</b>
+			<div class="small">Make 3-launchpad in your image (literally)</div>
+		</td>
+	</tr>
+</table>
+<table style="margin-top:2%;width:760" align="center">
+    <tr class="default">
+        <td>
+            Index your image files from your hard drive and/or use built-in or online repository images as backgrounds
+        </td>
+    </tr>
+    <tr class="default">
+        <td valign="top">
+            <div style=" float:none"><b>Browse Backgrounds</b></div>
+            <div>
+                <input type="button" class="default-button" value="Drive"/>
+                <input type="button" class="default-button" value="Built-in"/>
+                <input type="button" class="default-button" value="Online"/>
+            </div>
+            <div id="preview" align="center" style="border:1px solid white; height:150px; overflow:hidden">
+                <div id="pcontent" style="overflow:hidden;"></div>
+            </div>
+
+           
+
+            <div style="">
+                <table width="100%" align="center">
+                    <tr class="medium">
+                        <td width="18px">
+                            <input type="image" src="img/default/arrow-first.png"
+                                   onclick="theme.browse.nav.last()"
+                                   />
+                        </td>
+                        <td width="18px">
+                            <input type="image" src="img/default/arrow-prev.png"
+                                   onclick="theme.browse.nav.back()"
+                                   />
+                        </td>
+                        <td>
+                            Source :<span id="theme.source"></span>
+                        </td>
+                        <td width="18px">
+                            <input type="image" src="img/default/arrow-next.png"
+                                    onclick="theme.browse.nav.next()"
+                                   />
+                        </td>
+                        <td width="18px">
+                            <input type="image" src="img/default/arrow-last.png"
+                                   onclick="theme.browse.nav.first()"
+                                   />
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+        </td>
+        
+    </tr>
+</table>
+<table align="center" width="280" style="display:none">
+<tr class="medium">
+<td>
+<div id="previewframe" style="position:relative;width:278px;margin-left:35px; height:165px; margin-top:1px">
 	      <div id="preview0"  class="action rounded" style="left:0;border:1px solid gray; display:block;position:relative;float:left; width:275px" onclick="theme.set('e-launchpad')">
 			<img  src="img/themes/3-launchpad.png" style="height:154; width:100%"/>
 		<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
@@ -104,5 +165,9 @@
 		<td valign="middle" width="8px" align="right">
 			<input type="image" src="img/default/arrow-next.png" onclick="theme.browse.next()"/>
 		</td>
+	</tr>
+	</table>
+
+	</td>
 	</tr>
 	</table>

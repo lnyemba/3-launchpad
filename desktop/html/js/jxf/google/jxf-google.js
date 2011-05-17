@@ -11,6 +11,7 @@ if(!gapi){
 
 gapi.login={
 	googleToken:null,
+        headers:null,
 	/**
 	* uid	: dom user id (email in the case of google)
 	* pid	: dom password id
@@ -32,6 +33,8 @@ gapi.login={
 			if(istream.split('Auth=') != null){
 				var regex = new RegExp('Auth=(.+)') ;
 				gkey = istream.match(regex) ;
+                                gapi.googleToken = gkey ;
+
 				if(gkey !=  null){
 					gkey = gkey[1] ;
 					var token = 
@@ -47,6 +50,9 @@ gapi.login={
 							'value':'3.0'
 						}
 					);
+                                        gapi.headers = [token,{'key':'GData-Version','value':'3.0'}] ;
+
+
 				}
 			}
 			if(gkey != null && forward != null){
@@ -75,7 +81,7 @@ gapi.gdocs={
 		}
 	*/
 	parse:function(xmlhttp,callback){
-		
+		air.trace(xmlhttp.responseText)
 		var nodes = xmlhttp.firstChild.getElementsByTagName('entry');
 		
 		var rec ={} ;
@@ -106,7 +112,7 @@ gapi.gdocs={
 					rec.data[i].uri = entry.attributes[1].value ;
 				}else if(entry.nodeName == 'title'){
 					rec.data[i].name = entry.firstChild.nodeValue ;
-					rec.data[i].name = rec.data[i].name.replace('.mp3','');
+					rec.data[i].name = rec.data[i].name.replace(/(.mp3)$/i,'');
 				}else if(entry.nodeName == 'author'){
 					rec.data[i].owner = entry.childNodes[0].firstChild.nodeValue ;
 					rec.data[i].email = entry.childNodes[1].firstChild.nodeValue

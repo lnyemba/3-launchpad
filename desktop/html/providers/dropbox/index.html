@@ -1,69 +1,65 @@
-<div ><img src="img/dropbox-logo.png"/></div>
-<div style="margin-top:-9%; margin-left:35px; font-size:14px; font-weight:bold">Dropbox Music Library</div>
-<div style="margin-top:-1%; margin-left:36px" class="medium">
-    Indexed for quick access
-</div>
-<table id="dropbox.login" width="85%" style="margin-top:2%" align="center">
-<tr class="medium">
-<td valign="top">
-<div class="rounded-corners" style="border:1px solid gray">
-	<table width="100%" cellspacing="1px">
-	  <tr class="default">
-	    <td width="22%">Email</td>
-	    <td><input id="dropbox.email" type="text" class="default" style="width:80%" value="team.3launchpad@gmail.com"/></td>
-	  </td>
-	  </tr>
-	  <tr class="default">
-	    <td>Password</td>
-	    <td><input id="dropbox.password" type="password" class="default" style="width:80%" value=""/></td>
-	  </tr>
-	  <tr class="default">
-	    <td colspan="2" valign="middle" align="left">
-	      &nbsp;<span id="dstore.status" style="color:#436EEE;"></span>
-	    </td>
-	  </tr>
-	  </table>
-	  <table width="98%" align="center" style="border-top:1px solid gray; margin-top:3%" cellspacing="0px">
-	  <tr style="; font-weight:bold" class="small shaded-dark action">
-	  <td valign="top"  onclick="gstore.login.init()" style="width:15%">
-	      <img src="img/dropbox-logo.png"/>
-	  </td>
-	  <td onclick="dstore.init.login()" valign="middle">
-	      Login
-	  </td>
-	  <td style="width:15%;border-left:1px solid gray" onclick = "dstore.cancel()">
-	      <img src="img/default/clear.png"/>
-	  </td>
-	  <td valign="middle"  onclick = "gstore.login.cancel()" style="width:35%">
-	      Clear/Reset
-	  </td>
-	  </tr></table>
-  </div>
- </td>
- </tr></table>
-<div id="dropbox.allow" style="display:none; margin-top:2%">
-	<iframe id="dropbox.allow.window" style="border:0px; width:100%; height:90%;" class="medium">	
-	</iframe>
-	<table width="100%">
-		<tr class="medium">
-		<td valign="top" width="16px">
-			<input type="image" src="img/default/arrow-prev.png" onclick="jx.dom.hide('dropbox.allow'); jx.dom.show('dropbox.login')"/>
+<table class="" width="100%" cellspacing="0" style="border:1px solid gray">
+	<tr class="default">
+		<td width="34px"><img src="img/dropbox-logo.png"/></td>
+		<td>
+			<b class="caption">Dropbox</b>
+			<div class="small">Dropbox's Cloud Service, you must have an account with dropbox</div>
 		</td>
-		<td style="font-size:14px">&bull;&bull;</td>
-		<td align="right" style="font-size:14px">&bull;&bull;</td>
-		<td align="right" valign="top" width="16px">
-			<input type="image" src="img/default/arrow-next.png"/>
-		</td>
-		</tr>
-	</table>
+	</tr>
+</table>
 
-</div>
-<div id="dstore.report" style="display:none; margin-top:3%; border-top:1px solid gray">
-	<b>Summary Report</b>
-	<div>
-		  mp3 files found : <span id="dstore.size"></span>
-	</div>
-	<div>
-	  mp3 folder count: <span id="dstore.owners"></span>
-	</div>
-</div>
+	<table id="dropbox.login" class="" width="370px" cellspacing="1px" align="center" style="margin-top:2%; border:1px solid gray">
+            <tr class="default">
+                <td colspan="2" style="font-weight:bold; border-bottom: 1px solid gray">
+                    Authentication
+                </td>
+            </tr>
+            <tr class="default">
+                <td colspan="2" style="font-weight:bold;">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr class="default">
+                <td width="22%">Email</td>
+                <td>
+                    <input id="dropbox.email" type="text" class="default" style="width:80%" value="nyemba@gmail.com"/>
+                </td>
+                
+            </tr>
+            <tr class="default">
+                <td>Password</td>
+                <td><input id="dropbox.password" type="password" class="default" style="width:80%" value=""/></td>
+            </tr>
+            <tr class="default">
+                <td colspan="2" valign="middle" align="left">
+                  &nbsp;<span id="dropbox.status" style="color:#436EEE;"></span>
+                </td>
+            </tr>
+            <tr class="default">
+                <td class="shaded-dark" style=" border-top:1px solid gray" align="left" colspan="2">
+                    
+
+                    <input type="button" value="Login" class="shaded-dark default-button" style="" onclick="dropbox.login()"/>
+                    <input type="button" value="Cancel" class="shaded-dark default-button" />
+                </td>
+            </tr>
+	  </table>
+
+    <table id="dropbox.files" width="500" align="center" style="display:none;margin-top:2%;border:1px solid gray" class="">
+        <tr class="default" >
+            <td colspan="2" style="font-weight:bold; background-color:#d3d3d3; border-bottom:1px solid gray">Dropbox music</td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <input class="default" type="text" id="dropbox.search" style="width:100%" onkeyup="search('dropbox.search','dropbox.music')"/>
+            </td>
+            <td width="15px" class="action" onclick="jx.dom.set.value('dropbox.search',''); search('dropbox.search','dropbox.music'); jx.dom.set.focus('dropbox.search')">&lsaquo;&lsaquo;</td>
+        </tr>
+        <tr class="default">
+            <td colspan="2">
+                <div id="dropbox.files.grid" style="height:210px; overflow: auto"></div>
+                
+            </td>
+        </tr>
+        
+    </table>

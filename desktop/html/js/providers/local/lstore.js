@@ -35,7 +35,8 @@ var lstore={
     var callback=function(rec){
       
       if(rec.data != null && rec.data[0].value !="{}"){
-	var stream = Base64.decode(rec.data[0].value) ;
+	//var stream = Base64.decode(rec.data[0].value) ;
+        var stream = rc.data[0].value.replace(/\x26/g,"'") ;
 	var json = eval("("+stream+")")  ;
 	if(json != null){
 	  lstore.library = json ;
@@ -67,11 +68,10 @@ var lstore={
 	}
 
 	jx.dom.set.value('folder',path) ;
-	jx.dom.set.value('lstore.status','complete, Local library has been indexed') ;
-	jx.dom.set.value('lstore.size',lstore.library.playlist.length) ;
-	jx.dom.set.value('lstore.owners',lstore.library.owners.meta.length) ;
+	jx.dom.set.value('lstore.status','<b style="color:black">Yeah !!</b> Local library has been indexed') ;
+	
 	//jx.dom.set.value('menu.lstore.size',lstore.library.playlist.length) ;
-	jx.dom.show('lstore.report') ;
+	
 	library.register('local',lstore.library)  ;
       }else{
 	  lstore.reset() ;
@@ -83,7 +83,8 @@ var lstore={
   save:function(){
     var stream = JSON.stringify(lstore.library) ;
     //-- saving the json stream to the backend    
-    stream = Base64.encode(stream);
+    //stream = Base64.encode(stream);
+    stream = stream.replace(/'/g,'\x26')
     air.trace(stream);
     sqlite.run.cmd('3launchpad.db3',"update params set value='"+stream+"' where alias='local.library'") ;
   },//-- end lstore.save()
@@ -94,7 +95,7 @@ var lstore={
       if(list[i].extension == 'mp3' && list[i].isDirectory == false){
 	entry = {};
 	entry.name = list[i].name ;
-	entry.name = entry.name.replace('.mp3','') ;
+	entry.name = entry.name.replace(/(.mp3)$/i,'') ;
 	//entry.name = (entry.name.length > 30)?(entry.name.substring(0,30)+'...'):entry.name ;
 	entry.uri = ('file://'+list[i].nativePath)
 	entry.owner = 'Local Music' ;
@@ -116,19 +117,38 @@ var lstore={
 	lstore.getPlaylist(list[i].nativePath) ;
       }
     }
-    
-    
+    var grid = jx.grid.from.map.get(['name'],lstore.library.playlist) ;
+    grid.id = 'local.music'
+    grid.className = 'data-grid'
+    var list = lstore.library.playlist ;
+    for(var i=0; i < list.length; i++){
+        grid.rows[i].info = list[i] ;
+        div = document.createElement('DIV') ;
+        div.innerHTML = '&rsaquo;&rsaquo; '+list[i].owner ;
+        div.className = 'medium'
+        div.style['font-weight'] = 'normal'
+        grid.rows[i].cells[0].appendChild(div) ;
+
+        edit= document.createElement('INPUT') ;
+        edit.type = 'image'
+        edit.src= 'img/default/edit.png'
+        edit.style['float'] = 'right' ;
+        edit.style['margin-top'] = '-20px'
+        grid.rows[i].cells[0].appendChild(edit);
+
+    }
+    jx.dom.set.value('local.files.grid','') ;
+    jx.dom.append.child('local.files.grid',grid) ;
+    jx.dom.hide('local.index')
+    jx.dom.show('local.files') ;
+
+    jx.dom.set.value('local.size',lstore.library.playlist.length) ;
     
   },
   reset:function(){
     jx.dom.set.value('folder','[unknown]') ;
     jx.dom.set.value('lstore.status','&nbsp;') ;
-    
-    
-    
-    
-    jx.dom.hide('lstore.report') ;
-    jx.dom.set.value('lstore.size','00') ;
+    jx.dom.set.value('local.size','0')
     //jx.dom.set.value('menu.lstore.size','00') ;
     
     lstore.library = {

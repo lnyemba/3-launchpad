@@ -15,6 +15,40 @@ if(!jx){
   var jx = {}
 }
 jx.ajax = {
+        /**
+         * In order to make the ajax requests domain specific we allow users to get an instance while making a global implementation available
+         * This is useful for oauth applications that require domain specific headers to be set upon issuing a request
+         */
+        getInstance:function(){
+            var obj = {} ;
+            obj.headers = [] ;
+            obj.send = function(url,callback,method){
+                    var xmlhttp =  new XMLHttpRequest()  ;
+                    method = (method==null)?'GET':method ;
+                    xmlhttp.onreadystatechange = function(){
+                        if(xmlhttp.readyState == 4){
+                          callback(xmlhttp) ;
+                        }
+                    }//-- end of Inline function
+                    var key,value ;
+                    xmlhttp.open(method,url,true) ;
+                    
+                    if(obj.headers.length > 0){
+                            for(var i=0; i < obj.headers.length; i++){
+                                    key = obj.headers[i]['key'] ;
+                                    value= obj.headers[i]['value'];
+                                    
+
+                                    if(key != null && value != null){
+                                            xmlhttp.setRequestHeader(key,value) ;
+                                    }
+                            }
+                    }
+                  xmlhttp.send(null) ;
+            }
+            return obj;
+
+        },//-- end jx.ajax.getInstance
 	send:function(url,callback,method){
 	  var xmlhttp =  new XMLHttpRequest()  ;
 	  method = (method==null)?'GET':method ;
@@ -83,4 +117,3 @@ function urlparser(url){
 
 	return r;
 }
-

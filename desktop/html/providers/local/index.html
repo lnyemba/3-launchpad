@@ -1,36 +1,56 @@
+<table class="" width="100%" cellspacing="0" style="border:1px solid gray">
+	<tr class="default">
+		<td width="34px"><img src="img/drive.png"/></td>
+		<td>
+			<b class="caption">Hard drive</b>
+			<div class="small">Select the music folder on your hard drive</div>
+		</td>
+	</tr>
+</table>
 
-<div ><img src="img/drive.png"/></div>
-<div style="margin-top:-9%; margin-left:35px; font-size:14px; font-weight:bold">Local Music</div>
-<div style="margin-top:-1.2%; margin-left:35px">
-  Select the music folder to be indexed
-</div>
-<table width="85%" align="center" style="margin-top:3%">
-	<tr class="medium">
+<table id="local.index" width="370px" align="center" style="margin-top:3%; border:1px solid gray">
+	<tr class="default">
 	<td valign="top">
-		<div class="rounded-corners" style="margin:2px; border:1px solid gray; margin:3px">
-			<div style="margin-top:0px"><b>Music Folder</b></div>
-			<div id="folder" class="medium" style="border:1px solid #d3d3d3;">[unknown]</div>
-			<div id="lstore.status" class="default" style="color:#436EEE; margin-top:3px"></div>
-				
-		  <table width="98%" align="center" cellspacing="0px" style="border-top:1px solid gray">
-		  <tr style="; font-weight:bold" class="small shaded-dark action">
-			  <td valign="top"  onclick="lstore.init.browse()" style="width:15%">
-		      <img src="img/default/search.png"/>
-		  </td>
-		  <td onclick="lstore.init.browse()" valign="middle">
-		      Scan/Rescan
-		  </td>
-		  <td style="width:15%;border-left:1px solid gray" onclick = "lstore.reset();">
-		      <img src="img/default/clear.png"/>
-		  </td>
-		  <td valign="middle"  onclick = "lstore.reset();" style="width:35%">
-		      Clear/Reset
-		  </td>
-		  </tr></table>
-		
-	  	</div>
-	  </td>
-  </tr></table>
+            <b>Scan music</b>
+        </td>
+        </tr>
+        <tr class="default">
+        <td>
+            <input type="text" id="folder" class="default" style=" width:100%" value="[Unknown]" readonly>
+        </td>
+        </tr>
+        <tr class="default">
+            <td>
+                &rsaquo;&rsaquo;<span id="lstore.status" class="default" style="color:#436EEE; margin-top:3px"> &nbsp;</span>
+            </td>
+        </tr>
+        <tr class="default shaded-dark">
+            <td style="border-top:1px solid gray">
+                <input type="button" class="shaded-dark default-button" value="Scan/Rescan" onclick="lstore.init.browse()"/>
+                <input type="button" class="shaded-dark default-button" value="Cancel"/>
+
+            </td>
+        </tr>
+ </table>
+
+    <table id="local.files" width="500px" align="center" style="display:none;margin-top:2%;border:1px solid gray" class="">
+        <tr class="default" >
+            <td colspan="2" style="font-weight:bold; background-color:#d3d3d3; border-bottom:1px solid gray">Hard drive music</td>
+        </tr>
+        <tr class="medium">
+            <td>
+                <input type="text" id="local.search" style="width:100%" onkeyup="search('local.search','local.music')"/>
+            </td>
+            <td width="15px" class="action" onclick="jx.dom.set.value('local.search',''); search('local.search','local.music'); jx.dom.set.focus('local.search')">&lsaquo;&lsaquo;</td>
+        </tr>
+        <tr class="default">
+            <td colspan="2">
+                <div id="local.files.grid" style="height:210px; overflow: auto"></div>
+
+            </td>
+        </tr>
+
+    </table>
 
 <div id="lstore.report" style="display:none; margin-top:3%; border-top:1px solid gray; margin-left:40px; width:80%">
 <b>Summary Report</b>

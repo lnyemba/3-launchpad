@@ -5,7 +5,7 @@ var updater={
     var url = 'version.json' ;
     var fn = function(xmlhttp){
       var current = eval("("+xmlhttp.responseText+")") ;
-      jx.dom.set.value('version','version '+ current.version+' '+current.release+'-'+current['code.name']) ;
+      jx.dom.set.value('version','- '+ current.version+''+current.release) ;
       updater.uri = current.uri ;
       updater.version = parseFloat(current.version) ;
       updater.lookup() ;

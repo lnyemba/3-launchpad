@@ -45,18 +45,21 @@ var utils={
     show:function(id){
       //jx.dom.hide('default');
       var meta = utils.modules.cache.meta ;
-      for(var i=0; i < meta.length; i++){
-	jx.dom.hide(meta[i]) ;
-	key = meta[i] ;
-	pages = utils.modules.cache.pages[key] ;
-	for(var j=0; j < pages.length; j++){
-	  jx.dom.hide(pages[j].id) ;
-	}
+      for(var i=0; i < meta.length; i++){        
+        jx.dom.hide(meta[i]) ;
+        key = meta[i] ;
+        pages = utils.modules.cache.pages[key] ;
+        for(var j=0; j < pages.length; j++){
+          jx.dom.hide(pages[j].id) ;
+        }
       }
-      jx.dom.show('controls'); 
-      jx.dom.show('mainmenu') ;
+      //jx.dom.show('menu')
+      //jx.dom.show('controls');
+      //jx.dom.show('mainmenu') ;
       jx.dom.show('stdout') ;
-      $('#'+id).slideDown() ;
+      
+      jx.dom.show(id);
+      //$('#'+id).slideDown() ;
       
       
     }//-- end utils.modules.show(base,id) ;
@@ -91,6 +94,7 @@ function search(qid,dbase){
   for(var i=0; i < table.rows.length; i++){
 	  //name = table.rows[i].cells[0].innerHTML.toLowerCase() ;
 	  info = table.rows[i].info  ;
+          
 	  if(info != null){
 	  	name = info.name.toLowerCase() ;	  
 	  	owner = info.owner.toLowerCase();
@@ -112,4 +116,19 @@ function rmdb(){
   window.location.reload(true) ;  
 }
 
-
+function getWindowInstance(uri){
+	var options = new air.NativeWindowInitOptions() ;
+	options.systemChrome = air.NativeWindowSystemChrome.STANDARD; ;
+	options.resizable = false;
+	options.maximizable = false;
+	options.minimizable = false;
+	options.type = 'normal' ;
+	var x = window.nativeWindow.x+215 ;
+	var y = window.nativeWindow.y+95 ;
+	var bounds = new air.Rectangle(x,y,850,550) ;
+	var win = air.HTMLLoader.createRootWindow(true,options,true,bounds);
+	var request = new air.URLRequest(uri) ;
+	win.load(request) ;
+	win.stage.nativeWindow.activate() ;
+	return win.stage.nativeWindow ;
+}

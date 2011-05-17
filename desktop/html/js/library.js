@@ -4,9 +4,9 @@ var library={
   cache:{},
   register:function(key,pointer){
       library.cache[key] = pointer;
-      menulib.open(key) ;
-      menulib.open('all');
-      library.render('menulib','all')
+      //menulib.open(key) ;
+      //menulib.open('all');
+      //library.render('menulib','all')
     
   },//-- end library.set(key,pointer
   get:function(keys){
@@ -34,7 +34,7 @@ var library={
       pointer = library.cache[key] ;
     }
       jx.dom.set.value(target,'') ;
-     if(pointer != null){
+     if(pointer != null && pointer.playlist != null){
 	var table = playlist.init(pointer.playlist) ;
 	table.className = 'rounded-corners'
 	table.width = '100%'
