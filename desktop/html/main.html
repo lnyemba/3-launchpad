@@ -1,0 +1,146 @@
+<link href="css/default.css" type="text/css" rel="stylesheet">
+<link href="css/library-icons.css" type="text/css" rel="stylesheet">
+
+<!-- 
+    *
+    * Third party javascript libraries:
+    *	JQuery 1.5	http://jquery.org
+
+    *	adobe air	provided by adobe air (aliasing to actionscript) 
+    *
+-->
+<script src="js/air/air-aliases.js"></script>
+<script src="js/jquery/jquery-1.5.js"></script>
+<script src="js/jquery/jquery-ui-min-1.5.js"></script>
+<link href="js/jquery/css/jquery-ui.1.8.css" rel="stylesheet" type="text/css">
+<script src="js/utils.js"></script>
+<!-- 
+	*
+	* jxf framework and utilities
+	*	rpc		performs rpc handling (ajax)
+	*	dom		manipulation of dom objects (common tasks)
+	*	sqlite		adobe air wrapper for handling sqlite dbase
+	*	jxbinder	runtime loading of html documents this is a work around the annoying adobe air sandbox
+	*
+-->
+
+<script src="js/jxf/jxbinder.js"></script>
+<script src="js/jxf/google/jxf-google.js"></script>
+<script src="js/jxf/dom.js"></script>
+<script src="js/jxf/rpc.js"></script>
+<script src="js/jxf/sqlite.js"></script>
+<script src="js/jxf/widgets/grid.js"></script>
+<script src="js/jxf/lastfm/parser.js"></script>
+<script src="js/jxf/facebook/jxf-facebook.js"></script>
+
+<script src="js/jxf/crypt/sha1.js"></script>
+<script src="js/jxf/crypt/oauth.js"></script>
+
+<script src="js/updater.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/library.js"></script>
+<!--
+	*
+	* Integrating cloud service providers
+	* dropbox; google
+	*
+-->
+<script src="js/providers/dropbox/dropbox-service.js"></script>
+<script src="js/providers/dropbox/dropbox.js"></script>
+<script src="js/providers/local/lstore.js"></script>
+<script src="js/providers/google/gdocs-handler.js"></script>
+
+<script>
+	/**
+	* This function insures that 3-launchpad environment setup appropriately:
+	*	- internal database 
+	*/
+	var initpage = 'welcome'
+	function setup(){
+		var file = air.File.applicationStorageDirectory.resolvePath("3launchpad.db3") ;
+	    	if(file.exists == false){
+		      sqlite.run.create("3launchpad.db3") ;
+		      var create = "create table params(agn integer not null primary key, alias varchar not null unique, value varchar not null)" ;
+		      var insert = "insert into params (alias,value) values('theme','clone')" ;
+		      sqlite.run.cmd(file.nativePath,create) ;
+		      sqlite.run.cmd(file.nativePath,insert) ;
+		      sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('local.library','{}')") ;
+		      sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('dropbox.library','{}')");
+		      sqlite.run.cmd(file.nativePath,"insert into params(alias,value) values('open.mp3','true')");
+		      //
+		      // add a log table here to allow log analysis against Jarvis
+		
+		    }else{
+		      initpage = 'mlibrary'
+		    }
+
+	}
+	setup() ;
+	function Initialize(){
+		//updater.init();
+		utils.modules.setup() ;
+		jx.dom.show('mainmenu') ;
+		utils.modules.show('dropbox');
+                //
+                // enable the slider
+
+                $('#songprogress').slider(
+                    
+                ) ;
+                $('#opacity').slider(
+
+                ) ;
+                utils.modules.show('player');
+                var internal = theme.get.internal() ;
+                theme.data['built-in'] = internal
+                theme.browse.init("built-in")
+	}
+	/**
+	* We are loading modules i.e files that will be part of the core application
+	* The lifecycle of these files is as follows:
+	*	- Load i.e read from disk and store into a variable
+	*	- When the DOM components are loaded the add them into the designated areas
+	*	- They are ready to go
+	* Caution to avoid naming conflicts it's important to prefix them with their domain
+	*/
+	
+	utils.modules.init('player','player.html','stdout');
+	utils.modules.init('theme','theme.html','player_stdout');
+	utils.modules.init('help','help.html','stdout');
+	utils.modules.init('credits','credits.html','stdout');
+	utils.modules.init('browser','browser.html','stdout');
+        //
+        // loading provider interface configuration
+        //
+        utils.modules.init('providers','providers/index.html','player_stdout')
+	utils.modules.init('google','providers/google/index.html','providers.stdout') ;
+	utils.modules.init('dropbox','providers/dropbox/index.html','providers.stdout') ;
+	utils.modules.init('local','providers/local/index.html','providers.stdout') ;
+        utils.modules.init('sys_mp3','providers/system/mp3-config.html','providers.stdout') ;
+        utils.modules.init('restore','providers/system/restore.html','providers.stdout') ;
+ 	//utils.modules.init('config','config.html','stdout') ;
+        utils.modules.init('menu','controls.html','menupanel') ;
+
+        var menu={} ;
+        menu.ison = true ;
+
+        menu.toggle=function(){
+            var pointer ;
+            jx.dom.show('menupanel')
+            $('#menu').slideToggle();
+        }
+        menu.open=function(alias){
+
+        }
+</script>
+<body class="default metallic" onload="Initialize()">
+    
+
+<div id="stdout"></div>
+<div id="dock" align="center" style="">
+    3-launchpad is distributed and licensed under GPL v3
+    <div class="small">&copy; 2010 - 2011 http://www.3-launchpad.org</div>
+</div>
+
+
+</body>
