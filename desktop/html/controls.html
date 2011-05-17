@@ -1,32 +1,102 @@
-	<table class="shaded" style="-webkit-border-bottom-right-radius:10px;"" width="100%">
-		<tr class="small" >
-		<td align="center" class="action" width="48px" onclick="utils.modules.show('player');  " style="border-right:1px solid gray">
-			<img src="img/3-launchpad.png">
-		</td>
-		<td align="center" class="action" width="48px" onclick="library.render('menulib','all'); utils.modules.show('mlibrary'); jx.dom.set.focus('menu.library.search')  ">
-			<img src="img/default/mysongs.png">
-		</td>
-		<td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('theme'); ">
-		    <img src="img/default/theme.png">
-		</td>
-		<td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('local'); ">
-		    <img src="img/drive.png">
-		</td>
-		<td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('google'); jx.dom.set.focus('email')">
-		    <img src="img/google-logo.png">
-		</td>
-		<td align="center" class="action" width="48px" style="border-left:1px solid gray;display:none" onclick="utils.modules.show('dropbox')">
-		    <img src="img/dropbox-logo.png">
-		</td>
-		<td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('config');">
-		    <img src="img/default/setup.png">
-		</td>
-		<td align="center" class="action" width="48px" style="border-left:1px solid gray" onclick="utils.modules.show('help');">
-			<img src="img/default/info.png">
-		</td>
-		<td class="action" align="center" width="48px" style="border-left:1px solid gray" onclick="window.close()">
-		    <img src="img/logoff.png">
-		</td>  
-		</tr>
-	</table>
+<div >
+    <table width="100%" cellspacing="0">
+        <tr class="default" style="font-size:12px;font-weight:bold"
+                onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                onmouseout  ="this.style['background-color'] = null"
 
+            >
+            <td width="34">
+                <img src="img/3-launchpad.png"/>
+            </td>
+            <td valign="middle">
+                Now Playing
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <table width="100%" cellspacing="0">
+        <tr class="default" style="font-size:12px;font-weight:bold"
+                onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                onmouseout  ="this.style['background-color'] = null"
+
+            >
+            <td width="34">
+                <img src="img/default/mysongs.png"/>
+            </td>
+            <td valign="middle">
+                Music Library
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <table width="100%" cellspacing="0">
+        <tr class="default action" style="font-size:12px;font-weight:bold" onclick="utils.modules.show('theme');jx.dom.show('player'); jx.dom.show('player_stdout') "
+                onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                onmouseout  ="this.style['background-color'] = null"
+            >
+            <td width="34">
+                <img src="img/default/theme.png"/>
+            </td>
+            <td valign="middle">
+                Themes
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div>
+    <table width="100%" cellspacing="0">
+        <tr class="default" style="font-size:12px;font-weight:bold"
+                onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                onmouseout  ="this.style['background-color'] = null"
+
+            >
+            <td width="34">
+                <img src="img/default/lyrics.png"/>
+            </td>
+            <td valign="middle">
+                Song Lyrics
+            </td>
+        </tr>
+    </table>
+</div>
+
+
+<div>
+    <table width="100%" cellspacing="0">
+        <tr class="default" style="font-size:12px;font-weight:bold"
+                onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                onmouseout  ="this.style['background-color'] = null"
+
+            >
+            <td width="34">
+                <img src="img/default/wiki.png"/>
+            </td>
+            <td valign="middle">
+                Wikipedia
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div>
+    <table width="100%" cellspacing="0">
+        <tr class="default action" style="font-size:12; font-weight:bold" onclick="utils.modules.show('providers'); jx.dom.show('player'); jx.dom.show('player_stdout') "
+                onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                onmouseout  ="this.style['background-color'] = null"
+
+            >
+            <td align="center" class="action" width="34px" >
+                <img src="img/default/setup.png">
+            </td>
+            <td valign="middle">
+                Setup Music
+            </td>
+        </tr>
+    </table>
+</div>
