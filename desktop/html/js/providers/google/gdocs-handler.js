@@ -31,7 +31,7 @@ var gstore={
 		
 	},
 	getmusic:function(next){
-		var url = 'https://docs.google.com/feeds/default/private/full?q=*.mp3'
+		var url = 'https://docs.google.com/feeds/default/private/full?q=.mp3 -.doc'
 		var callback=function(xmlhttp){
 		  gstore.library = gapi.gdocs.parse(xmlhttp.responseXML) ;
 		  //
@@ -55,17 +55,25 @@ var gstore={
 		  //
 		  // TODO: The code below needs to be in it's own section
 		  //jx.dom.set.value('menu.gstore.size',gstore.library.playlist.length) ;
-		  jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;
-		  jx.dom.set.value('gstore.owners',gstore.library.owners.meta.length) ;
-		  jx.dom.show('gstore.report') ;
-		  
-		  library.register('google',gstore.library)  ;
+
+		  //jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;
+		  //jx.dom.set.value('gstore.owners',gstore.library.owners.meta.length) ;
+                  var grid = jx.grid.from.map.get(['name'],gstore.library.playlist) ;
+                  //grid.id = 'gdocs.music'
+                  //grid.className = 'data-grid'
+                  //jx.dom.set.value('gdocs.files.grid','')
+                  //jx.dom.append.child('gdocs.files.grid',grid);
+                  //jx.dom.hide('gdocs.login')
+		  //jx.dom.show('gdocs.files') ;
+		  //jx.dom.set.value('gdocs.size',gstore.library.playlist.length)
+		  //library.register('google',gstore.library)  ;
+                  gstore.render(grid)
 		  gstore.getNextPage(next) ;
 		  
 		}//-- end of inner function call ...
 		jx.dom.set.value('gstore.status','Please wait while retrieving music')
 		jx.ajax.run(url,callback,'GET') ;
-	},
+	},//-- end gstore.getmusic()
 	/**
 	* Because google does NOT return the entire list of songs through it's api and provides paging
 	* we will fetch the next pages here and append them to the existing library ....
@@ -90,29 +98,53 @@ var gstore={
 	      
 	    }
 	    
-	    jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;
-	    jx.dom.set.value('gstore.owners',gstore.library.owners.meta.length) ;
-	    jx.dom.show('gstore.report') ;
+	    //jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;
+	    //jx.dom.set.value('gstore.owners',gstore.library.owners.meta.length) ;
+            jx.dom.set.value('gdocs.size',gstore.library.playlist.length);
+
+            var grid = jx.grid.from.map.get(['name'],gstore.library.playlist) ;
+            gstore.render(grid)
+            //grid.id = 'gdocs.music'
+            //grid.className = 'data-grid'
+            //jx.dom.set.value('gdocs.files.grid','')
+            //jx.dom.append.child('gdocs.files.grid',grid)
+            //jx.dom.hide('gdocs.login')
+            //jx.dom.show('gdocs.files') ;
+	    
 		  
 	    library.register('google',gstore.library)  ;
 
-	    library.register('google',gstore.library)  ;
+	    
 	  }
 	  jx.ajax.run(uri,callback,'GET') ;
 	},//-- gstore.getNextPage(uri)
-	showSongs:function(){
+	render:function(table){
+            table.id = 'gdocs.music'
+            table.className = 'data-grid'
+            list = gstore.library.playlist ;
+            for(var i=0; i < list.length; i++){
+                table.rows[i].info      = list[i]
+                table.rows[i].headers   = gapi.headers ;
+                div = document.createElement('DIV') ;
+                div.innerHTML = '&rsaquo;&rsaquo; google ('+list[i].owner+')' ;
+                div.className = 'medium'
+                div.style['font-weight'] = 'normal'
+                table.rows[i].cells[0].appendChild(div) ;
 
-	  if(gstore.library != null){
-	    var table = playlist.init(gstore.library.playlist) ;
-	    
-	    jx.dom.set.value('gstore.song.count',table.rows.length.toFixed(2)) ;
-	    jx.dom.append.child('gstore.songs.library',table) ;
-	    $('#gstoreipanel').slideUp() ;
-	    $('#gstoremusicpanel').slideDown() ;
-	  }else{
-	    jx.dom.set.value('gstore.status','Music is not yet indexed, please login first') 
-	  }
-	},//-- end gstore.showSongs()
+                edit= document.createElement('INPUT') ;
+                edit.type = 'image'
+                edit.src= 'img/default/edit.png'
+                edit.style['float'] = 'right' ;
+                edit.style['margin-top'] = '-20px'
+                table.rows[i].cells[0].appendChild(edit);
+            }
+            jx.dom.set.value('gdocs.files.grid','')
+            jx.dom.append.child('gdocs.files.grid',table)
+            jx.dom.hide('gdocs.login')
+            jx.dom.show('gdocs.files') ;
+
+	  
+	},//-- end gstore.render()
 	showUsers:function(target){
 	  if(library.current != 'google' || gstore.library == null){
 	    return ;
