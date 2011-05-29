@@ -17,17 +17,17 @@
         <td valign="top">
             <div style=" float:none"><b>Browse Backgrounds</b></div>
             <div>
-                <input type="button" class="default-button" value="Drive"/>
-                <input type="button" class="default-button" value="Built-in"/>
-                <input type="button" class="default-button" value="Online"/>
+                <input type="button" class="default-button" value="My Pictures" onclick="theme.local.render.input()"/>
+                <input type="button" class="default-button" value="Built-in" onclick="theme.browse.init('built-in')"/>
+                <input type="button" class="default-button" value="Online" onclick="theme.remote.render.input()"/>
             </div>
             <div id="preview" align="center" style="border:1px solid white; height:150px; overflow:hidden">
-                <div id="pcontent" style="overflow:hidden;"></div>
+                <div id="pcontent" class="theme-window" style="overflow:hidden;"></div>
             </div>
 
            
 
-            <div style="">
+            <div id="theme_navigation" style="">
                 <table width="100%" align="center">
                     <tr class="medium">
                         <td width="18px">
@@ -41,7 +41,7 @@
                                    />
                         </td>
                         <td>
-                            Source :<span id="theme.source"></span>
+                            Source :<span id="theme.source" style="text-transform: capitalize"></span>
                         </td>
                         <td width="18px">
                             <input type="image" src="img/default/arrow-next.png"
@@ -61,113 +61,3 @@
         
     </tr>
 </table>
-<table align="center" width="280" style="display:none">
-<tr class="medium">
-<td>
-<div id="previewframe" style="position:relative;width:278px;margin-left:35px; height:165px; margin-top:1px">
-	      <div id="preview0"  class="action rounded" style="left:0;border:1px solid gray; display:block;position:relative;float:left; width:275px" onclick="theme.set('e-launchpad')">
-			<img  src="img/themes/3-launchpad.png" style="height:154; width:100%"/>
-		<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-		  3-launchpad corner
-		  <div>Team 3-launchpad - Nicolas Nyemba</div>
-		</div>
-	      </div>
-
-	<div id="preview1"  class="action rounded" style="display:none; border:1px solid gray;position:absolute;float:left;left:0; width:275px" onclick="theme.set('caffeine')">
-		<img  src="img/themes/caffeine.jpg" style="height:154; width:100%"/>
-			<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-				  Caffeine
-		  <div>http://deviantart.com</div>
-		</div>
-	</div>
-
-	<div id="preview2"  class="action rounded" style=" border:1px solid gray;display:none; border:1px solid gray;position:absolute;float:left; width:275px" onclick="theme.set('none')">
-		<div style="height:149px"></div>
-			<div align="left" style=" background-color:#f3f3f3; margin-top:-25px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-		  	Transparent 
-	  		<div>Team 3-launchpad - Steve Nyemba</div>
-		</div>
-      </div>
-      
-
-      <div id="preview3" class="action rounded" style="display:none; border:1px solid gray;position:absolute;float:left; width:275px" onclick="theme.set('hong-kong')">
-	<img src="img/themes/hong-kong.jpg" style="height:154; width:100%"/>
-	<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-	  Hong-Kong by Jez92
-	  <div>http://jez92.deviantart.com</div>
-	</div>
-      </div>
-
-      <div id="preview4" class="action rounded" style="display:none; border:1px solid gray;position:absolute;float:left; width:275px" onclick="theme.set('party')">
-	<img src="img/themes/party.jpg" style="height:154; width:100%"/>
-	<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-	  Shadow of a party
-	  <div>http://images.google.com</div>
-	</div>
-      </div>
-      <div id="preview5" class="action rounded" style="display:none; border:1px solid gray;position:absolute;float:left; width:275" onclick="theme.set('sketch')">
-	<img src="img/themes/sketch-technology.jpg" style="height:154; width:100%"/>
-	<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-	  Technology sketched out
-	  <div> http://www.deviantart.com</div>
-	</div>
-      </div>   
-      <div id="preview6"  class="action rounded" style="display:none; border:1px solid gray;position:absolute;float:left; width:275" onclick="theme.set('music')">
-	<img src="img/themes/music.jpg" style="height:154; width:100%"/>
-	<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-	  Inspired music
-	  <div>http://deviantart.com/</div>
-	</div>
-      </div>
-      <div id="preview7"  class="action rounded" style="display:none; border:1px solid gray;position:absolute;float:left; width:275px" onclick="theme.set('tuareg')">
-	<img src="img/themes/tuareg.jpg" style="height:154; width:100%"/>
-	<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-	  Tuareg woman
-	  <div>http://www.images.google.com/</div>
-	</div>
-      </div>
-      <div id="preview8"  class="action rounded" style="display:none; border:1px solid gray;position:absolute;float:left; width:275px" onclick="theme.set('sahara')">
-	<img src="img/themes/sahara.jpg" style="height:154; width:100%"/>
-	<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-	Sahara desert
-	  <div>http://www.flickr.com/</div>
-	</div>
-      </div>    
-      <div id="preview9"  class="action rounded" style="display:none; border:1px solid gray;position:absolute;float:left;width:275" onclick="theme.set('zen')">
-	<img src="img/themes/zen.jpg" style="height:154; width:100%"/>
-	<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-	Zen & meditation
-	  <div>http://www.deviantart.com/</div>
-	</div>
-      </div>  
-      <div id="preview10"  class="action rounded" style="width:270px; display:none; border:1px solid gray;position:absolute;float:left; width:275" onclick="theme.set('party2')">
-	<img src="img/themes/dj.png" style="height:154; width:100%"/>
-	<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-	  DJ don't stop the music
-	  <div>http://www.images.google.com/</div>
-	</div>
-      </div> 
-      
-	      <div id="preview11"  class="action rounded" style="width:270px; display:none; border:1px solid gray;position:absolute;float:left; width:275" onclick="theme.set('linux')">
-		<img src="img/themes/linux.jpg" style="height:154; width:100%"/>
-		<div align="left" style=" background-color:#f3f3f3; margin-top:-30px; height:31px; border-top:1px solid gray; opacity:0.7"> 
-		    Linux ubuntu
-		  <div>http://www.deviantart.com</div>
-		</div>
-	      </div>  
-  	</div>
-	<table width="287px" style="margin-left:31px; margin-top:1px">
-	<tr class="medium">
-		<td valign="middle" width="8px">
-  	 		<input type="image" src="img/default/arrow-prev.png" onclick="theme.browse.prev()"/>
-	 	</td>
-		<td></td>
-		<td valign="middle" width="8px" align="right">
-			<input type="image" src="img/default/arrow-next.png" onclick="theme.browse.next()"/>
-		</td>
-	</tr>
-	</table>
-
-	</td>
-	</tr>
-	</table>

@@ -1,5 +1,6 @@
 <link href="css/default.css" type="text/css" rel="stylesheet">
 <link href="css/library-icons.css" type="text/css" rel="stylesheet">
+<link href="css/themes.css" type="text/css" rel="stylesheet">
 
 <!-- 
     *
@@ -92,8 +93,11 @@
                 ) ;
                 utils.modules.show('player');
                 var internal = theme.get.internal() ;
+
                 theme.data['built-in'] = internal
                 theme.browse.init("built-in")
+
+                theme.remote.init() ;
 	}
 	/**
 	* We are loading modules i.e files that will be part of the core application
