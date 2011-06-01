@@ -26,8 +26,7 @@
  	
 	font-size:12px;
 	height:25px;
-	
-	
+
 }
 .default-button{
 	font-family:verdana;
@@ -54,7 +53,24 @@
 .shaded{
 	background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.15, #C1C1C1),color-stop(0.71, #848484),color-stop(0.97, #d3d3d3));
 }
+.library-panel{
+    width:723px;
+    height:278px;
+    float:left;
+    
+    border: 0px hidden;
 
+}
+.library{
+    padding:10px;
+    width:723px;
+    float:none;
+    overflow: hidden;
+    height:270px;
+
+    -webkit-border-top-right-radius: 7px;
+    -webkit-border-top-left-radius: 7px;
+}
 .metallic{
 	
 }

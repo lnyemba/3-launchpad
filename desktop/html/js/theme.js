@@ -199,7 +199,8 @@ theme.browse.nav.back = function(){
  *
  */
 theme.local = {}
-theme.local.data = []
+theme.local.data = [] ;
+theme.local.exists={} ;
 theme.local.render = {}
 /**
  * This is the indexing function that will load the files from a folder and store them in the namespace data placeholder
@@ -215,7 +216,11 @@ theme.local.load=function(path){
             var entry = {} ;
             entry.name = list[i].name.replace(/.(jpg|jpeg|png|bmp)$/i,'')
             entry.uri = ('file://'+list[i].nativePath) ;
-            theme.local.data.push(entry)
+            //if(theme.local.exists[entry.url] == null){
+            //    theme.local.exists[entry.url] = 1;
+                theme.local.data.push(entry)
+            
+            //}
         }
     }
     //

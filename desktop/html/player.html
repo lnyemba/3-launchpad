@@ -35,11 +35,49 @@
 	  <div class="default" style="">
 		<span id="progress" style="margin-left:5px">0.00 %</span>
 	  </div>
-            <div class="default" style="margin:5px; width:60%">
+            <div class="default" style="margin:5px; width:99%">
                 <div id="songprogress" style="">
                     
                 </div>
             </div>
+        </td>
+        <td width="150px" rowspan="2" valign="top" style=" border:1px solid gray; font-size:13px;font-weight:bold">
+            <div style="float:left;width:100%" class="action"
+                    onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                    onmouseout  ="this.style['background-color'] = null"
+                    onclick="utils.modules.show('library');jx.dom.show('player'); jx.dom.show('player_stdout') "
+                 >
+                <img src="img/3-launchpad.png" style="float:left"/>
+                <div style="float:left; margin-top:5px">Music Central</div>
+            </div>
+            <div style="float:left; width:100%" class="action"
+                    onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                    onmouseout  ="this.style['background-color'] = null"
+                    onclick="utils.modules.show('theme');jx.dom.show('player'); jx.dom.show('player_stdout') "
+                 >
+                <img src="img/default/theme.png" style="float:left"/>
+                <div style="float:left; margin-top:7px">Themes</div>
+            </div>
+            <div style="float:left; width:100%" class="action"
+                    onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                    onmouseout  ="this.style['background-color'] = null"
+                    onclick="utils.modules.show('providers'); jx.dom.show('player'); jx.dom.show('player_stdout'); jx.dom.show('local'); jx.dom.show('providers.stdout') "
+
+                 >
+                <img src="img/default/setup.png" style="float:left"/>
+                <div style="float:left; margin-top:7px">Setup Music</div>
+            </div>
+           <div style="float:left; width:100%" class="action"
+                    onmouseover ="this.style['background-color'] = '#d3d3d3'"
+                    onmouseout  ="this.style['background-color'] = null"
+                    onclick="utils.modules.show('credits'); jx.dom.show('player'); jx.dom.show('player_stdout') "
+
+                 >
+                <img src="img/default/info.png" style="float:left"/>
+                <div style="float:left; margin-top:7px">Information</div>
+            </div>
+
+
         </td>
     </tr>
     <tr class="default">
@@ -51,10 +89,7 @@
                 <input type="image" id="play.button" src="img/play_1.png" onclick="player.controls.play()"/>
                 <input type="image" src="img/fwd_1.png" onclick="player.controls.next()"/>
                 <div style="float:right; width:161px;margin-top:9px; margin-right:2px">
-                <input type="button" value="Toggle Menu" class="default-button" style="background: #f3f3f3;float:right "
-                        onclick="menu.toggle()"
-                       />
-                    <div id="menupanel" style="position:absolute;z-index:2;margin-top:30px; width:160px;"></div>
+                    version <span id="version" class="small"></span>
                 </div>
             </div>
         </td>

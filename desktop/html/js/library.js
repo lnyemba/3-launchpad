@@ -2,46 +2,53 @@ var library={
   keys:['local','google','dropbox'],
   current:null,
   cache:{},
+  size:0,
   register:function(key,pointer){
+
       library.cache[key] = pointer;
-      //menulib.open(key) ;
-      //menulib.open('all');
-      //library.render('menulib','all')
+
+      //
+      // let's evaluate the size of the library. Polymorphism & visitor design pattern are applied in this case
+      //
+      library.size = 0;
+      for(var lib in library.cache){
+          
+        if(library.cache[lib] == null|| library.cache[lib].playlist == null){
+            continue ;
+        }
+      
+        library.size += parseInt(library.cache[lib].playlist.length) ;
+      }
+      
+      library.render('library.grid','all')
+
+
+
     
   },//-- end library.set(key,pointer
   get:function(keys){
     var table = document.createElement('TABLE') ;
     return table;
   },
-  render:function(target,key){
-    var pointer ;
-    if(key == 'all'){
-      pointer = {}  ;
-      pointer.playlist = [] ;
-      for(var i=0; i < library.keys.length; i++){
-	key = library.keys[i] ;
-	
-	if(library.cache[key] != null){
-	  for(var j=0; j < library.cache[key].playlist.length; j++){
-	    pointer.playlist.push(library.cache[key].playlist[j]) ;
-	  }
-	  
-	  
-	}
-      }
-      
-    }else{
-      pointer = library.cache[key] ;
+  render:function(){
+    var lib =[],index=0;
+    for(var key in library.cache){
+        if(library.cache[key] == null){
+            continue ;
+        }
+        for(var j=0; j< library.cache[key].playlist.length; j++){
+            lib[index] = library.cache[key].playlist[j] ;
+            ++index;
+        }
+        grid = jx.grid.from.map.get(['name'],lstore.library.playlist) ;
+        grid.id = 'library.songs'
+        grid.className = 'data-grid'
+        jx.dom.set.value('library.grid','') ;
+        jx.dom.append.child('library.grid',grid)
+
+        air.trace(lib.length)
     }
-      jx.dom.set.value(target,'') ;
-     if(pointer != null && pointer.playlist != null){
-	var table = playlist.init(pointer.playlist) ;
-	table.className = 'rounded-corners'
-	table.width = '100%'
-	table.id = (target+'.table') ;
-	jx.dom.append.child(target,table) ;
-	library.current = key ;
-     }
+    
      
   },//-- library.render(target,key)
   /**
@@ -117,4 +124,32 @@ library.showUsers=function(target){
 		  }
 	  }
 }//-- end library.showUsers()
+
+//
+// Library navigation
+library.nav = {} ;
+library.nav.offset  = 723 ; // offset in pixels
+library.nav.size    = 4;    // number of panels
+library.nav.panel = 'lib_panel'
+library.nav.back = function(){
+    var id = '#'+library.nav.panel ;
+    var xmargin = parseInt($(id).css('margin-left')) ;
+    var max =  (library.nav.size-1) * library.nav.offset ;
+
+    if(Math.abs(xmargin) < max){
+        xmargin = xmargin  - library.nav.offset ;        
+        $(id).animate({'margin-left':xmargin}) ;
+    }
+}
+library.nav.next=function(){
+    var id = '#'+library.nav.panel ;
+    var xmargin = parseInt($(id).css('margin-left')) ;
+    var max = library.nav.size * library.nav.offset ;
+    
+    if(xmargin != 0){
+        xmargin = xmargin  + library.nav.offset ;
+        $(id).animate({'margin-left':xmargin}) ;
+    }
+
+}
 

@@ -1,47 +1,77 @@
-	<table width="100%">
-	  <tr class="medium">
+<!--
+    *
+    * (c) 2010 - 2011 3-launchpad main screen
+    * This file is intended to allow the user to browse her music library by source and
+    * Also providing options to for lyrics and wikipedia information of the currently played song
+    *
+-->
+<table width="760px" style="border:1px solid #d3d3d3" align="center">
+    <tr class="default" ><td width="34px">
+            <img src="img/3-launchpad.png"/>
+        </td>
+        <td class="caption">
+            Music Central
+            <div class="small" style="font-weight:normal">Manage your music library; Playlist; Lyrics and more ...</div>
+        </td>
+    </tr>
+</table>
 
-	    <td>
-	      <input type="text" id="menu.library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('menu.library.search','menulib.table'); "/><span onclick="jx.dom.set.value('menu.library.search','');search('menu.library.search','menulib.table'); jx.dom.set.focus('menu.library.search')" class="action" style=""> &lsaquo;&lsaquo;</span>
-	    </td>
-    	    <td width="34px">
-	      <input type="image" src="img/default/search.png"/>
-	    </td>
-	  </tr>
-	  </table>
-	  
-	 <div>
-	  <table cellspacing="1px" width="100%" style="margin-top:-5px;display:none">
-	    <tr class="medium action">
-	    <td style="; width:5px"> &nbsp;</td>
-	    <td id="tab.1" class="active-tab" align="middle" onclick="library.render('menulib','all'); jx.dom.set.style('tab.1','background-color','#d3d3d3');jx.dom.set.style('tab.2','background-color','transparent');jx.dom.set.style('tab.3','background-color','transparent');jx.dom.set.style('tab.4','background-color','transparent');">
-	      all
-	    </td>
-    	    <td id="tab.2" class="inactive-tab" align="middle" onclick="library.render('menulib','local'); jx.dom.set.style('tab.2','background-color','#d3d3d3');jx.dom.set.style('tab.1','background-color','transparent');jx.dom.set.style('tab.3','background-color','transparent');jx.dom.set.style('tab.4','background-color','transparent');">
-		local
-	    </td>
-   	    <td id="tab.3" class="inactive-tab" align="middle" onclick="library.render('menulib','google'); jx.dom.set.style('tab.3','background-color','#d3d3d3');jx.dom.set.style('tab.2','background-color','transparent');jx.dom.set.style('tab.1','background-color','transparent');jx.dom.set.style('tab.4','background-color','transparent');">
-	      google
-	    </td>
-   	    <td id="tab.4" class="inactive-tab" align="middle" onclick="library.render('menulib','dropbox');jx.dom.set.style('tab.4','background-color','#d3d3d3');jx.dom.set.style('tab.2','background-color','transparent');jx.dom.set.style('tab.3','background-color','transparent');jx.dom.set.style('tab.1','background-color','transparent');">
-	      dropbox
-  
-	    </td>
-	    <td style=""> &nbsp;</td>
-	    </tr>
-	    </table>
-	    <table style="border-top:1px solid gray;display:none" width="37px">
-	      <tr class="medium">
-	      <td valign="top" align="left">
-		
-		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('menulib')" style="border:1px solid gray"/>
-		<input type="image" src="img/gnomefoot.png" onclick="utils.modules.show('player');" style="margin-top:3px; border:1px solid gray"/>
-	      </td></tr></table>
-	    <span class="medium">[Musi Library]</span>
-	    <div class="rounded-corners" align="center" style="border:1px solid gray; margin-left:3px;padding:3px">
-	    	<div id="menulib" style="overflow:auto; height:160px"></div>
-	    </div>
-	    <div style="position:absolute; margin-top:-6.5%; border:2px solid gray" class="shaded">
-	    	<input type="image" src="img/default/people.png" onclick="library.showUsers('menulib.table')"/>
-	    </div>
-	</div>
+
+<table width="760px" align="center"  style="height:285px; margin-top:5px; border:1px solid gray" cellspacing="1px">
+<tr class="default">
+    <td width="18px" valign="middle" class="">
+
+        <div><input type="image" src="img/default/arrow-prev.png" onclick="library.nav.back()"/></div>
+    </td>
+    <td  valign="top" align="center">
+        <div style="" class="library shaded-dark" align="center">
+        <div id="lib_panel" style="" align="center" >
+            <div id="library.playlist" class="library-panel ">
+                Now Playing
+            </div>
+            <div id="library.songs" class="library-panel">
+                
+                <div style="float:left; width:34px">
+                    <img src="img/default/mysongs.png"/>
+                </div>
+                <div style="float:none;" align="left">
+                    <div class="caption" style="float:none; width:100%">Music Library</div>
+                    <div class="small" style=" float:none; width:100%">Manage; Search your music library</div>
+                </div>
+                <div style="float:left; width:34px;margin-left:-34px; margin-top:3px;">
+                    <input type="image" src="img/drive.png"/>
+                    <input type="image" src="img/google-logo.png"/>
+                    <input type="image" src="img/dropbox-logo.png"/>
+                </div>
+                <div  align="left" id="library.grid" style="float:left;margin-top:3px; overflow:auto; width:570; height:230px; margin-left:1%">
+                    oops;
+                </div>
+            </div>
+            <div id="library.lyrics" class="library-panel">
+                 <div style="float:left; width:34px">
+                    <img src="img/default/lyrics.png"/>
+                </div>
+                <div style="float:none;" align="left">
+                    <div class="caption" style="float:none; width:100%">Lyrics</div>
+                    <div class="small" style=" float:none; width:100%">music lyrics from wikilyrics</div>
+                </div>
+            </div>
+            <div id="library.wiki" class="library-panel">
+                 <div style="float:left; width:34px">
+                    <img src="img/default/wiki.png"/>
+                </div>
+                <div style="float:none;" align="left">
+                    <div class="caption" style="float:none; width:100%">Information; news & events</div>
+                    <div class="small" style=" float:none; width:100%">Miscellaneous  from miscellaneous sources</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </td>
+    <td width="18px" valign="middle" class="">
+        
+        <div> <input type="image" src="img/default/arrow-next.png" onclick="library.nav.next()"/></div>
+        
+    </td>
+</tr>
+</table>

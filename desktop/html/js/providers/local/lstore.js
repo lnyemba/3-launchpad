@@ -111,7 +111,8 @@ var lstore={
 	}
 	
 	lstore.library.playlist.push(entry);
-	lstore.library.owners.data[entry.owner].push(entry)
+	lstore.library.owners.data[entry.owner].push(entry) ;
+        
       }else if(list[i].isDirectory == true){
 	jx.dom.set.value('lstore.status','Processing '+list[i].name) ;
 	lstore.getPlaylist(list[i].nativePath) ;
@@ -143,6 +144,8 @@ var lstore={
     jx.dom.show('local.files') ;
 
     jx.dom.set.value('local.size',lstore.library.playlist.length) ;
+    jx.dom.set.value('providers.lib.size',library.size)
+    library.register('local',lstore.library)
     
   },
   reset:function(){

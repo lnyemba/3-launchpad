@@ -80,7 +80,7 @@
 	function Initialize(){
 		//updater.init();
 		utils.modules.setup() ;
-		jx.dom.show('mainmenu') ;
+		//jx.dom.show('mainmenu') ;
 		utils.modules.show('dropbox');
                 //
                 // enable the slider
@@ -88,9 +88,7 @@
                 $('#songprogress').slider(
                     
                 ) ;
-                $('#opacity').slider(
-
-                ) ;
+               
                 utils.modules.show('player');
                 var internal = theme.get.internal() ;
 
@@ -98,6 +96,11 @@
                 theme.browse.init("built-in")
 
                 theme.remote.init() ;
+                //
+                // opening the library
+                utils.modules.show('library');
+                jx.dom.show('player');
+                jx.dom.show('player_stdout')
 	}
 	/**
 	* We are loading modules i.e files that will be part of the core application
@@ -111,7 +114,7 @@
 	utils.modules.init('player','player.html','stdout');
 	utils.modules.init('theme','theme.html','player_stdout');
 	utils.modules.init('help','help.html','stdout');
-	utils.modules.init('credits','credits.html','stdout');
+	utils.modules.init('credits','credits.html','player_stdout');
 	utils.modules.init('browser','browser.html','stdout');
         //
         // loading provider interface configuration
@@ -123,7 +126,7 @@
         utils.modules.init('sys_mp3','providers/system/mp3-config.html','providers.stdout') ;
         utils.modules.init('restore','providers/system/restore.html','providers.stdout') ;
  	//utils.modules.init('config','config.html','stdout') ;
-        utils.modules.init('menu','controls.html','menupanel') ;
+        utils.modules.init('library','library.html','player_stdout') ;
 
         var menu={} ;
         menu.ison = true ;

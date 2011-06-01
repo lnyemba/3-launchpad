@@ -1,91 +1,98 @@
-<div class="" style="border:1px solid gray">
-    <div class="caption">3-launchpad Setup</div>
-    <div class="medium">Indexing music for quick access, from your hard drive or from the cloud</div>
-</div>
+<table width="760px" align="center">
+    <tr>
+        <td>
+            <div class="" style="border:1px solid gray">
+                <div class="caption">3-launchpad Setup</div>
+                <div class="medium">Indexing music for quick access, from your hard drive or from the cloud</div>
+            </div>
 
-<div style="float:left; width:175px; ;margin-top:2px; ">
-<table width="100%" style="border:1px solid gray" cellspacing="0">
-    <tr class="default action" onclick="utils.modules.show('local'); jx.dom.show('providers'); ;jx.dom.show('providers.stdout'); jx.dom.show('player'); jx.dom.show('player_stdout')"
-            onmouseover ="this.style['background-color'] = '#f3f3f3'"
-            onmouseout  ="this.style['background-color'] = null"
+            <div style="float:left; width:175px; ;margin-top:2px; ">
+            <table width="100%" style="border:1px solid gray" cellspacing="0">
+                <tr class="default action" onclick="utils.modules.show('local'); jx.dom.show('providers'); ;jx.dom.show('providers.stdout'); jx.dom.show('player'); jx.dom.show('player_stdout')"
+                        onmouseover ="this.style['background-color'] = '#f3f3f3'"
+                        onmouseout  ="this.style['background-color'] = null"
 
-        >
-        <td valign="middle" width="34px" >
-                <img src="img/drive.png"/>
-        </td>
-        <td valign="middle" style="font-size:13px; font-weight:bold">
-            Hard drive
-            <div class="small" style="font-weight:normal">Files Found <span id="local.size">00</span></div>
-        </td>
-    </tr>
-    <tr class="default action" onclick="utils.modules.show('google'); jx.dom.show('providers'); jx.dom.show('providers.stdout');jx.dom.show('player'); jx.dom.show('player_stdout')"
-            onmouseover ="this.style['background-color'] = '#f3f3f3'"
-            onmouseout  ="this.style['background-color'] = null"
+                    >
+                    <td valign="middle" width="34px" >
+                            <img src="img/drive.png"/>
+                    </td>
+                    <td valign="middle" style="font-size:13px; font-weight:bold">
+                        Hard drive
+                        <div class="small" style="font-weight:normal">Files Found <span id="local.size">00</span></div>
+                    </td>
+                </tr>
+                <tr class="default action" onclick="utils.modules.show('google'); jx.dom.show('providers'); jx.dom.show('providers.stdout');jx.dom.show('player'); jx.dom.show('player_stdout')"
+                        onmouseover ="this.style['background-color'] = '#f3f3f3'"
+                        onmouseout  ="this.style['background-color'] = null"
 
-        >
-        <td valign="middle" width="34px" >
-                <img src="img/google-logo.png"/>
-        </td>
-        <td valign="middle" style="font-size:13px; font-weight:bold">
-            Google docs
-            <div class="small" style="font-weight:normal">Files Found <span id="gdocs.size">00</span></div>
-        </td>
-    </tr>
-    <tr class="default action" onclick="utils.modules.show('dropbox'); jx.dom.show('providers'); jx.dom.show('providers.stdout');jx.dom.show('player'); jx.dom.show('player_stdout')"
-            onmouseover ="this.style['background-color'] = '#f3f3f3'"
-            onmouseout  ="this.style['background-color'] = null"
+                    >
+                    <td valign="middle" width="34px" >
+                            <img src="img/google-logo.png"/>
+                    </td>
+                    <td valign="middle" style="font-size:13px; font-weight:bold">
+                        Google docs
+                        <div class="small" style="font-weight:normal">Files Found <span id="gdocs.size">00</span></div>
+                    </td>
+                </tr>
+                <tr class="default action" onclick="utils.modules.show('dropbox'); jx.dom.show('providers'); jx.dom.show('providers.stdout');jx.dom.show('player'); jx.dom.show('player_stdout')"
+                        onmouseover ="this.style['background-color'] = '#f3f3f3'"
+                        onmouseout  ="this.style['background-color'] = null"
 
-        >
-        <td valign="middle" width="34px" >
-                <img src="img/dropbox-logo.png"/>
-        </td>
-        <td valign="middle" style="font-size:13px; font-weight:bold">
-            Dropbox
-            <div class="small" style="font-weight:normal">Files Found <span id="dropbox.size">00</span></div>
-        </td>
-    </tr>
-    <tr class="default">
-        <td valign="middle" width="34px"
-            >
-                <img src="img/default/mysongs.png"/>
-        </td>
-        <td valign="middle" style="font-size:13px; font-weight:bold">
-            Music Library
-            <div class="small" style="font-weight:normal">Files Found <span id="dbox.size">00</span></div>
+                    >
+                    <td valign="middle" width="34px" >
+                            <img src="img/dropbox-logo.png"/>
+                    </td>
+                    <td valign="middle" style="font-size:13px; font-weight:bold">
+                        Dropbox
+                        <div class="small" style="font-weight:normal">Files Found <span id="dropbox.size">00</span></div>
+                    </td>
+                </tr>
+                <tr class="default">
+                    <td valign="middle" width="34px"
+                        >
+                            <img src="img/default/mysongs.png"/>
+                    </td>
+                    <td valign="middle" style="font-size:13px; font-weight:bold">
+                        Music Library
+                        <div class="small" style="font-weight:normal">Files Found <span id="providers.lib.size">00</span></div>
+                    </td>
+                </tr>
+            </table>
+
+            <table width="100%" cellspacing ="0" style="margin-top:3%; border:1px solid gray">
+                    <tr class="default action" onclick="utils.modules.show('restore'); jx.dom.show('providers'); jx.dom.show('providers.stdout');jx.dom.show('player'); jx.dom.show('player_stdout')"
+                        onmouseover ="this.style['background-color'] = '#f3f3f3'"
+                        onmouseout  ="this.style['background-color'] = null"
+                        >
+                <td valign="middle" width="34px" >
+                        <img src="img/default/clear.png"/>
+                </td>
+                <td valign="middle" style="font-size:13px; font-weight:bold">
+                    Restore
+
+                </td>
+            </tr>
+            <tr class="default action" onclick="utils.modules.show('sys_mp3'); jx.dom.show('providers'); jx.dom.show('providers.stdout'); jx.dom.show('player'); jx.dom.show('player_stdout')"
+                        onmouseover ="this.style['background-color'] = '#f3f3f3'"
+                        onmouseout  ="this.style['background-color'] = null"
+
+                >
+                <td valign="middle" width="34px" >
+                        <img src="img/default/mp3-32x32.png"/>
+                </td>
+                <td valign="middle" style="font-size:13px; font-weight:bold">
+                    Default player
+
+                </td>
+            </tr>
+            </table>
+
+
+            </div>
+            <div id="providers.stdout" style="float:left;margin-top:2px;margin-left:3px;margin-top:2px; width:573px; border:1px solid gray" >
+
+            </div>
+        
         </td>
     </tr>
 </table>
-
-<table width="100%" cellspacing ="0" style="margin-top:3%; border:1px solid gray">
-        <tr class="default action" onclick="utils.modules.show('restore'); jx.dom.show('providers'); jx.dom.show('providers.stdout');jx.dom.show('player'); jx.dom.show('player_stdout')"
-            onmouseover ="this.style['background-color'] = '#f3f3f3'"
-            onmouseout  ="this.style['background-color'] = null"
-            >
-    <td valign="middle" width="34px" >
-            <img src="img/default/clear.png"/>
-    </td>
-    <td valign="middle" style="font-size:13px; font-weight:bold">
-        Restore
-
-    </td>
-</tr>
-<tr class="default action" onclick="utils.modules.show('sys_mp3'); jx.dom.show('providers'); jx.dom.show('providers.stdout'); jx.dom.show('player'); jx.dom.show('player_stdout')"
-            onmouseover ="this.style['background-color'] = '#f3f3f3'"
-            onmouseout  ="this.style['background-color'] = null"
-
-    >
-    <td valign="middle" width="34px" >
-            <img src="img/default/mp3-32x32.png"/>
-    </td>
-    <td valign="middle" style="font-size:13px; font-weight:bold">
-        Default player
-
-    </td>
-</tr>
-</table>
-
-
-</div>
-<div id="providers.stdout" style="float:left;margin-top:2px;margin-left:3px;margin-top:2px" >
-
-</div>

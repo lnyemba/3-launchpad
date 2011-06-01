@@ -72,10 +72,10 @@ dropbox.login   =
                     }
                     //dropbox.get.envelope('https://api.dropbox.com/0/account/info?','GET',f) ;
                     //dropbox.get.envelope('https://api-content.dropbox.com/0/files/dropbox/','GET',f)
-                    dropbox.get.envelope('https://api.dropbox.com/0/metadata/dropbox/?','GET',f)
+                        dropbox.get.envelope('https://api.dropbox.com/0/metadata/dropbox/?','GET',f)
                 }
             }
-            
+            jx.dom.set.value('dropbox.status','Please wait ...')
             dropbox.rpc.send(url,inline,'POST') ;
         }//-- end of dropbox.login
 
