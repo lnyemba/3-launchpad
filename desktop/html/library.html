@@ -5,7 +5,7 @@
     * Also providing options to for lyrics and wikipedia information of the currently played song
     *
 -->
-<table width="760px" style="border:1px solid #d3d3d3" align="center">
+<table width="760px" style="border:1px solid gray" align="center">
     <tr class="default" ><td width="34px">
             <img src="img/3-launchpad.png"/>
         </td>
@@ -17,61 +17,159 @@
 </table>
 
 
-<table width="760px" align="center"  style="height:285px; margin-top:5px; border:1px solid gray" cellspacing="1px">
+<table id="lbrowsing" width="" align="center"  class =""style="width:760px;height:285px; margin-top:2px; border:1px solid gray" cellspacing="1px">
 <tr class="default">
-    <td width="18px" valign="middle" class="">
+    <td  class="width:18px" valign="middle" class="">
 
         <div><input type="image" src="img/default/arrow-prev.png" onclick="library.nav.back()"/></div>
     </td>
-    <td  valign="top" align="center">
-        <div style="" class="library shaded-dark" align="center">
+    <td  valign="top" align="center" >
+        <div style="" class="library ">
         <div id="lib_panel" style="" align="center" >
-            <div id="library.playlist" class="library-panel ">
-                Now Playing
+            <div id="library.playlist" class="library-panel " align="left">
+                <table>
+                    <tr class="default">
+                        <td width="34px">
+                            <img src="img/gnomefoot.png"/>
+                        </td>
+                        <td valign="top">
+                            <div class="nytimes"><b>Now Playing</b></div>
+                            <div class="small" style="float:left">Manage the current playlist
+                                <span id="library.status" class="small" style="margin-left:5px; float:left;"></span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="library-innerpanel" style="width:49%; float:left">
+                    <div align="center"><b>Artist Pictures</b></div>
+
+                    <div id="now.playing.artist" style="width:80%;height:150px; overflow:hidden; float:left">
+
+                    </div>
+                    <div style="float:right">
+                    <div style="float:right; margin:3px;">
+                        <input type="image" src="img/default/volume_up.png"/>
+                    </div>
+                    <div style="margin:3px; margin-top:140px">
+                        <input type="image" src="img/default/volume_down.png"/>
+                    </div>
+
+
+                    </div>
+                </div>
+               <div style="float:left;width:50%;margin-left:2px" class="library-innerpanel">
+                   <div align="center"><b>Playlist</b></div>
+                    <div id="now.playing" style="margin:1px; height:178px; overflow:auto"></div>
+                </div>
             </div>
-            <div id="library.songs" class="library-panel">
+            <div  class="library-panel">
                 
-                <div style="float:left; width:34px">
-                    <img src="img/default/mysongs.png"/>
-                </div>
-                <div style="float:none;" align="left">
-                    <div class="caption" style="float:none; width:100%">Music Library</div>
-                    <div class="small" style=" float:none; width:100%">Manage; Search your music library</div>
-                </div>
-                <div style="float:left; width:34px;margin-left:-34px; margin-top:3px;">
-                    <input type="image" src="img/drive.png"/>
-                    <input type="image" src="img/google-logo.png"/>
-                    <input type="image" src="img/dropbox-logo.png"/>
-                </div>
-                <div  align="left" id="library.grid" style="float:left;margin-top:3px; overflow:auto; width:570; height:230px; margin-left:1%">
-                    oops;
+                <table width="100%">
+                    <tr class="default">
+                        <td style=" width:34px">
+                            <img src="img/default/mysongs.png"/>
+                        </td>
+                        <td>
+                            <div class="nytimes"><b>Music Library Browsing</b></div>
+                            <div class="small">Manage; Search your music library</div>
+                        </td>
+                    </tr>
+                </table>
+                <div class="library-innerpanel">
+                    <div style="margin-top:3px;" align="right">
+                        
+                            <input style="width:97%;"/>&lsaquo;&lsaquo;&nbsp;
+                        
+                    </div>
+                    <div  align="left" id="library.grid" style="width:98wijo%;overflow:auto; height:150px; margin-top:3px;padding:2px">
+                        oops;
+                    </div>
                 </div>
             </div>
-            <div id="library.lyrics" class="library-panel">
-                 <div style="float:left; width:34px">
-                    <img src="img/default/lyrics.png"/>
-                </div>
-                <div style="float:none;" align="left">
-                    <div class="caption" style="float:none; width:100%">Lyrics</div>
-                    <div class="small" style=" float:none; width:100%">music lyrics from wikilyrics</div>
-                </div>
+            <div id="library.lyrics" class="library-panel ">
+                <table width="100%">
+                    <tr class="default">
+                         <td style="float:left; width:34px">
+                            <img src="img/default/lyrics.png"/>
+                        </td>
+                        <td style="float:none;" align="left">
+                            <div class="caption" style="float:none; width:100%">Lyrics</div>
+                            <div class="small" style=" float:none; width:100%">music lyrics from wikilyrics</div>
+                        </td>
+                    </tr>
+                </table>
+                <div id="track.lyric" class="library-innerpanel"></div>
             </div>
             <div id="library.wiki" class="library-panel">
-                 <div style="float:left; width:34px">
-                    <img src="img/default/wiki.png"/>
-                </div>
-                <div style="float:none;" align="left">
-                    <div class="caption" style="float:none; width:100%">Information; news & events</div>
-                    <div class="small" style=" float:none; width:100%">Miscellaneous  from miscellaneous sources</div>
+                <table width="100%">
+                    <tr class="default">
+                         <td style=" width:34px">
+                            <img src="img/default/wiki.png"/>
+                        </td>
+                        <td style="" align="left">
+                            <div class="caption" style="float:none; width:100%">Information; news & events</div>
+                            <div class="small" style=" float:none; width:100%">Miscellaneous  from miscellaneous sources</div>
+                        </td>
+                    </tr>
+                </table>
+                <div width="100%">
+                    <div style="float:left;width:49%;" class="library-innerpanel">
+                        <b>Artist Pictures</b>
+                    </div>
+                    <div style="float:left;width:50%;margin-left:2px" class="library-innerpanel">
+                        <b>Events</b>
+                    </div>
                 </div>
             </div>
         </div>
         </div>
     </td>
-    <td width="18px" valign="middle" class="">
+    <td width="18px" align="center" valign="middle" class="">
         
         <div> <input type="image" src="img/default/arrow-next.png" onclick="library.nav.next()"/></div>
         
     </td>
 </tr>
+<tr class="default">
+    <td colspan="3" style="border-top:1px dotted white">
+        <div >
+            <input type="image" src="img/gnomefoot.png" onclick="library.nav.to(0);"/>
+        <input type="image" src="img/default/mysongs.png" onclick="library.nav.to(1); library.render()"/>
+        <input type="image" src="img/drive.png" onclick="library.shortcut.open('local')"/>
+        <input type="image" src="img/google-logo.png" onclick="library.shortcut.open('google')"/>
+        <input type="image" src="img/dropbox-logo.png" onclick="library.shortcut.open('dropbox')"/>
+        <input type="image" src="img/default/lyrics.png" onclick="library.nav.to(2);"/>
+        <input type="image" src="img/default/wiki.png" onclick="library.nav.to(3);"/>
+        </div>
+    </td>
+</tr>
 </table>
+
+<div id="id3handler" style="padding:2px; background-color:white; position:absolute; z-index:5;width:0%;overflow:hidden; margin-left:20%; height:130px; margin-top:-35%; display:none; border:2px double gray">
+    <div class="shaded-dark" style="border-bottom:1px solid gray"> <b>MP3 Tag Handling</b>
+        
+    </div>
+    ..::: <span class="small" id="id3.file" style="color:maroon"></span>
+    <span style="display:none" id="id3.index"></span>
+    <table>
+        <tr class="default">
+            <td>Artist</td>
+            <td><input id="id3.artist" class="default"/></td>
+            <td rowspan="3" valign="top">
+                If the file doesn't have the appropriate tags please help us check if this artist/album is available.
+            </td>
+        </tr>
+        <tr class="default">
+            <td>Song</td>
+            <td><input id="id3.song" class="default"/></td>
+        </tr>
+        <tr class="default">
+            <td>Album</td>
+            <td><input id="id3.album" class="default"/></td>
+        </tr>        
+    </table>
+    <div align="center" style="border-top:1px solid gray; background-color:white">
+
+        <input type="button" value="Ok" class="default-button" onclick="jx.dom.hide('id3handler'); library.setId3Info()"/>
+    </div>
+</div>

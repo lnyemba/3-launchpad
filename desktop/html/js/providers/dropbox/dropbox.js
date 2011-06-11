@@ -229,7 +229,7 @@ dropbox.utils.parse=function(spec){
 dropbox.utils.render = function(){
     var list = dropbox.library.playlist ;
     var meta = ['name']
-
+    library.register('dropbox',dropbox.library)
     var grid = jx.grid.from.map.get(meta,list) ;
     for(var i=0; i < grid.rows.length; i++){
         
@@ -265,5 +265,6 @@ dropbox.utils.render = function(){
     jx.dom.set.value('dropbox.size',grid.rows.length)
     jx.dom.set.value('dropbox.files.grid','') ;
     jx.dom.append.child('dropbox.files.grid',grid) ;
+    jx.dom.set.value('providers.lib.size',library.size) ;
     jx.dom.show('dropbox.files')
 }//-- end dropbox.utils.render()

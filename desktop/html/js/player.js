@@ -65,6 +65,7 @@ now:[],
       }
       jx.dom.set.value('now.playing','') ;
       jx.dom.append.child('now.playing',table) ;
+      
     },//-- end player.add(info)
   clear:function(){
     player.now = [] ;

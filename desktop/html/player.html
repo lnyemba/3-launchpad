@@ -15,9 +15,9 @@
         </td>
     </tr>
 </table>
-<table  border="0" width="100%" style="margin-top:2%; border-bottom:1px solid gray">
+<table  border="0" width="760" align="center" style="margin-top:2%; border-bottom:0px solid gray">
     <tr class="default">
-        <td width="126px" valign="top" rowspan="3">
+        <td width="126px" valign="bottom" rowspan="3">
             <div align="center">
                 <img id="artist.pic" src="img/default/unknown-artist.jpg" style=""/>
             </div>
@@ -104,75 +104,3 @@
     </tr>
 
 </table>
-
-<table width="100%" class="rounded-corners" style="display:none" >
-
-<tr class="medium"  >
-<td valign="top" >
-  <div class="medium shaded-dark" align="center" style="font-weight:bold; font-size:13px">
-    <table width="100%" cellspacing="0">
-      <tr class="shaded">
-	<td width="32px">
-	  <img src="img/3-launchpad.png"/>
-	</td>
-	<td valign="middle" style="font-size:14px; color:white; font-weight:bold">
-	  <span style="margin-left:5px">Now Playing</span>
-	</td>
-      </tr>
-    </table>
-  </div>
-  <div id="player_panel1" style="display:block;overflow:hidden; margin-top:5px;-webkit-border-top-right-radius:10px">
-    <div id="now.playing" style=" overflow:auto; height:190px">
-     [Nothing is currently playing]
-    </div>
-  </div>
-  
-  <div id="player_panel2" style="display:none;height:210px; padding:3px; overflow:hidden">
-  	<table width="100%">
-	  <tr class="medium">
-
-	    <td>
-	      <input type="text" id="library.search" style="width:93%; border-color:#d3d3d3;" onkeyup="search('library.search','mainlib.table')"/><span onclick="jx.dom.set.value('library.search',''); search('library.search','mainlib.table'); jx.dom.set.focus('library.search')" class="action" style=""> &lsaquo;&lsaquo;</span>
-	    </td>
-    	    <td width="34px">
-	      <input type="image" src="img/default/search.png"/>
-	    </td>
-	  </tr>
-	  </table>
-	  
-	  <table cellspacing="1px" width="100%;" style="margin-top:-5px">
-	    <tr class="medium action">
-	    <td style="; width:5px"> &nbsp;</td>
-	    <td id="all-tab" class="active-tab" align="middle" onclick="menulib.open('all')">
-	      all
-	    </td>
-    	    <td id="local-tab" class="inactive-tab" align="middle" onclick="menulib.open('local')">
-		local
-	    </td>
-   	    <td id="google-tab" class="inactive-tab" align="middle" onclick="menulib.open('google')">
-	      google
-	    </td>
-   	    <td id="dropbox-tab" class="inactive-tab" align="middle" onclick="menulib.open('dropbox')">
-	      dropbox
-  
-	    </td>
-	    <td style=""> &nbsp;</td>
-	    </tr>
-	    </table>
-	    <table style="border-top:1px solid gray" width="34px">
-	      <tr class="medium">
-	      <td valign="top">
-		
-		<input type="image" src="img/default/people.png" onclick="gstore.showUsers('mainlib')"/>
-		
-	      </td></tr></table>
-	      <div id="mainlib" style="border:1px solid gray; margin-left:37px; height:145px; margin-top:-10.3%; overflow:auto;">
-		  Oops
-	      </div>
-      </div>
-</td>
-</tr>
-</table>
-
-
-</div>

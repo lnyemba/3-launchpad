@@ -52,20 +52,7 @@ var gstore={
 		  //
 		  gstore.library.playlist = gstore.library.data ;
 		  jx.dom.set.value('gstore.status','<b style="color:black">Yeah !!</b> Music found and indexed');
-		  //
-		  // TODO: The code below needs to be in it's own section
-		  //jx.dom.set.value('menu.gstore.size',gstore.library.playlist.length) ;
-
-		  //jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;
-		  //jx.dom.set.value('gstore.owners',gstore.library.owners.meta.length) ;
                   var grid = jx.grid.from.map.get(['name'],gstore.library.playlist) ;
-                  //grid.id = 'gdocs.music'
-                  //grid.className = 'data-grid'
-                  //jx.dom.set.value('gdocs.files.grid','')
-                  //jx.dom.append.child('gdocs.files.grid',grid);
-                  //jx.dom.hide('gdocs.login')
-		  //jx.dom.show('gdocs.files') ;
-		  //jx.dom.set.value('gdocs.size',gstore.library.playlist.length)
 		  //library.register('google',gstore.library)  ;
                   gstore.render(grid)
 		  gstore.getNextPage(next) ;
@@ -82,37 +69,28 @@ var gstore={
 	  //
 	  callback=function(xmlhttp){
 	    lib = gapi.gdocs.parse(xmlhttp.responseXML) ;
-	    air.trace(lib.data.length);
+	    
 	    //gstore.library.playlist.concat(lib.data) ;
 	    for(var i=0; i < lib.data.length; i++){
-	      gstore.library.playlist.push(lib.data[i]) ;
-	      owner 	= lib.data[i].owner ;
-	      info	= lib.data[i] ;
-         //
-         // There are no guarantees that the first 100 records will have all the owners
-         //
-         if(gstore.library.owners.data[owner] == null){
-           gstore.library.owners.data[owner]  = [] ;
-         }
-	      gstore.library.owners.data[owner].push(info) ;
-	      
+                gstore.library.playlist.push(lib.data[i]) ;
+                owner 	= lib.data[i].owner ;
+                info	= lib.data[i] ;
+                //
+                // There are no guarantees that the first 100 records will have all the owners
+                // so we check for owners and accomodate the array for them
+                //
+                if(gstore.library.owners.data[owner] == null){
+                    gstore.library.owners.data[owner]  = [] ;
+                }
+                gstore.library.owners.data[owner].push(info) ;
 	    }
 	    
-	    //jx.dom.set.value('gstore.size',gstore.library.playlist.length) ;
-	    //jx.dom.set.value('gstore.owners',gstore.library.owners.meta.length) ;
             jx.dom.set.value('gdocs.size',gstore.library.playlist.length);
 
             var grid = jx.grid.from.map.get(['name'],gstore.library.playlist) ;
+            
             gstore.render(grid)
-            //grid.id = 'gdocs.music'
-            //grid.className = 'data-grid'
-            //jx.dom.set.value('gdocs.files.grid','')
-            //jx.dom.append.child('gdocs.files.grid',grid)
-            //jx.dom.hide('gdocs.login')
-            //jx.dom.show('gdocs.files') ;
 	    
-		  
-	    library.register('google',gstore.library)  ;
 
 	    
 	  }
@@ -122,6 +100,7 @@ var gstore={
             table.id = 'gdocs.music'
             table.className = 'data-grid'
             list = gstore.library.playlist ;
+            library.register('google',gstore.library)  ;
             for(var i=0; i < list.length; i++){
                 table.rows[i].info      = list[i]
                 table.rows[i].headers   = gapi.headers ;
@@ -142,6 +121,7 @@ var gstore={
             jx.dom.append.child('gdocs.files.grid',table)
             jx.dom.hide('gdocs.login')
             jx.dom.show('gdocs.files') ;
+            jx.dom.set.value('providers.lib.size',library.size) ;
 
 	  
 	},//-- end gstore.render()

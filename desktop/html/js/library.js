@@ -20,7 +20,7 @@ var library={
         library.size += parseInt(library.cache[lib].playlist.length) ;
       }
       
-      library.render('library.grid','all')
+      library.render()
 
 
 
@@ -30,27 +30,92 @@ var library={
     var table = document.createElement('TABLE') ;
     return table;
   },
-  render:function(){
+  render:function(filter){
     var lib =[],index=0;
     for(var key in library.cache){
-        if(library.cache[key] == null){
+        if(library.cache[key] == null || (filter != null && filter != key) ){
             continue ;
         }
+
         for(var j=0; j< library.cache[key].playlist.length; j++){
             lib[index] = library.cache[key].playlist[j] ;
             ++index;
         }
-        grid = jx.grid.from.map.get(['name'],lstore.library.playlist) ;
-        grid.id = 'library.songs'
-        grid.className = 'data-grid'
-        jx.dom.set.value('library.grid','') ;
-        jx.dom.append.child('library.grid',grid)
-
-        air.trace(lib.length)
+        
+        //air.trace(lib.length)
     }
+    grid = jx.grid.from.map.get(['name'],lib) ;
+    grid.id = 'library.songs'
+    grid.className = 'data-grid'
+    grid.width = '100%' ;
     
+    library.addInfo(grid,lib)
+    //
+    // adding extra
+    jx.dom.set.value('library.grid','') ;
+    jx.dom.append.child('library.grid',grid)
+
      
-  },//-- library.render(target,key)
+  },//-- library.render(filter)
+
+  addInfo:function(table,lib){
+      for(var i=0; i < table.rows.length; i++){
+          div = document.createElement('DIV') ;
+          div.className='small'
+          div.style['font-weight'] = 'normal'
+          div.innerHTML = ('&rsaquo;&rsaquo; '+lib[i].owner) ;
+          table.cellSpacing = '1px'
+          table.rows[i].cells[0].appendChild(div)
+          table.rows[i].cells[0].info = lib[i] ;
+          table.rows[i].className = 'data-row action'
+          input = document.createElement('INPUT') ;
+          input.type = 'image'
+          input.src                 = 'img/default/edit.png' ;
+          input.file    = lib[i].name
+          input.index   = i;
+          input.onclick=function(){
+              id3 = table.rows[this.index].info.id3 ;
+              jx.dom.set.value('id3.file',this.file) ;
+              jx.dom.set.value('id3.index',this.index)
+              if(id3 != null){
+                  jx.dom.set.value('id3.artist',id3.artist) ;
+                  jx.dom.set.value('id3.song',id3.song) ;
+                  jx.dom.set.value('id3.album',id3.album)
+              }
+              jx.dom.set.style('id3handler','width','0px')
+              jx.dom.show('id3handler')
+
+              $('#id3handler').animate({width:'60%'});
+          }
+          td = document.createElement('TD')
+          table.rows[i].appendChild(td)
+          table.rows[i].cells[1].appendChild(input) ;
+          table.rows[i].cells[0].onclick = function(){
+              //
+              // adding data to the now playing when a  click is received
+              
+              jx.dom.set.value('library.status','added to playlist')
+              player.add(this.info)
+              //window.setTimeout(function(){jx.dom.set.value('library.status','') }, 2000) ;
+          }
+      }
+
+  },//-- end library.addInfo()
+  setId3Info:function(){
+      var table = document.getElementById('library.songs') ;
+      
+      var index = parseInt(jx.dom.get.value('id3.index')) ;
+      var id3 = {} ;
+      id3.artist = jx.dom.get.value('id3.artist') ;
+      id3.song  = jx.dom.get.value('id3.song') ;
+      id3.album = jx.dom.get.value('id3.album') ;
+      if(id3.artist != '' || id3.song != '' || id3.album != ''){
+          table.rows[index].info.id3 = id3 ;
+      }
+      jx.dom.set.value('id3.artist','') ;
+      jx.dom.set.value('id3.song','') ;
+      jx.dom.set.value('id3.album','')
+  },//-- library.setId3Info()
   /**
   * This functionw will search a list (or library data) and determine if a particular uri exists or not
   * TODO: Generalize this function (very re-usable to get a handle over duplicate entries)
@@ -128,11 +193,13 @@ library.showUsers=function(target){
 //
 // Library navigation
 library.nav = {} ;
-library.nav.offset  = 723 ; // offset in pixels
+library.nav.offset  = 675 ; // offset in pixels
 library.nav.size    = 4;    // number of panels
 library.nav.panel = 'lib_panel'
+
 library.nav.back = function(){
     var id = '#'+library.nav.panel ;
+    
     var xmargin = parseInt($(id).css('margin-left')) ;
     var max =  (library.nav.size-1) * library.nav.offset ;
 
@@ -143,6 +210,7 @@ library.nav.back = function(){
 }
 library.nav.next=function(){
     var id = '#'+library.nav.panel ;
+    
     var xmargin = parseInt($(id).css('margin-left')) ;
     var max = library.nav.size * library.nav.offset ;
     
@@ -152,4 +220,47 @@ library.nav.next=function(){
     }
 
 }
-
+/**
+ * This function will jump to a particular div/panel within a navigation window
+ * @param index Index of the window to be shown in the panel
+ */
+library.nav.to=function(index){
+    
+    if(index < 0 || index > library.nav.size-1){
+        return ;
+    }
+    var id = '#'+library.nav.panel ;
+    //$(id).animate({'margin-left':0}) ;
+    jx.dom.set.style(library.nav.panel,'margin-left',0)
+    //
+    // performing the jump
+    position = -index * library.nav.offset ;
+    
+    $(id).animate({'margin-left':position}) ;
+}
+/**
+ * Managing library shortcuts with a basic premice: Should an object
+ *
+ */
+library.shortcut = {}
+/**
+ * Opens a particular library or the initialization for associated to the library
+ * @param id    identifier {google,local,dropbox}
+ */
+library.shortcut.open = function(id){
+    if(library.cache[id] == null){
+        //
+        // open the
+        
+        utils.modules.show('providers'); 
+        jx.dom.show('player'); 
+        jx.dom.show('player_stdout'); 
+        jx.dom.show(id); 
+        jx.dom.show('providers.stdout') ;
+    }else{
+        //
+        // TODO Perform the jump and
+        library.nav.to(1)
+        library.render(id)
+    }
+}//-- end library.shortcut.open(id)
