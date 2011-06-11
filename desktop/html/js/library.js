@@ -74,7 +74,7 @@ var library={
           input.file    = lib[i].name
           input.index   = i;
           input.onclick=function(){
-              id3 = table.rows[this.index].info.id3 ;
+              id3 = (table.rows[this.index].info == null)?null:table.rows[this.index].info.id3 ;
               jx.dom.set.value('id3.file',this.file) ;
               jx.dom.set.value('id3.index',this.index)
               if(id3 != null){
