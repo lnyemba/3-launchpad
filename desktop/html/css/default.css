@@ -15,6 +15,7 @@
 	font-family:verdana;
 	font-size:9px;
 }
+
 .shaded-light{
   background-image:-webkit-gradient(linear,left bottom,left top,color-stop(0.15, #f3f3f3),color-stop(0.71, #f3f3f3),color-stop(0.97, #c1c1c1));
 }
@@ -59,10 +60,14 @@
     height:235px;
     float:left;
     
-    
-    
-
 }
+.artist-pics{
+  width :130px;
+  height:130px;
+  margin:2px;
+  float:left;
+}
+
 .library-innerpanel{
     
     height:180px;
