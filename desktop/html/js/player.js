@@ -81,18 +81,18 @@ now:[],
     
     init:function(index){
       
-      info = player.now[index] ;
-      if(info == null){
+      music = player.now[index] ;
+      if(music == null){
 	
 	player.clear() ;
 	player.controls.reset();
 	return ;
       }
       player.index = index ;
-      var req = new air.URLRequest(info.uri) ;
-      var headers = jx.ajax.headers;
+      var req = new air.URLRequest(music.uri) ;
+      var headers = jx.ajax.headers; //music.headers
       var reqHeader;
-      if(info.uri.match('^http.*$')){
+      if(music.uri.match('^http.*$')){
 	for(var i=0; i < headers.length; i++){
 		reqHeader = new air.URLRequestHeader(headers[i].key,headers[i].value) ;
 		req.requestHeaders.push(reqHeader) ;
@@ -204,23 +204,26 @@ now:[],
       jx.dom.set.value('artist',artist) ;
       jx.dom.set.value('song',song) ;
       img = document.getElementById('artist.pic')  ;
-      if(artist == 'Unknown'){
-	img.src = 'img/default/unknown-artist.jpg';
-      }else{
+      img.src = 'img/default/unknown-artist.jpg';
+      jx.dom.set.value('now.playling.artist','') ;
+      if(artist != 'Unknown'){
 	  var url  = 'http://ws.audioscrobbler.com/2.0/?method=artist.getimages&autocorrect=1&api_key=876c789306d784c59347e153b83b72c0&artist='+artist
 	  var fn =function(xmlhttp){
-	  r = jx.lastfm.parse(xmlhttp.responseXML)
-	    
+	    r = jx.lastfm.parse(xmlhttp.responseXML)
+	  
 	    
 	    if(r.data.length > 0){
-	      var index=Math.floor(Math.random()*r.data.length)
-	      img.src = r.data[index].square ;
+	      //var index=Math.floor(Math.random()*r.data.length)
+	      //img.src = r.data[0].square ;
+	      player.imagehandler.load (r) ;
+	      
 	    }else{
 	      img.src = 'img/default/unknown-artist.jpg' ;
 	    }	
 	  }
-	  jx.ajax.parser  = jx.lastfm.parser ;
-	  jx.ajax.send(url,fn,'GET') ;
+	  var service = jx.ajax.getInstance() ;
+	  service.parser  = jx.lastfm.parser ;
+	  service.send(url,fn,'GET') ;
       }
     },
     error:function(e){},
@@ -244,7 +247,7 @@ now:[],
 	if(player.handler == null){
 		
 	}else{
-		var level = Math.round(100 * (e.bytesLoaded / e.bytesTotal));
+		var level = parseInt(Math.round(100 * (e.bytesLoaded / e.bytesTotal)));
 		jx.dom.set.value('progress',level+' %');
 		var fn = function(){
 			jx.dom.set.value('progress','[<span color="#104E8B">Playing</span>]')
@@ -317,4 +320,39 @@ now:[],
       sqlite.run.cmd("3launchpad.db3",sql);
     }
   }
+}
+
+
+/**
+* Implementing the image handler returned by last.fm or a third party when/if we switch
+*/
+
+player.imagehandler = {} ;
+/**
+* The structure of the records are as follows {meta:[],data:[]} where data contains objects who's attributes/fields are specified in meta
+* @param r records returned from the service provider
+*/
+player.imagehandler.load = function(r){
+  jx.dom.set.value('now.playing.artist','') ;
+  div = document.createElement('DIV') ;
+  div.align="center" ;
+  div.style['margin-left'] = '10%';
+  for(var i=0; i < r.data.length; i++){
+    img = document.createElement('IMG') ;
+    img.src = r.data[i].square ;
+    img.className = 'artist-pics action' ;
+    img.onclick = function(){
+	currentpic = document.getElementById('artist.pic')  ;      
+	currentpic.src = this.src ;
+	tmp = this.src ;
+	this.src = '' ;
+	this.src = tmp;
+	
+    }
+    div.appendChild(img) ;
+  }
+  if(r.data.length > 0){
+    document.getElementById('artist.pic').src = r.data[0].square ;
+  }
+  jx.dom.append.child('now.playing.artist',div) ;
 }

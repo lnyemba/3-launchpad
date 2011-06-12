@@ -98,6 +98,8 @@ var library={
               player.add(this.info)
               //window.setTimeout(function(){jx.dom.set.value('library.status','') }, 2000) ;
           }
+          table.rows[i].cells[1].style['width'] = '34px'
+          table.rows[i].cells[1].align = 'center'
       }
 
   },//-- end library.addInfo()
