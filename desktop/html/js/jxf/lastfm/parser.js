@@ -142,10 +142,10 @@ jx.lastfm.events.parse = function(xml){
             venue.name = loc.childNodes[k].childNodenodeValue ;
 
         }else if(loc.childNodes[k].nodeName.match(/city/i)){
-            venue.city = loc.childNodes[k].firstChild.nodeValue ;
+            venue.city = (loc.childNodes[k].firstChild == null)?'Unavailable':loc.childNodes[k].firstChild.nodeValue ;
             
         }else if(loc.childNodes[k].nodeName.match(/country/i)){
-            venue.country = loc.childNodes[k].firstChild.nodeValue ;
+            venue.country = (loc.childNodes[k].firstChild == null)?'Unavailable':loc.childNodes[k].firstChild.nodeValue ;
         }
       }
       
