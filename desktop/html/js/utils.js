@@ -99,7 +99,8 @@ function search(qid,dbase){
 	  	name = info.name.toLowerCase() ;	  
 	  	owner = info.owner.toLowerCase();
 	  }else{
-	  	name = table.rows[i].cells[0].innerHTML ;
+	  	name = table.rows[i].cells[0].info.name.toLowerCase() ;
+                
 	  }
 	  table.rows[i].style['display'] = null;
 	  if(keyword.length > 0 && name.match(keyword)==null){

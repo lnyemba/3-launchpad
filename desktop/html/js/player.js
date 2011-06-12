@@ -200,7 +200,7 @@ now:[],
       if(artist != 'Unknown'){
 	  var url  = 'http://ws.audioscrobbler.com/2.0/?method=artist.getimages&autocorrect=1&api_key=876c789306d784c59347e153b83b72c0&artist='+artist
 	  var fn =function(xmlhttp){
-              air.trace(xmlhttp.responseText)
+              
 	    r = jx.lastfm.parse(xmlhttp.responseXML)
 	  
 	    
@@ -216,6 +216,9 @@ now:[],
 	  var service = jx.ajax.getInstance() ;
 	  service.parser  = jx.lastfm.parser ;
 	  service.send(url,fn,'GET') ;
+
+          jx.lastfm.bio.get('artist') ;
+          jx.lastfm.events.get('artist') ;
       }
     },
     error:function(e){
@@ -242,7 +245,7 @@ now:[],
 	if(player.handler == null){
 		
 	}else{
-		var level = parseInt(Math.round(100 * (e.bytesLoaded / e.bytesTotal)));
+		var level = parseInt (Math.round(100 * (e.bytesLoaded / e.bytesTotal)));
 		jx.dom.set.value('progress',level+' %');
 		var fn = function(){
 			jx.dom.set.value('progress','[<span color="#104E8B">Playing</span>]')

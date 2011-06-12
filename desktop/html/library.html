@@ -12,6 +12,7 @@
         <td class="caption">
             Music Central
             <div class="small" style="font-weight:normal">Manage your music library; Playlist; Lyrics and more ...</div>
+            <div id="library.status" class="small" style="margin-left:5px; float:left;color:yellow"></div>
         </td>
     </tr>
 </table>
@@ -35,7 +36,7 @@
                         <td valign="top">
                             <div class="nytimes"><b>Now Playing</b></div>
                             <div class="small" style="float:left">Manage the current playlist</div>
-                            <div id="library.status" class="small" style="margin-left:5px; float:left;color:yellow"></div>
+                            
                         </td>
                     </tr>
                 </table>
@@ -67,10 +68,12 @@
                 <div class="library-innerpanel">
                     <div style="margin-top:3px;" align="right">
                         
-                            <input style="width:97%;"/>&lsaquo;&lsaquo;&nbsp;
+                            <input id="library.search" style=" width:95%;" onkeyup="search('library.search','library.songs')"/>
+                            <span style="margin:3px; float:right" class="action" onclick="jx.dom.set.value('library.search',''); search('library.search','libray.songs'); jx.dom.set.focus('library.search')">&lsaquo;&lsaquo;&nbsp;</span>
+
                         
                     </div>
-                    <div  align="left" id="library.grid" style="width:98wijo%;overflow:auto; height:150px; margin-top:3px;padding:2px">
+                    <div  align="left" id="library.grid" style="width:98%;overflow:auto; height:150px; margin-top:3px;padding:2px">
                         oops;
                     </div>
                 </div>
@@ -102,11 +105,14 @@
                     </tr>
                 </table>
                 <div width="100%">
-                    <div style="float:left;width:49%;" class="library-innerpanel">
-                        <b>Artist Pictures</b>
+                    <div align="left" style="float:left;width:49%;" class="library-innerpanel">
+                        <b>Artist Biography</b>
+                        <div id="library.artist.bio" class="nytimes"></div>
                     </div>
-                    <div style="float:left;width:50%;margin-left:2px" class="library-innerpanel">
-                        <b>Events</b>
+                    <div align="left" style="float:left;width:50%;margin-left:2px" class="library-innerpanel">
+                        <b> Events</b>
+                        <div class="small"> last.fm</div>
+                        <div id="library.artist.events" class="nytimes"></div>
                     </div>
                 </div>
             </div>
