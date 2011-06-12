@@ -88,6 +88,9 @@
                 <input type="image" id="pause.button" src="img/pause_1.png" style="display:none" onclick="player.controls.pause()"/>
                 <input type="image" id="play.button" src="img/play_1.png" onclick="player.controls.play()"/>
                 <input type="image" src="img/fwd_1.png" onclick="player.controls.next()"/>
+                <input type="image" id="play.norepeat" 		src="img/default/no-repeat.png" onclick="jx.dom.hide('play.norepeat'); jx.dom.show('play.repeatall')"/>
+                <input type="image" id="play.repeatall" 	src="img/default/repeatall.png" style="display:none" onclick="jx.dom.show('play.repeattrack'); jx.dom.hide('play.repeatall')"/>
+                <input type="image" id="play.repeattrack" 	src="img/default/repeat-single.png" style="display:none" onclick="jx.dom.hide('play.repeattrack'); jx.dom.show('play.norepeat')"/>
                 <div style="float:right; width:161px;margin-top:9px; margin-right:2px">
                     version <span id="version" class="small"></span>
                 </div>
