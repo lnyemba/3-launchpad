@@ -110,6 +110,30 @@
                     </div>
                 </div>
             </div>
+            <div id="library.news" class="library-panel">
+                <table width="100%">
+                    <tr class="default">
+                         <td style=" width:34px">
+                            <img src="img/default/news.png"/>
+                        </td>
+                        <td style="" align="left">
+                            <div class="caption" style="float:none; width:100%">3-launchpad news</div>
+                            <div class="small" style=" float:none; width:100%">Be the first to know what we are doing and saying</div>
+                        </td>
+                    </tr>
+                </table>
+                <div width="100%">
+                    <div style="float:left;width:49%;" class="library-innerpanel">
+                        <b>Artist Pictures</b>
+                    </div>
+                    <div align="left" style="float:left;width:50%;margin-left:2px" class="library-innerpanel">
+                        <input type="image" src="img/default/tweet.png" style="float:left" onclick="twitter.getTweets('3launchpad','library.tweets') ;"/>
+                        <div id="library.tweets" align="left" class="nytimes"></div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
         </div>
     </td>
@@ -129,6 +153,7 @@
         <input type="image" src="img/dropbox-logo.png" onclick="library.shortcut.open('dropbox')"/>
         <input type="image" src="img/default/lyrics.png" onclick="library.nav.to(2);"/>
         <input type="image" src="img/default/wiki.png" onclick="library.nav.to(3);"/>
+        <input type="image" src="img/default/news.png" onclick="library.nav.to(4);"/>
         </div>
     </td>
 </tr>

@@ -111,6 +111,10 @@ var library={
       id3.artist = jx.dom.get.value('id3.artist') ;
       id3.song  = jx.dom.get.value('id3.song') ;
       id3.album = jx.dom.get.value('id3.album') ;
+      if(table.rows[index].info == null){
+          table.rows[index].info = {} ;
+      }
+
       if(id3.artist != '' || id3.song != '' || id3.album != ''){
           table.rows[index].info.id3 = id3 ;
       }
@@ -196,7 +200,7 @@ library.showUsers=function(target){
 // Library navigation
 library.nav = {} ;
 library.nav.offset  = 675 ; // offset in pixels
-library.nav.size    = 4;    // number of panels
+library.nav.size    = 5;    // number of panels
 library.nav.panel = 'lib_panel'
 
 library.nav.back = function(){

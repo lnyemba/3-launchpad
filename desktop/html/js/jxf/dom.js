@@ -131,13 +131,28 @@ jx.dom = {
 	    },//-- end jx.dom.getDropDownText(id)
             checkboxvalue:function(id){},//-- end jx.dom.get.CheckboxValue(id)
             value:function(id){
-                var dom = document.getElementById(id);
+                var dom = document.getElementById(id) ;
+                var tag = dom.tagName ;
+                var type= dom.getAttribute('type')
                 var value ;
-                if(dom.value == undefined){
-                    value = dom.innerHTML ;
+                if(tag.match(/input|textarea/i)){
+                    if(type != null){
+                        if(type.match(/checkbox|radio/i)){
+                            value = jx.dom.get.checkboxvalue(id)
+                        }
+                    }
+
+                    if(value == null){
+                        value = dom.value
+                    }
+
+                }else if(tag.match(/select/i)){
+                    value = jx.dom.get.dropdownvalue(id) ;
                 }else{
-                    value = dom.value ;
+                    value = dom.innerHTML ;
                 }
+
+
                 return value ;
 
             }//-- end jx.dom.get.Value(id)

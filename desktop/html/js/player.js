@@ -21,15 +21,7 @@ now:[],
       table.cellSpacing = '0px'
       for(var i=0; i < table.rows.length; i++){
 	table.rows[i].className = 'medium shaded-dark';
-	
-	//input = document.createElement('INPUT') ;
-	//input.type = 'checkbox' ;
-	//td = document.createElement('TD') ;
-	//td.appendChild(input) ;
-	//td.valign='middle';
-	//td.width = '5%'
-	//table.rows[i].appendChild(td) ;
-	
+
 	td = document.createElement('TD') ;
 	td.valign='middle';
 	td.align='middle';
@@ -54,11 +46,7 @@ now:[],
 	    player.index = 0;
 	  }
 	  player.add(null);
-	    //player.init(player.init(this.index-1)) ;
-	    
-	  
-	  
-	 
+
 	}
 	td.appendChild(div);
 	table.rows[i].appendChild(td)
@@ -195,11 +183,14 @@ now:[],
       jx.dom.set.value('song','Unknown') ;
       artist 	= e.target.id3['artist'] ;
       song 	= e.target.id3['songName'] ;
-      if(artist == ''|| artist == null||artist == undefined){
-	artist = 'Unknown' ;
+      
+      if(artist == ''|| artist == null){
+	air.trace(JSON.stringify(player.now[player.index])) ;
+        artist = (player.now[player.index].info.id3 == null)?'Unknown':player.now[player.index].info.id3.artist ;
       }
-      if(song == '' ||song == null||song==undefined){
-	song = 'Unknown'
+      if(song == '' ||song == null){
+	
+        song = (player.now[player.index].info.id3 == null)?'Unknown':player.now[player.index].info.id3.song
       }
       jx.dom.set.value('artist',artist) ;
       jx.dom.set.value('song',song) ;
@@ -209,6 +200,7 @@ now:[],
       if(artist != 'Unknown'){
 	  var url  = 'http://ws.audioscrobbler.com/2.0/?method=artist.getimages&autocorrect=1&api_key=876c789306d784c59347e153b83b72c0&artist='+artist
 	  var fn =function(xmlhttp){
+              air.trace(xmlhttp.responseText)
 	    r = jx.lastfm.parse(xmlhttp.responseXML)
 	  
 	    
@@ -226,7 +218,10 @@ now:[],
 	  service.send(url,fn,'GET') ;
       }
     },
-    error:function(e){},
+    error:function(e){
+        air.trace("wtf ......")
+        air.trace(e.message)
+    },
     soundComplete:function(e){
             //
       // we are at the end of a songName
